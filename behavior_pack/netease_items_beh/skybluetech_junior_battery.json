@@ -1,0 +1,41 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:max_stack_size": 1,
+            "minecraft:tags": {
+                "tags": [
+                    "skybluetech:battery"
+                ]
+            },
+            "netease:initial_user_data": {
+                "display": {
+                    "Lore": [
+                        {
+                            "__type__": 8,
+                            "__value__": "§r§e⚡ §b已储能 §a0 / 100000 RF"
+                        }
+                    ]
+                },
+                "store_rf": {
+                    "__type__": 4,
+                    "__value__": 0
+                },
+                "store_rf_max": {
+                    "__type__": 4,
+                    "__value__": 100000
+                },
+                "lore_pos": {
+                    "charge": {
+                        "__type__": 3,
+                        "__value__": 0
+                    }
+                }
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:junior_battery"
+        }
+    }
+}

@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+#
+from mod.server.blockEntityData import BlockEntityData
+from ..define.machine_config.fluid_condenser import recipes as Recipes
+from ..ui_sync.machines.fluid_condenser import FluidCondenserUISync
+from .basic import MixedProcessor, RegisterMachine
+
+
+@RegisterMachine
+class FluidCondenser(MixedProcessor):
+    block_name = "skybluetech:fluid_condenser"
+    store_rf_max = 8800
+    recipes = Recipes
+    input_slots = (0,)
+    output_slots = (1,)
+    fluid_io_mode = (0, 0, 0, 0, 0, 0)
+    fluid_slot_max_volumes = (2000,)
+
+    def __init__(self, dim, x, y, z, block_entity_data):
+        # type: (int, int, int, int, BlockEntityData) -> None
+        MixedProcessor.__init__(self, dim, x, y, z, block_entity_data)
+        self.sync = FluidCondenserUISync.NewServer(self).Activate()
+        self.OnSync()
+
+    def OnSync(self):
+        self.sync.storage_rf = self.store_rf
+        self.sync.rf_max = self.store_rf_max
+        self.sync.progress_relative = self.GetProgressPercent()
+        self.sync.MarkedAsChanged()
+

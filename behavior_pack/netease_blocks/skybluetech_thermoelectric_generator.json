@@ -1,0 +1,41 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:block": {
+        "components": {
+            "netease:block_container": {
+                "container_size": 1,
+                "custom_description": "温差发电机",
+                "screen_name": "BatteryUI"
+            },
+            "netease:block_entity": {
+                "tick": true
+            },
+            "netease:custom_tips": {
+                "value": "\n§7可利用相邻方块间的温差产生能量。\n§7例如： 水、 冰、 熔岩。"
+            },
+            "netease:listen_block_remove": {
+                "value": true
+            },
+            "netease:neighborchanged_sendto_script": {
+                "value": true
+            },
+            "netease:tier": {
+                "destroy_special": true,
+                "digger": "pickaxe",
+                "level": 2
+            },
+            "tag:redstoneflux_connectable": {},
+            "tag:redstoneflux_generator": {},
+            "tag:redstoneflux_provider": {},
+            "tag:skybluetech_generator": {},
+            "tag:skybluetech_machine": {},
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 2.0
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:thermoelectric_generator"
+        }
+    }
+}

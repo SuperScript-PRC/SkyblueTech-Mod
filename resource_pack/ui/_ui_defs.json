@@ -1,0 +1,28 @@
+{
+    "ui_defs": [
+        "ui/AlloyFurnaceUI.json",
+        "ui/AssemblerUI.json",
+        "ui/BasicDataScreen.json",
+        "ui/BatteryUI.json",
+        "ui/ChargerUI.json",
+        "ui/CompressorUI.json",
+        "ui/DiggerUI.json",
+        "ui/FarmingStationUI.json",
+        "ui/ForesterUI.json",
+        "ui/FreezerUI.json",
+        "ui/GeneralTankUI.json",
+        "ui/GeoThermalGeneratorUI.json",
+        "ui/HeavyCompressorUI.json",
+        "ui/ItemSlot.json",
+        "ui/MaceratorUI.json",
+        "ui/MagmaCentrifugeUI.json",
+        "ui/MagmaFurnaceUI.json",
+        "ui/NeteaseContainerUI.json",
+        "ui/ObjUpVeinMinerSettingsUI.json",
+        "ui/PumpUI.json",
+        "ui/RedstoneFurnaceUI.json",
+        "ui/SplitterUI.json",
+        "ui/ThermalGeneratorUI.json",
+        "ui/ThermoelectricGeneratorUI.json"
+    ]
+}

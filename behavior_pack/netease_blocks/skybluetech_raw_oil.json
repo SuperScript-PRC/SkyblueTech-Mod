@@ -1,0 +1,29 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:block": {
+        "components": {
+            "netease:liquid": {
+                "bucket_name": "skybluetech:raw_oil_bucket",
+                "can_float_boat": false,
+                "liquid_color": [
+                    44,
+                    39,
+                    28,
+                    255
+                ],
+                "mob_effects": [
+
+                ],
+                "remove_effects": [
+
+                ],
+                "spread_fire": false
+            }
+        },
+        "description": {
+            "base_block": "liquid",
+            "category": "none",
+            "identifier": "skybluetech:raw_oil"
+        }
+    }
+}

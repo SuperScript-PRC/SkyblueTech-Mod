@@ -1,0 +1,161 @@
+{
+    "format_version": "1.20.80",
+    "minecraft:block": {
+        "components": {
+            "minecraft:geometry": {
+                "identifier": "minecraft:geometry.full_block"
+            },
+            "netease:block_container": {
+                "container_size": 6,
+                "custom_description": "红石炉",
+                "screen_name": "RedstoneFurnaceUI.main"
+            },
+            "netease:block_entity": {
+                "tick": true
+            },
+            "netease:custom_tips": {
+                "value": "\n§7消耗红石通量能量 (RF) 执行熔炉的功能。"
+            },
+            "netease:listen_block_remove": {
+                "value": true
+            },
+            "tag:redstoneflux_accepter": {
+
+            },
+            "tag:redstoneflux_appliance": {
+
+            },
+            "tag:redstoneflux_connectable": {
+
+            },
+            "tag:skybluetech_appliance": {
+
+            },
+            "tag:skybluetech_container": {
+
+            },
+            "tag:skybluetech_machine": {
+
+            }
+        },
+        "description": {
+            "base_block": "netease_container",
+            "category": "skybluetech",
+            "identifier": "skybluetech:redstone_furnace",
+            "states": {
+                "skybluetech:active": [
+                    false,
+                    true
+                ]
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": [
+                        "minecraft:cardinal_direction"
+                    ],
+                    "y_rotation_offset": 180.0
+                }
+            }
+        },
+        "permutations": [
+            {
+                "components": {
+                    "minecraft:material_instances": {
+                        "north": {
+                            "texture": "skybluetech:redstone_furnace_front_active"
+                        },
+                        "south": {
+                            "texture": "skybluetech:frame"
+                        },
+                        "down": {
+                            "texture": "skybluetech:frame_bottom"
+                        },
+                        "east": {
+                            "texture": "skybluetech:frame"
+                        },
+                        "up": {
+                            "texture": "skybluetech:frame_up"
+                        },
+                        "west": {
+                            "texture": "skybluetech:frame"
+                        }
+                    }
+                },
+                "condition": "q.block_state('skybluetech:active')"
+            },
+            {
+                "components": {
+                    "minecraft:material_instances": {
+                        "north": {
+                            "texture": "skybluetech:redstone_furnace_front"
+                        },
+                        "south": {
+                            "texture": "skybluetech:frame"
+                        },
+                        "down": {
+                            "texture": "skybluetech:frame_bottom"
+                        },
+                        "east": {
+                            "texture": "skybluetech:frame"
+                        },
+                        "up": {
+                            "texture": "skybluetech:frame_up"
+                        },
+                        "west": {
+                            "texture": "skybluetech:frame"
+                        }
+                    }
+                },
+                "condition": "!q.block_state('skybluetech:active')"
+            },
+            {
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            180,
+                            0
+                        ]
+                    }
+                },
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'"
+            },
+            {
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                },
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'"
+            },
+            {
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            -90,
+                            0
+                        ]
+                    }
+                },
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'"
+            },
+            {
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [
+                            0,
+                            90,
+                            0
+                        ]
+                    }
+                },
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'"
+            }
+        ]
+    }
+}

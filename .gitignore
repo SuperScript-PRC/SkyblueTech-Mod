@@ -1,0 +1,10 @@
+.mcs
+.vscode
+
+behavior_pack/pack_manifest.json
+resource_pack/textures
+
+work.mcscfg
+studio.json
+editor.name
+description.txt

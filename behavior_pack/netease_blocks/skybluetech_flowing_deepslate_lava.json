@@ -1,0 +1,17 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:block": {
+        "components": {
+            "netease:liquid": {
+                "spread_delay": 20,
+                "spread_fire": true,
+                "spread_range": 5
+            }
+        },
+        "description": {
+            "base_block": "flowing_liquid",
+            "category": "none",
+            "identifier": "skybluetech:flowing_deepslate_lava"
+        }
+    }
+}

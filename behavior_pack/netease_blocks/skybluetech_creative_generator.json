@@ -1,0 +1,25 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:block": {
+        "components": {
+            "netease:block_entity": {
+                "tick": true
+            },
+            "netease:custom_tips": {
+                "value": "\n§7可提供§e无限§7的能量输出功率。"
+            },
+            "netease:listen_block_remove": {
+                "value": true
+            },
+            "tag:redstoneflux_connectable": {},
+            "tag:redstoneflux_generator": {},
+            "tag:redstoneflux_provider": {},
+            "tag:skybluetech_generator": {},
+            "tag:skybluetech_machine": {}
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:creative_generator"
+        }
+    }
+}

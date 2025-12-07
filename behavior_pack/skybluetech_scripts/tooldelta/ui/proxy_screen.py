@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*-
+#
+
+import mod.client.extraClientApi as clientApi
+from mod.client.ui.screenNode import ScreenNode
+from mod_log import logger
+from skybluetech_scripts.tooldelta.events.client.control import OnKeyPressInGame
+from .elem_comp import UBaseUI
+from .utils import SNode
+
+
+CustomUIScreenProxy = clientApi.GetUIScreenProxyCls()
+ViewBinder = clientApi.GetViewBinderCls()
+
+
+class UScreenProxy(CustomUIScreenProxy):
+    bound_proxier = ""
+
+    def __init__(self, screenName, screenNode):
+        # type: (str, ScreenNode) -> None
+        CustomUIScreenProxy.__init__(self, screenName, screenNode)
+        self.screenName = screenName
+        self.screenNode = screenNode
+        self._elem_cacher = {} # type: dict[str, UBaseUI]
+        self.activated = False
+
+    def RemoveUI(self):
+        self._deactive()
+
+    def _active(self):
+        from .pool import _addActiveProxyScreen
+        if self.activated:
+            return
+        _addActiveProxyScreen(self)
+        self.activated = True
+
+    def _deactive(self):
+        from .pool import _removeActiveProxyScreen
+        if not self.activated:
+            return
+        
+        _removeActiveProxyScreen(self)
+        # self.activated = False
+        if clientApi.GetTopUINode() is self.screenNode:
+            clientApi.PopTopUI()
+
+
+    # ==== overload ====
+
+    def OnUReactive(self):
+        # type: () -> None
+        "超类方法, 覆写后在重新激活 UI 时被调用"
+        pass
+
+    def OnUDeactive(self):
+        # type: () -> None
+        "超类方法, 覆写后在取消激活 UI 时被调用"
+        pass
+
+    def OnCreate(self):
+        """ 超类方法用于激活页面。 """
+        self._active()
+
+    def OnDestroy(self):
+        """ 超类方法用于反激活页面。 """
+        pass
+
+    def OnCurrentPageKeyEvent(self, event):
+        # type: (OnKeyPressInGame) -> None
+        pass
+
+
+    # ====
+    
+    def GetElement(self, path):
+        # type: (str | SNode) -> UBaseUI
+        if isinstance(path, SNode):
+            path = path.base
+        return self._get_elem_cache(path)
+
+    __getitem__ = __gt__ = GetElement
+
+    def _get_elem_cache(self, path):
+        # type: (str) -> UBaseUI
+        if path in self._elem_cacher:
+            return self._elem_cacher[path]
+        else:
+            ui = UBaseUI(self.screenNode, self.screenNode.GetBaseUIControl(path))
+            self._elem_cacher[path] = ui
+            return ui
+ 
+__all__ = [
+    "UScreenProxy",
+    "ViewBinder"
+]

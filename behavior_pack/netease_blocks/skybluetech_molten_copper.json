@@ -1,0 +1,21 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:block": {
+        "components": {
+            "netease:liquid": {
+                "liquid_color": [
+                    231,
+                    124,
+                    86,
+                    255
+                ],
+                "spread_fire": true
+            }
+        },
+        "description": {
+            "base_block": "liquid",
+            "category": "none",
+            "identifier": "skybluetech:molten_copper"
+        }
+    }
+}

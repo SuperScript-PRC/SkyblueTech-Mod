@@ -1,0 +1,15 @@
+{
+    "groups": [
+        {
+            "group_name": "itemGroup.skybluetech.wire",
+            "icon": "skybluetech:tin_wire",
+            "list": [
+                "skybluetech:tin_wire",
+                "skybluetech:copper_wire",
+                "skybluetech:silver_wire",
+                "skybluetech:superconduct_wire",
+                "skybluetech:creative_wire"
+            ]
+        }
+    ]
+}

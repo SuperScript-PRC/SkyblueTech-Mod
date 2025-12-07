@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:icon": "skybluetech:mid_lava_bucket"
+        },
+        "description": {
+            "identifier": "skybluetech:mid_lava_bucket"
+        }
+    }
+}

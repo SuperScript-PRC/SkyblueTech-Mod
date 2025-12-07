@@ -1,0 +1,176 @@
+{
+    "digger_ui": {
+        "type": "panel",
+        "size": [
+            180.0,
+            200.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 100,
+                    "visible": false
+                }
+            },
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {
+                    "layer": 3
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {
+                    "layer": 4
+                }
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {}
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "bg@common.dialog_background_opaque": {
+                                "controls": [
+                                    {
+                                        "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                                    },
+                                    {
+                                        "machine_label": {
+                                            "type": "label",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "offset": [
+                                                0.0,
+                                                4.0
+                                            ],
+                                            "font_scale_factor": 1.4,
+                                            "font_type": "default",
+                                            "shadow": true,
+                                            "text": "电动挖掘钻",
+                                            "text_alignment": "center"
+                                        }
+                                    },
+                                    {
+                                        "gamepad_cursor_button@common.gamepad_cursor_button": {
+                                            "visible": true
+                                        }
+                                    },
+                                    {
+                                        "close@common.close_button": {}
+                                    },
+                                    {
+                                        "main": {
+                                            "type": "panel",
+                                            "controls": [
+                                                {
+                                                    "power_bar@BatteryUI.PowerBar": {
+                                                        "layer": 13,
+                                                        "offset": [
+                                                            "-42%+0px",
+                                                            "-20%+0px"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "output_slot": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            32.0,
+                                                            -50.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm",
+                                                            "100%cm"
+                                                        ],
+                                                        "layer": 16,
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 0
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {}
+                                                },
+                                                {
+                                                    "upgrades@RedstoneFurnaceUI.UpgradeSlots": {
+                                                        "$slot0": 1,
+                                                        "$slot1": 2,
+                                                        "$slot2": 3,
+                                                        "$slot3": 4,
+                                                        "offset": [
+                                                            106,
+                                                            -57
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "block_disp": {
+                                                        "type": "custom",
+                                                        "renderer": "inventory_item_renderer",
+                                                        "offset": [
+                                                            -30.0,
+                                                            -50.0
+                                                        ],
+                                                        "size": [
+                                                            25.0,
+                                                            25.0
+                                                        ],
+                                                        "layer": 1,
+                                                        "property_bag": {
+                                                            "#item_id_aux": 131072
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "work_status": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            2.0,
+                                                            -24.0
+                                                        ],
+                                                        "color": [
+                                                            0.4235294117647059,
+                                                            0.4235294117647059,
+                                                            0.4235294117647059
+                                                        ],
+                                                        "font_scale_factor": 1.3,
+                                                        "font_type": "default",
+                                                        "text": "系统未就绪",
+                                                        "text_alignment": "center"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "backpack@AlloyFurnaceUI.player_backpack": {
+                                            "offset": [
+                                                0,
+                                                46
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 2,
+                    "size": [
+                        "default",
+                        "default"
+                    ]
+                }
+            }
+        ]
+    },
+    "main@common.base_screen": {
+        "$screen_content": "DiggerUI.digger_ui"
+    },
+    "namespace": "DiggerUI"
+}

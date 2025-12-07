@@ -1,0 +1,23 @@
+{
+  "format_version": "1.13.0",
+  "minecraft:ore_feature": {
+    "description": {
+      "identifier": "skybluetech:platinum_ore_spawn"
+    },
+    "count": 5,
+    "replace_rules": [
+      {
+        "places_block": "skybluetech:platinum_ore",
+        "may_replace": [
+          "minecraft:stone"
+        ]
+      },
+      {
+        "places_block": "skybluetech:deepslate_platinum_ore",
+        "may_replace": [
+          "minecraft:deepslate"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:icon": "skybluetech:rough_rubber"
+        },
+        "description": {
+            "identifier": "skybluetech:rough_rubber"
+        }
+    }
+}

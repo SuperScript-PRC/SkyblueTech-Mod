@@ -1,0 +1,1 @@
+CHARGE_SPEED = 64

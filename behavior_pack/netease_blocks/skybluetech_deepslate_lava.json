@@ -1,0 +1,22 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:block": {
+        "components": {
+            "netease:liquid": {
+                "liquid_color": [
+                    192,
+                    38,
+                    26,
+                    255
+                ],
+                "spread_fire": true,
+                "water_splash": "minecraft:water_splash_particle_manual"
+            }
+        },
+        "description": {
+            "base_block": "liquid",
+            "category": "none",
+            "identifier": "skybluetech:deepslate_lava"
+        }
+    }
+}

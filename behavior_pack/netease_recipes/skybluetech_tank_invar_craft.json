@@ -1,0 +1,31 @@
+{
+    "format_version": "1.20.10",
+    "minecraft:recipe_shaped": {
+        "description": {
+            "identifier": "skybluetech:invar_tank"
+        },
+        "key": {
+            "A": {
+                "data": 0,
+                "item": "skybluetech:invar_plate"
+            },
+            "B": {
+                "data": 0,
+                "item": "minecraft:glass_pane"
+            }
+        },
+        "pattern": [
+            "ABA",
+            "B B",
+            "ABA"
+        ],
+        "result": {
+            "count": 1,
+            "data": 0,
+            "item": "skybluetech:invar_tank"
+        },
+        "tags": [
+            "crafting_table"
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+
+from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
+from ...ui_sync.machines.general_tank import GeneralTankUISync
+from .define import MachinePanelUIProxy, MAIN_PATH
+from ..utils import InitFluidDisplay, UpdateFluidDisplay
+
+FLUID_NODE = MAIN_PATH / "fluid_display"
+
+
+@RegistProxyScreen("GeneralTankUI.main")
+class GeneralTankUI(MachinePanelUIProxy):
+    def OnCreate(self):
+        dim, x, y, z = self.pos
+        self.sync = GeneralTankUISync.NewClient(dim, x, y, z) # type: GeneralTankUISync
+        self.fluid_display = self > FLUID_NODE
+        self.sync.WhenUpdated = self.WhenUpdated
+        self.f_hook = InitFluidDisplay(
+            self.fluid_display, lambda :(
+                self.sync.fluid_id,
+                self.sync.fluid_volume,
+                self.sync.max_volume,
+            )
+        )
+        MachinePanelUIProxy.OnCreate(self)
+
+    def WhenUpdated(self):
+        if not self.inited:
+            return
+        UpdateFluidDisplay(
+            self.fluid_display,
+            self.sync.fluid_id,
+            self.sync.fluid_volume,
+            self.sync.max_volume,
+        )
+        self.f_hook()
+

@@ -1,0 +1,17 @@
+{
+    "ContainerItem@common.container_item": {
+        "size": [
+            18,
+            18
+        ]
+    },
+    "main": {
+        "type": "screen",
+        "controls": [
+            {
+                "container_item(0)@ItemSlot.ContainerItem": {}
+            }
+        ]
+    },
+    "namespace": "ItemSlot"
+}

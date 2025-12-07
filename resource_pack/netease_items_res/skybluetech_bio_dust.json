@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:icon": "skybluetech:bio_dust"
+        },
+        "description": {
+            "identifier": "skybluetech:bio_dust"
+        }
+    }
+}

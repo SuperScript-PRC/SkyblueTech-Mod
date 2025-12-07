@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+
+from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
+from ...ui_sync.machines.geothermal_generator import GeoThermalGeneratorUISync
+from .define import MachinePanelUIProxy, MAIN_PATH
+from ..utils import UpdatePowerBar, UpdateFluidDisplay, UpdateFlame, InitFluidsDisplay
+
+POWER_NODE = MAIN_PATH / "power_bar"
+FLUID_LAVA_NODE = MAIN_PATH / "lava_display"
+FLUID_WATER_NODE = MAIN_PATH / "water_display"
+FLAME_NODE = MAIN_PATH / "flame"
+
+
+@RegistProxyScreen("GeoThermalGeneratorUI.main")
+class GeoThermalGeneratorUI(MachinePanelUIProxy):
+    def OnCreate(self):
+        dim, x, y, z = self.pos
+        self.sync = GeoThermalGeneratorUISync.NewClient(dim, x, y, z) # type: GeoThermalGeneratorUISync
+        self.power_bar = self > POWER_NODE
+        self.lava_display = self > FLUID_LAVA_NODE
+        self.water_display = self > FLUID_WATER_NODE
+        self.flame = self > FLAME_NODE
+        self.sync.WhenUpdated = self.WhenUpdated
+        self.f_hook1 = InitFluidsDisplay(self.lava_display, self.sync.fluids, 0)
+        self.f_hook2 = InitFluidsDisplay(self.water_display, self.sync.fluids, 1)
+        MachinePanelUIProxy.OnCreate(self)
+
+    def WhenUpdated(self):
+        if not self.inited:
+            return
+        UpdatePowerBar(self.power_bar, self.sync.storage_rf, self.sync.rf_max)
+        UpdateFlame(self.flame, self.sync.progress)
+        f0, f1 = self.sync.fluids
+        UpdateFluidDisplay(
+            self.lava_display,
+            f0.fluid_id,
+            f0.volume,
+            f0.max_volume,
+        )
+        UpdateFluidDisplay(
+            self.water_display,
+            f1.fluid_id,
+            f1.volume,
+            f1.max_volume,
+        )
+        self.f_hook1()
+        self.f_hook2()
+

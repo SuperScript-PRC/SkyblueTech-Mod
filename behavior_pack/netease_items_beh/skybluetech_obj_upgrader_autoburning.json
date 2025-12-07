@@ -1,0 +1,27 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:max_stack_size": 1,
+            "minecraft:tags": {
+                "tags": [
+                    "skybluetech:object_upgrader",
+                    "skybluetech:object_upgrader/tool"
+                ]
+            },
+            "netease:customtips": {
+                "value": "\n§7自动熔炼挖掘掉落的材料， 兼容时运效果。\n§3可用于：\n §b- 斧/镐/锹/锄"
+            },
+            "netease:initial_user_data": {
+                "st:level": {
+                    "__type__": 3,
+                    "__value__": 1
+                }
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:obj_upgrader_autoburning"
+        }
+    }
+}

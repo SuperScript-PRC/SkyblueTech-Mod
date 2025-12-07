@@ -1,0 +1,43 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "skybluetech:digger",
+            "geometry": {
+                "default": "geometry.skybluetech.digger_ani"
+            },
+            "textures": {
+                "default": "textures/entity/digger_model"
+            },
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "scripts": {
+                "initialize": [
+                    "variable.mod_block_is_active=false;",
+                    "variable.mod_block_facing=0;"
+                ],
+                "animate": [
+                    "facing_ctrl",
+                    "active"
+                ]
+            },
+            "animations": {
+                "facing_up": "animation.skybluetech.digger_ani.facing_up",
+                "facing_down": "animation.skybluetech.digger_ani.facing_down",
+                "facing_east": "animation.skybluetech.digger_ani.facing_east",
+                "facing_west": "animation.skybluetech.digger_ani.facing_west",
+                "facing_south": "animation.skybluetech.digger_ani.facing_south",
+                "facing_north": "animation.skybluetech.digger_ani.facing_north",
+                "still": "animation.skybluetech.digger_ani.still",
+                "rot": "animation.skybluetech.digger_ani.rot",
+                "rot2": "animation.skybluetech.digger_ani.rot2",
+                "facing_ctrl": "controller.animation.skybluetech.digger_ani.facing_ctrl",
+                "active": "controller.animation.skybluetech.digger_ani.active"
+            },
+            "render_controllers": [
+                "controller.render.skybluetech.digger_ani"
+            ]
+        }
+    }
+}

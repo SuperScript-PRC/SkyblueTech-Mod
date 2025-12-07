@@ -1,0 +1,182 @@
+{
+    "magma_furnace_ui": {
+        "type": "panel",
+        "size": [
+            180.0,
+            200.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 100,
+                    "size": [
+                        0,
+                        0
+                    ],
+                    "visible": false
+                }
+            },
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {
+                    "layer": 3,
+                    "max_size": [
+                        0,
+                        0
+                    ]
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {
+                    "max_size": [
+                        0,
+                        0
+                    ]
+                }
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {
+                    "max_size": [
+                        0,
+                        0
+                    ]
+                }
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "bg@common.dialog_background_opaque": {
+                                "controls": [
+                                    {
+                                        "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                                    },
+                                    {
+                                        "gamepad_cursor_button@common.gamepad_cursor_button": {
+                                            "visible": true
+                                        }
+                                    },
+                                    {
+                                        "machine_label": {
+                                            "type": "label",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "offset": [
+                                                0.0,
+                                                4.0
+                                            ],
+                                            "font_scale_factor": 1.4,
+                                            "font_type": "default",
+                                            "shadow": true,
+                                            "text": "熔岩炉",
+                                            "text_alignment": "center"
+                                        }
+                                    },
+                                    {
+                                        "close@common.close_button": {}
+                                    },
+                                    {
+                                        "main": {
+                                            "type": "panel",
+                                            "controls": [
+                                                {
+                                                    "fluid_display@PumpUI.FluidDisplay": {
+                                                        "$text_size": "small",
+                                                        "$text_y_offset": [
+                                                            0,
+                                                            "2%+0px"
+                                                        ],
+                                                        "layer": 6,
+                                                        "offset": [
+                                                            40.5,
+                                                            -38
+                                                        ],
+                                                        "size": [
+                                                            38,
+                                                            68
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "input_slot": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            -35.0,
+                                                            -42.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm",
+                                                            "100%cm"
+                                                        ],
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 0
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "power_bar@BatteryUI.PowerBar": {
+                                                        "layer": 13,
+                                                        "offset": [
+                                                            "-42%+0px",
+                                                            "-20%+0px"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {
+                                                        "offset": [
+                                                            -1,
+                                                            -42
+                                                        ],
+                                                        "size": [
+                                                            36,
+                                                            20
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "upgrades@RedstoneFurnaceUI.UpgradeSlots": {
+                                                        "$slot0": 1,
+                                                        "$slot1": 2,
+                                                        "$slot2": 3,
+                                                        "$slot3": 4,
+                                                        "offset": [
+                                                            106,
+                                                            -57
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "backpack@AlloyFurnaceUI.player_backpack": {
+                                            "offset": [
+                                                0,
+                                                46
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "layer": 50
+                            }
+                        }
+                    ],
+                    "size": [
+                        "default",
+                        "default"
+                    ]
+                }
+            }
+        ]
+    },
+    "main@common.base_screen": {
+        "$screen_content": "MagmaFurnaceUI.magma_furnace_ui"
+    },
+    "namespace": "MagmaFurnaceUI"
+}

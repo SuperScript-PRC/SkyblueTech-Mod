@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {},
+        "description": {
+            "category": "skybluetech",
+            "custom_item_type": "bucket",
+            "identifier": "skybluetech:raw_oil_bucket"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
+from ...ui_sync.machines.fluid_condenser import FluidCondenserUISync
+from .define import MachinePanelUIProxy, MAIN_PATH
+from ..utils import UpdatePowerBar, UpdateGenericProgressL2R, UpdateFlame, UpdateFluidDisplay
+
+POWER_NODE = MAIN_PATH / "power_bar"
+PRGS_NODE = MAIN_PATH / "progress"
+FLUID_NODE = MAIN_PATH / "fluid_display"
+
+
+@RegistProxyScreen("FluidCondenserUI.main")
+class FluidCondenserUI(MachinePanelUIProxy):
+    def OnCreate(self):
+        dim, x, y, z = self.pos
+        self.sync = FluidCondenserUISync.NewClient(dim, x, y, z) # type: FluidCondenserUISync
+        self.sync.WhenUpdated = self.WhenUpdated
+        self.power_bar = self > POWER_NODE
+        self.progress = self > PRGS_NODE
+        self.fluid_display = self > FLUID_NODE
+        MachinePanelUIProxy.OnCreate(self)
+
+    def WhenUpdated(self):
+        if not self.inited:
+            return
+        UpdatePowerBar(self.power_bar, self.sync.storage_rf, self.sync.rf_max)
+        UpdateGenericProgressL2R(self.progress, self.sync.progress_relative)
+        UpdateFluidDisplay(
+            self.fluid_display,
+            self.sync.fluid_id,
+            self.sync.fluid_volume,
+            self.sync.max_volume,
+        )
+

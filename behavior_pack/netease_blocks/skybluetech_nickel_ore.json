@@ -1,0 +1,20 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:block": {
+        "components": {
+            "minecraft:loot": "loot_tables/skybluetech_nickel_ore.json",
+            "netease:tier": {
+                "destroy_special": true,
+                "digger": "pickaxe",
+                "level": 1
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 3.0
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:nickel_ore"
+        }
+    }
+}

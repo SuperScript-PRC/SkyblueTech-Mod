@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:icon": "skybluetech:basic_speed_upgrader"
+        },
+        "description": {
+            "identifier": "skybluetech:basic_speed_upgrader"
+        }
+    }
+}

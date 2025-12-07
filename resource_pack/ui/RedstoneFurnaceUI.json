@@ -1,0 +1,324 @@
+{
+    "ProgressBar": {
+        "type": "panel",
+        "$bg_image": "textures/panel/arrow_img",
+        "$mask_image": "textures/panel/arrow_mask",
+        "offset": [
+            2.0,
+            -50.0
+        ],
+        "size": [
+            36,
+            20.0
+        ],
+        "layer": 18,
+        "controls": [
+            {
+                "bg": {
+                    "type": "image",
+                    "$bg_image|default": "",
+                    "layer": 1,
+                    "texture": "$bg_image"
+                }
+            },
+            {
+                "mask": {
+                    "type": "image",
+                    "$mask_image|default": "",
+                    "layer": 2,
+                    "clip_direction": "right",
+                    "texture": "$mask_image"
+                }
+            }
+        ]
+    },
+    "UpgradeSlots": {
+        "type": "panel",
+        "$slot0": 2,
+        "$slot1": 3,
+        "$slot2": 4,
+        "$slot3": 5,
+        "size": [
+            32,
+            86.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "bg": {
+                    "type": "image",
+                    "layer": 1,
+                    "nineslice_size": [
+                        4.0,
+                        4.0,
+                        4.0,
+                        4.0
+                    ],
+                    "texture": "textures/panel/panel_bg"
+                }
+            },
+            {
+                "slot0": {
+                    "type": "stack_panel",
+                    "offset": [
+                        0.0,
+                        -27.0
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "layer": 15,
+                    "collection_name": "netease_container",
+                    "controls": [
+                        {
+                            "slot@netease_container.custom_grid_item": {
+                                "$cell_overlay_ref|default": "RedstoneFurnaceUI.upgrade_img",
+                                "collection_index": "$slot0"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "slot1": {
+                    "type": "stack_panel",
+                    "offset": [
+                        0.0,
+                        -9.0
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "layer": 15,
+                    "collection_name": "netease_container",
+                    "controls": [
+                        {
+                            "slot@netease_container.custom_grid_item": {
+                                "$background_images|default": "RedstoneFurnaceUI.upgrade_img",
+                                "collection_index": "$slot1"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "slot2": {
+                    "type": "stack_panel",
+                    "offset": [
+                        0.0,
+                        9.0
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "layer": 15,
+                    "collection_name": "netease_container",
+                    "controls": [
+                        {
+                            "slot@netease_container.custom_grid_item": {
+                                "$background_images|default": "RedstoneFurnaceUI.upgrade_img",
+                                "collection_index": "$slot2"
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "slot3": {
+                    "type": "stack_panel",
+                    "offset": [
+                        0.0,
+                        27.0
+                    ],
+                    "size": [
+                        "100%cm",
+                        "100%cm"
+                    ],
+                    "layer": 15,
+                    "collection_name": "netease_container",
+                    "controls": [
+                        {
+                            "slot@netease_container.custom_grid_item": {
+                                "$background_images|default": "RedstoneFurnaceUI.upgrade_img",
+                                "collection_index": "$slot3"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "main@common.base_screen": {
+        "$screen_content": "RedstoneFurnaceUI.redstone_furnace_ui"
+    },
+    "namespace": "RedstoneFurnaceUI",
+    "redstone_furnace_ui": {
+        "type": "panel",
+        "size": [
+            180.0,
+            200.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 100,
+                    "visible": false
+                }
+            },
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {
+                    "layer": 3
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {
+                    "layer": 4
+                }
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {}
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "bg@common.dialog_background_opaque": {
+                                "controls": [
+                                    {
+                                        "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                                    },
+                                    {
+                                        "machine_label": {
+                                            "type": "label",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "offset": [
+                                                0.0,
+                                                4.0
+                                            ],
+                                            "font_scale_factor": 1.4,
+                                            "font_type": "default",
+                                            "shadow": true,
+                                            "text": "红石炉",
+                                            "text_alignment": "center"
+                                        }
+                                    },
+                                    {
+                                        "gamepad_cursor_button@common.gamepad_cursor_button": {
+                                            "visible": true
+                                        }
+                                    },
+                                    {
+                                        "close@common.close_button": {}
+                                    },
+                                    {
+                                        "main": {
+                                            "type": "panel",
+                                            "controls": [
+                                                {
+                                                    "power_bar@BatteryUI.PowerBar": {
+                                                        "layer": 13,
+                                                        "offset": [
+                                                            "-42%+0px",
+                                                            "-20%+0px"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "input_slot": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            -29.0,
+                                                            -50.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm",
+                                                            "100%cm"
+                                                        ],
+                                                        "layer": 15,
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 0
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "output_slot": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            32.0,
+                                                            -50.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm",
+                                                            "100%cm"
+                                                        ],
+                                                        "layer": 16,
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 1
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "flame@ThermalGeneratorUI.Flame": {
+                                                        "layer": 17,
+                                                        "offset": [
+                                                            -29,
+                                                            -25
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {}
+                                                },
+                                                {
+                                                    "upgrades@RedstoneFurnaceUI.UpgradeSlots": {
+                                                        "offset": [
+                                                            106,
+                                                            -57
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "backpack@AlloyFurnaceUI.player_backpack": {
+                                            "offset": [
+                                                0,
+                                                46
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 2,
+                    "size": [
+                        "default",
+                        "default"
+                    ]
+                }
+            }
+        ]
+    },
+    "upgrade_img": {
+        "type": "image",
+        "layer": 1,
+        "texture": "textures/panel/upgrade_slot_bg"
+    }
+}

@@ -1,0 +1,71 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:max_damage": 100,
+            "minecraft:tags": {
+                "tags": [
+                    "skybluetech:assembler_available",
+                    "skybluetech:objects",
+                    "skybluetech:objects/tool",
+                    "skybluetech:objects/tool/hoe"
+                ]
+            },
+            "netease:initial_user_data": {
+                "display": {
+                    "Lore": [
+                        {
+                            "__type__": 8,
+                            "__value__": "§r§e⚡ §b已储能 §a0 / 100000 RF"
+                        },
+                        {
+                            "__type__": 8,
+                            "__value__": "§r§6◆ 未安装任何升级§f"
+                        }
+                    ]
+                },
+                "lore_pos": {
+                    "charge": {
+                        "__type__": 3,
+                        "__value__": 0
+                    },
+                    "object_upgraders": {
+                        "__type__": 3,
+                        "__value__": 1
+                    }
+                },
+                "st:max_upgraders_count": {
+                    "__type__": 3,
+                    "__value__": 4
+                },
+                "st:upgraders": {
+
+                },
+                "st:cost_rf": {
+                    "__type__": 3,
+                    "__value__": 320
+                },
+                "store_rf": {
+                    "__type__": 4,
+                    "__value__": 0
+                },
+                "store_rf_max": {
+                    "__type__": 4,
+                    "__value__": 100000
+                }
+            },
+            "netease:weapon": {
+                "attack_damage": 6,
+                "enchantment": 0,
+                "level": 3,
+                "speed": 16,
+                "type": "hoe"
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "custom_item_type": "weapon",
+            "identifier": "skybluetech:skyblue_hoe"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:max_stack_size": 1,
+            "minecraft:tags": {
+                "tags": [
+                    "skybluetech:object_upgrader",
+                    "skybluetech:object_upgrader/weapon",
+                    "skybluetech:object_upgrader/tool/axe"
+                ]
+            },
+            "netease:customtips": {
+                "value": "\n§7提升武器的攻击力。\n§3可用于：\n §b - 剑\n §b - 斧"
+            },
+            "netease:initial_user_data": {
+                "st:level": {
+                    "__type__": 3,
+                    "__value__": 1
+                }
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:obj_upgrader_attack"
+        }
+    }
+}

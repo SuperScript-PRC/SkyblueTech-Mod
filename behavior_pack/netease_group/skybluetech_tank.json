@@ -1,0 +1,15 @@
+{
+    "groups": [
+        {
+            "group_name": "itemGroup.skybluetech.tanks",
+            "icon": "skybluetech:steel_tank",
+            "list": [
+                "skybluetech:bronze_tank",
+                "skybluetech:invar_tank",
+                "skybluetech:steel_tank",
+                "skybluetech:platinum_tank",
+                "skybluetech:creative_tank"
+            ]
+        }
+    ]
+}

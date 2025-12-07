@@ -1,0 +1,21 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:block": {
+        "components": {
+            "netease:liquid": {
+                "liquid_color": [
+                    255,
+                    0,
+                    0,
+                    255
+                ],
+                "spread_fire": true
+            }
+        },
+        "description": {
+            "base_block": "liquid",
+            "category": "none",
+            "identifier": "skybluetech:mid_lava"
+        }
+    }
+}

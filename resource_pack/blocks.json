@@ -1,0 +1,462 @@
+{
+    "format_version": [
+        1,
+        1,
+        0
+    ],
+    "skybluetech:assembler": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:frame",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:bronze_pipe": {
+        "sound": "copper"
+    },
+    "skybluetech:bronze_tank": {
+        "client_entity": {
+            "identifier": "skybluetech:bronze_tank"
+        },
+        "sound": "glass"
+    },
+    "skybluetech:charger": {
+        "sound": "iron"
+    },
+    "skybluetech:compressor": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:compressor_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:copper_wire": {
+        "sound": "cloth"
+    },
+    "skybluetech:creative_generator": {
+        "textures": "skybluetech:creative_generator"
+    },
+    "skybluetech:creative_power_acceptor": {
+        "client_entity": {
+            "identifier": "skybluetech:creative_power_acceptor"
+        },
+        "textures": {
+            "down": "skybluetech:creative_power_acceptor_otherside",
+            "side": "skybluetech:creative_power_acceptor_otherside",
+            "up": "skybluetech:creative_power_acceptor_top"
+        }
+    },
+    "skybluetech:creative_tank": {
+        "client_entity": {
+            "identifier": "skybluetech:creative_tank"
+        },
+        "sound": "glass"
+    },
+    "skybluetech:creative_wire": {
+        "sound": "cloth"
+    },
+    "skybluetech:deepslate_lava": {
+        "blockshape": "water",
+        "textures": "skybluetech:deepslate_lava_still"
+    },
+    "skybluetech:deepslate_lead_ore": {
+        "textures": "skybluetech:deepslate_lead_ore"
+    },
+    "skybluetech:deepslate_nickel_ore": {
+        "textures": "skybluetech:deepslate_nickel_ore"
+    },
+    "skybluetech:deepslate_platinum_ore": {
+        "textures": "skybluetech:deepslate_platinum_ore"
+    },
+    "skybluetech:deepslate_silver_ore": {
+        "textures": "skybluetech:deepslate_silver_ore"
+    },
+    "skybluetech:deepslate_tin_ore": {
+        "textures": "skybluetech:deepslate_tin_ore"
+    },
+    "skybluetech:digger": {
+        "client_entity": {
+            "block_icon": "skybluetech:digger_icon",
+            "hand_model_use_client_entity": true,
+            "identifier": "skybluetech:digger"
+        },
+        "sound": "iron"
+    },
+    "skybluetech:farming_station": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:farming_station_side",
+            "north": "skybluetech:frame",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:farming_station_up",
+            "west": "skybluetech:farming_station_side"
+        }
+    },
+    "skybluetech:flowing_deepslate_lava": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:deepslate_lava_still",
+            "side": "skybluetech:deepslate_lava_flow",
+            "up": "skybluetech:deepslate_lava_still"
+        }
+    },
+    "skybluetech:flowing_heavy_lava": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:flowing_light_lava": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:flowing_mid_lava": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:flowing_molten_copper": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_earth": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:flowing_molten_gold": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_impurity": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:flowing_molten_iron": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_lead": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_nickel": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_platinum": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_silver": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_molten_tin": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_molten_metal_still",
+            "side": "skybluetech:gray_molten_metal_flow",
+            "up": "skybluetech:gray_molten_metal_still"
+        }
+    },
+    "skybluetech:flowing_raw_oil": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:basic_water_static",
+            "side": "skybluetech:basic_water_flowing",
+            "up": "skybluetech:basic_water_flowing"
+        }
+    },
+    "skybluetech:forester": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:forester_side",
+            "north": "skybluetech:frame",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:forester_up",
+            "west": "skybluetech:forester_side"
+        }
+    },
+    "skybluetech:freezer": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:freezer_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:geothermal_generator": {
+        "sound": "copper"
+    },
+    "skybluetech:heavy_compressor": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:heavy_compressor_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:heavy_lava": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:gray_lava_still",
+            "side": "skybluetech:gray_lava_flow",
+            "up": "skybluetech:gray_lava_still"
+        }
+    },
+    "skybluetech:invar_tank": {
+        "client_entity": {
+            "identifier": "skybluetech:invar_tank"
+        },
+        "sound": "glass"
+    },
+    "skybluetech:item_transport_cable": {
+        "sound": "stone"
+    },
+    "skybluetech:lead_block": {
+        "textures": "skybluetech:lead_block"
+    },
+    "skybluetech:lead_ore": {
+        "textures": "skybluetech:lead_ore"
+    },
+    "skybluetech:light_lava": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_lava_flow"
+    },
+    "skybluetech:macerator": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:macerator",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:magma_centrifuge": {
+        "textures": {
+            "down": "skybluetech:creative_power_acceptor_top",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:frame",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:magma_furnace": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:magma_furnace_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:mid_lava": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_lava_flow"
+    },
+    "skybluetech:molten_copper": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_earth": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_lava_still"
+    },
+    "skybluetech:molten_gold": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_impurity": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_lava_still"
+    },
+    "skybluetech:molten_iron": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_lead": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_nickel": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_platinum": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_silver": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:molten_tin": {
+        "blockshape": "water",
+        "textures": "skybluetech:gray_molten_metal_still"
+    },
+    "skybluetech:nickel_block": {
+        "textures": "skybluetech:nickel_block"
+    },
+    "skybluetech:nickel_ore": {
+        "textures": "skybluetech:nickel_ore"
+    },
+    "skybluetech:platinum_block": {
+        "textures": "skybluetech:platinum_block"
+    },
+    "skybluetech:platinum_ore": {
+        "textures": "skybluetech:platinum_ore"
+    },
+    "skybluetech:platinum_tank": {
+        "client_entity": {
+            "identifier": "skybluetech:platinum_tank"
+        },
+        "sound": "glass"
+    },
+    "skybluetech:pump": {
+        "sound": "stone"
+    },
+    "skybluetech:raw_lead_block": {
+        "textures": "skybluetech:raw_lead_block"
+    },
+    "skybluetech:raw_nickel_block": {
+        "textures": "skybluetech:raw_nickel_block"
+    },
+    "skybluetech:raw_oil": {
+        "blockshape": "water",
+        "textures": {
+            "down": "skybluetech:basic_water_static",
+            "side": "skybluetech:basic_water_flowing",
+            "up": "skybluetech:basic_water_static"
+        }
+    },
+    "skybluetech:raw_platinum_block": {
+        "textures": "skybluetech:raw_platinum_block"
+    },
+    "skybluetech:raw_silver_block": {
+        "textures": "skybluetech:raw_silver_block"
+    },
+    "skybluetech:raw_tin_block": {
+        "textures": "skybluetech:raw_tin_block"
+    },
+    "skybluetech:redstone_furnace": {
+        "carried_textures": {
+            "east": "skybluetech:frame",
+            "north": "skybluetech:redstone_furnace_front",
+            "up": "skybluetech:frame_up"
+        },
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:redstone_furnace_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:silver_block": {
+        "textures": "skybluetech:silver_block"
+    },
+    "skybluetech:silver_ore": {
+        "textures": "skybluetech:silver_ore"
+    },
+    "skybluetech:silver_wire": {
+        "sound": "cloth"
+    },
+    "skybluetech:splitter": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:splitter_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
+    "skybluetech:steel_tank": {
+        "client_entity": {
+            "identifier": "skybluetech:steel_tank"
+        },
+        "sound": "glass"
+    },
+    "skybluetech:superconduct_wire": {
+        "sound": "cloth"
+    },
+    "skybluetech:thermal_generator": {
+        "textures": "skybluetech:thermoelectric_generator_downside"
+    },
+    "skybluetech:thermoelectric_generator": {
+        "sound": "metal",
+        "textures": {
+            "down": "skybluetech:thermoelectric_generator_downside",
+            "side": "skybluetech:thermoelectric_generator_side",
+            "up": "skybluetech:thermoelectric_generator_upside"
+        }
+    },
+    "skybluetech:tin_block": {
+        "textures": "skybluetech:tin_block"
+    },
+    "skybluetech:tin_ore": {
+        "textures": "skybluetech:tin_ore"
+    },
+    "skybluetech:tin_wire": {
+        "sound": "cloth"
+    }
+}

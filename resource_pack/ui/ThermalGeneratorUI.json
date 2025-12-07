@@ -1,0 +1,152 @@
+{
+    "Flame": {
+        "type": "panel",
+        "size": [
+            20.0,
+            20.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "bg": {
+                    "type": "image",
+                    "layer": 1,
+                    "clip_direction": "left",
+                    "clip_ratio": 0.0,
+                    "texture": "textures/ui/flame_img"
+                }
+            },
+            {
+                "mask": {
+                    "type": "image",
+                    "layer": 2,
+                    "clip_direction": "down",
+                    "texture": "textures/panel/flame_mask"
+                }
+            }
+        ]
+    },
+    "main@common.base_screen": {
+        "$screen_content": "ThermalGeneratorUI.thermal_generator_ui"
+    },
+    "namespace": "ThermalGeneratorUI",
+    "thermal_generator_ui": {
+        "type": "panel",
+        "offset": [
+            1.0,
+            0.0
+        ],
+        "size": [
+            180.0,
+            200.0
+        ],
+        "layer": 1,
+        "controls": [
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 100,
+                    "visible": false
+                }
+            },
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {
+                    "layer": 3
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {
+                    "layer": 4
+                }
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {}
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "bg@common.dialog_background_opaque": {
+                                "controls": [
+                                    {
+                                        "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                                    },
+                                    {
+                                        "machine_label": {
+                                            "type": "label",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "offset": [
+                                                0.0,
+                                                4.0
+                                            ],
+                                            "font_scale_factor": 1.4,
+                                            "font_type": "default",
+                                            "shadow": true,
+                                            "text": "火力发电机",
+                                            "text_alignment": "center"
+                                        }
+                                    },
+                                    {
+                                        "gamepad_cursor_button@common.gamepad_cursor_button": {
+                                            "visible": true
+                                        }
+                                    },
+                                    {
+                                        "close@common.close_button": {}
+                                    },
+                                    {
+                                        "main": {
+                                            "type": "panel",
+                                            "controls": [
+                                                {
+                                                    "flame@ThermalGeneratorUI.Flame": {
+                                                        "layer": 3,
+                                                        "offset": [
+                                                            0,
+                                                            -19
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "gen_slot@netease_container.custom_grid_item": {
+                                                        "layer": 100,
+                                                        "offset": [
+                                                            0,
+                                                            -43
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "power_bar@BatteryUI.PowerBar": {
+                                                        "layer": 13,
+                                                        "offset": [
+                                                            "-42%+0px",
+                                                            "-20%+0px"
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "backpack@AlloyFurnaceUI.player_backpack": {
+                                            "offset": [
+                                                0,
+                                                46
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 2,
+                    "size": [
+                        "default",
+                        "default"
+                    ]
+                }
+            }
+        ]
+    }
+}

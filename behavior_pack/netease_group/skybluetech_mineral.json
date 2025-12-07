@@ -1,0 +1,84 @@
+{
+    "groups": [
+        {
+            "group_name": "itemGroup.skybluetech.ingots",
+            "icon": "skybluetech:tin_ingot",
+            "list": [
+                "skybluetech:tin_ingot",
+                "skybluetech:lead_ingot",
+                "skybluetech:silver_ingot",
+                "skybluetech:nickel_ingot",
+                "skybluetech:platinum_ingot",
+                "skybluetech:bronze_ingot",
+                "skybluetech:invar_ingot",
+                "skybluetech:steel_ingot"
+            ]
+        },
+        {
+            "group_name": "itemGroup.skybluetech.dusts",
+            "icon": "skybluetech:tin_dust",
+            "list": [
+                "skybluetech:copper_dust",
+                "skybluetech:iron_dust",
+                "skybluetech:gold_dust",
+                "skybluetech:tin_dust",
+                "skybluetech:lead_dust",
+                "skybluetech:silver_dust",
+                "skybluetech:nickel_dust",
+                "skybluetech:platinum_dust",
+                "skybluetech:bronze_dust",
+                "skybluetech:invar_dust",
+                "skybluetech:steel_dust"
+            ]
+        },
+        {
+            "group_name": "itemGroup.skybluetech.ores",
+            "icon": "skybluetech:tin_ore",
+            "list": [
+                "skybluetech:tin_ore",
+                "skybluetech:lead_ore",
+                "skybluetech:silver_ore",
+                "skybluetech:nickel_ore",
+                "skybluetech:platinum_ore",
+                "skybluetech:deepslate_tin_ore",
+                "skybluetech:deepslate_lead_ore",
+                "skybluetech:deepslate_silver_ore",
+                "skybluetech:deepslate_nickel_ore",
+                "skybluetech:deepslate_platinum_ore"
+            ]
+        },
+        {
+            "group_name": "itemGroup.skybluetech.raw_ores",
+            "icon": "skybluetech:raw_tin",
+            "list": [
+                "skybluetech:raw_tin",
+                "skybluetech:raw_lead",
+                "skybluetech:raw_silver",
+                "skybluetech:raw_nickel",
+                "skybluetech:raw_platinum"
+            ]
+        },
+        {
+            "group_name": "itemGroup.skybluetech.raw_ore_blocks",
+            "icon": "skybluetech:raw_tin_block",
+            "list": [
+                "skybluetech:raw_tin_block",
+                "skybluetech:raw_lead_block",
+                "skybluetech:raw_silver_block",
+                "skybluetech:raw_nickel_block",
+                "skybluetech:raw_platinum_block"
+            ]
+        },
+        {
+            "group_name": "itemGroup.skybluetech.ingot_blocks",
+            "icon": "skybluetech:tin_block",
+            "list": [
+                "skybluetech:tin_block",
+                "skybluetech:lead_block",
+                "skybluetech:silver_block",
+                "skybluetech:nickel_block",
+                "skybluetech:platinum_block"
+            ]
+        }
+    ]
+}

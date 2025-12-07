@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+#
+from skybluetech_scripts.tooldelta.define import Item
+from skybluetech_scripts.tooldelta.api.client.item import GetItemHoverName
+from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
+from ...ui_sync.machines.digger import DiggerUISync
+from .define import MachinePanelUIProxy, MAIN_PATH
+from ..utils import UpdatePowerBar, UpdateGenericProgressL2R
+
+POWER_NODE = MAIN_PATH / "power_bar"
+PRGS_NODE = MAIN_PATH / "progress"
+BLOCK_DISP_NODE = MAIN_PATH / "block_disp"
+WORK_STATUS_NODE = MAIN_PATH / "work_status"
+
+
+@RegistProxyScreen("DiggerUI.main")
+class DiggerUI(MachinePanelUIProxy):
+    def OnCreate(self):
+        dim, x, y, z = self.pos
+        self.sync = DiggerUISync.NewClient(dim, x, y, z) # type: DiggerUISync
+        self.sync.WhenUpdated = self.WhenUpdated
+        self.power_bar = self > POWER_NODE
+        self.progress = self > PRGS_NODE
+        self.block_disp = self[BLOCK_DISP_NODE].AsItemRenderer()
+        self.work_status = self[WORK_STATUS_NODE].AsLabel()
+        self.block_disp.SetUiItem(Item("minecraft:barrier"))
+        MachinePanelUIProxy.OnCreate(self)
+
+    def WhenUpdated(self):
+        if not self.inited:
+            return
+        UpdatePowerBar(self.power_bar, self.sync.storage_rf, self.sync.rf_max)
+        UpdateGenericProgressL2R(self.progress, self.sync.progress_relative)
+        if self.sync.block_id == "minecraft:air" or self.sync.block_id is None:
+            self.sync.block_id = "minecraft:barrier"
+        self.block_disp.SetUiItem(Item(self.sync.block_id, self.sync.block_aux))
+        if self.sync.block_id != "minecraft:barrier":
+            self.work_status.SetText("当前正在挖掘 " + GetItemHoverName(self.sync.block_id))
+        else:
+            self.work_status.SetText("当前无可挖掘方块")

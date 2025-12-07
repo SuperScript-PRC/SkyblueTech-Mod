@@ -1,0 +1,36 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:block": {
+        "components": {
+            "netease:block_container": {
+                "container_size": 24,
+                "custom_description": "种植站",
+                "hopper": {
+                    "input": false,
+                    "output": true
+                },
+                "screen_name": "FarmingStationUI.main"
+            },
+            "netease:block_entity": {
+                "tick": true
+            },
+            "netease:listen_block_remove": {
+                "value": true
+            },
+            "netease:face_directional": {
+                "type": "direction"
+            },
+            "tag:redstoneflux_accepter": {},
+            "tag:redstoneflux_appliance": {},
+            "tag:redstoneflux_connectable": {},
+            "tag:skybluetech_appliance": {},
+            "tag:skybluetech_container": {},
+            "tag:skybluetech_machine": {}
+        },
+        "description": {
+            "base_block": "netease_container",
+            "category": "skybluetech",
+            "identifier": "skybluetech:farming_station"
+        }
+    }
+}
