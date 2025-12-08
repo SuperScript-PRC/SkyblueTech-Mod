@@ -62,6 +62,7 @@ SetCrackFrame = _setCrackFrame
 __all__ = [
     "GetBlockName",
     "GetBlockNameAndAux",
+    "GetBlockEntityData",
     "GetBlockTextures",
     "NewSingleBlockPalette",
     "CombineBlockPaletteToGeometry",

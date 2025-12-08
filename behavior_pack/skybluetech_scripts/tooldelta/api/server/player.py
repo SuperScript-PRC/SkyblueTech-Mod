@@ -52,6 +52,7 @@ __all__ = [
     "GetPlayerDimensionId",
     "GetPlayerMainhandItem",
     "GetSelectedSlot",
+    "GetPlayersInDim",
     "SetInventorySlotItemCount",
     "SpawnItemToPlayerCarried",
 ]

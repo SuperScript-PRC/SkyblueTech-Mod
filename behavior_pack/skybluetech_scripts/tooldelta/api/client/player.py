@@ -12,7 +12,7 @@ def GetNameById(player_id):
     # type: (str) -> str
     return ClientComp.CreateName(player_id).GetName()
 
-def ClientGetPlayerDimensionId():
+def GetPlayerDimensionId():
     # type: () -> int
     return ClientComp.CreateGame(ClientGetPlayerId()).GetCurrentDimension()
 
@@ -37,7 +37,7 @@ def GetPlayerMainhandItem(player_id):
 
 __all__ = [
     "GetNameById",
-    "ClientGetPlayerDimensionId",
+    "GetPlayerDimensionId",
     "GetAllPlayers",
     "ClientGetPlayerId",
     "GetPlayerMainhandItem",
