@@ -190,7 +190,7 @@ class MultiFluidContainer(object):
         # type: (int) -> None
         "子类覆写在流体槽位发生更新时执行的回调。"
         fluid = self.fluids[slot_pos]
-        if fluid.fluid_id is not None and fluid.volume > 0.0:
+        if slot_pos in self.fluid_output_slots and fluid.fluid_id is not None and fluid.volume > 0.0:
             fluid.volume = self.tryPostFluid(slot_pos, fluid.fluid_id, fluid.volume)
 
     def ifPlayerInteractWithBucket(self, player_id, test=False):
@@ -200,26 +200,7 @@ class MultiFluidContainer(object):
         item = GetPlayerMainhandItem(player_id)
         if item is None:
             return False
-        elif item.newItemName in SPECIAL_FLUIDS:
-            if test:
-                return True
-            fluid_id = item.newItemName
-            if ItemExists(fluid_id) and self.CanAddFluid(fluid_id):
-                for slot, fluid in enumerate(self.fluids):
-                    if not self.IsValidFluidInput(slot, fluid_id):
-                        continue
-                    if fluid.volume + BUCKET_VOLUME > fluid.max_volume:
-                        continue
-                    elif fluid.fluid_id is None:
-                        fluid.fluid_id = fluid_id
-                    elif fluid.fluid_id != fluid_id:
-                        continue
-                    fluid.volume += BUCKET_VOLUME
-                    self.OnFluidSlotUpdate(slot)
-            if isinstance(self, GUIControl):
-                self.OnSync()
-            return True
-        elif item.GetBasicInfo().itemType == "bucket":
+        elif item.GetBasicInfo().itemType == "bucket" or "skybluetech:liquid_bucket" in item.GetBasicInfo().tags:
             # TODO: 假设玩家都使用铁桶
             if test:
                 return True
@@ -265,7 +246,9 @@ class MultiFluidContainer(object):
     def tryPostFluid(self, slot_pos, fluid_id, fluid_volume, depth=0):
         # type: (int, str, float, int) -> float
         if depth >= 64:
+            print ("[WARNING] fluid transfer max depth detected!")
             return fluid_volume
+        requireLibraryFunc()
         return PostFluidIntoNetworks(
             self.dim, self.xyz, fluid_id, fluid_volume, None, depth=depth
         )

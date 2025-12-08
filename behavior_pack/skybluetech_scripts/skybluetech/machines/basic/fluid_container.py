@@ -70,7 +70,7 @@ class FluidContainer(object):
         item = GetPlayerMainhandItem(player_id)
         if item is None:
             return False
-        elif item.GetBasicInfo().itemType == "bucket":
+        elif item.GetBasicInfo().itemType == "bucket" or "skybluetech:liquid_bucket" in item.GetBasicInfo().tags:
             # TODO: 假设玩家都使用铁桶
             if test:
                 return True
@@ -128,7 +128,6 @@ class FluidContainer(object):
     def AddFluid(self, fluid_id, fluid_volume, depth=0):
         # type: (str, float, int) -> tuple[bool, float]
         if isinstance(self, GUIControl):
-            print("Sync")
             self.OnSync()
         if self.fluid_id is None:
             self.fluid_id = fluid_id

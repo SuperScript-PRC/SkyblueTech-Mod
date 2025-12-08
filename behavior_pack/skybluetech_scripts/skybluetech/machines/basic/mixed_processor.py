@@ -167,7 +167,7 @@ class MixedProcessor(BaseProcessor, MultiFluidContainer):
 
     def OnFluidSlotUpdate(self, slot):
         if slot != 0:
-            return
+            MultiFluidContainer.OnFluidSlotUpdate(self, slot)
         if self.HasDeactiveFlag(flags.DEACTIVE_FLAG_NO_RECIPE):
             input_slots = self.GetInputSlotItems()
             fluids = self.fluids
