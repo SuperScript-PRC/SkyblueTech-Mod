@@ -15,7 +15,7 @@ TAG_TIN_DUST = "dusts/tin"
 TAG_COPPER_DUST = "dusts/copper"
 TAG_IRON_DUST = "dusts/iron"
 TAG_NICKEL_DUST = "dusts/nickel"
-TAG_COAL_DUST = "dusts/coal"
+TAG_CARBON_DUST = "dusts/carbon"
 
 TAG_TIN_INGOT = "ingots/tin"
 TAG_NICKEL_INGOT = "ingots/nickel"
@@ -39,11 +39,11 @@ recipes = [
         {4: Output("skybluetech:invar_ingot", 4)}
     ),
     preset.ItemRecipe(
-        {0: Input(TAG_IRON_DUST, 1, True), 1: Input(TAG_COAL_DUST, 1, True)},
+        {0: Input(TAG_IRON_DUST, 1, True), 2: Input(TAG_CARBON_DUST, 1, True)},
         {4: Output("skybluetech:steel_ingot", 1)}
     ),
     preset2.ItemRecipe(
-        {0: Input("minecraft:iron_ingot", 1), 1: Input(TAG_COAL_DUST, 1, True)},
+        {0: Input("minecraft:iron_ingot", 1), 2: Input(TAG_CARBON_DUST, 1, True)},
         {4: Output("skybluetech:steel_ingot", 1)}
     )
 ]
