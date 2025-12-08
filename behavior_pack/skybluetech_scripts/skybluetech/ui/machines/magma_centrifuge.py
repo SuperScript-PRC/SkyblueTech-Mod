@@ -21,9 +21,9 @@ class MagmaCentrifugeUI(MachinePanelUIProxy):
         self.progress = self > PRGS_NODE
         self.left_fluid = self > LEFT_FLUID
         self.right_fluids = [self > (RIGHT_FLUID + str(i + 1)) for i in range(6)]
-        InitFluidsDisplay(self.left_fluid, self.sync.fluids, 0)
+        self.update_cbs = [InitFluidsDisplay(self.left_fluid, self.sync.fluids, 0)]
         for i, ui in enumerate(self.right_fluids):
-            InitFluidsDisplay(ui, self.sync.fluids, i + 1)
+            self.update_cbs.append(InitFluidsDisplay(ui, self.sync.fluids, i + 1))
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):
@@ -45,4 +45,6 @@ class MagmaCentrifugeUI(MachinePanelUIProxy):
                 self.sync.fluids[idx].volume,
                 self.sync.fluids[idx].max_volume,
             )
+        for cb in self.update_cbs:
+            cb()
 

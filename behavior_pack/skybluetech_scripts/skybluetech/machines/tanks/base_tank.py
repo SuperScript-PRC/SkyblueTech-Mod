@@ -51,7 +51,7 @@ class FluidModel:
         down_rotation = (90, 0, 0)
         up_offset = (x+0.5, y+0.6, z+0.3)
         up_rotation = (90, 0, 0)
-        north_offset = (x+0.5, y+YD_OFFSET, z+0.1)
+        north_offset = (x+0.5, y+YD_OFFSET, z+0.06)
         north_rotation = (0, 0, 0)
         south_offset = (x+0.5, y+YD_OFFSET, z+0.98)
         south_rotation = (0, 0, 0)
