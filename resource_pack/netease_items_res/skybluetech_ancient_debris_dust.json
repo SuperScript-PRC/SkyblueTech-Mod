@@ -1,0 +1,11 @@
+{
+    "format_version": "1.10",
+    "minecraft:item": {
+        "components": {
+            "minecraft:icon": "skybluetech:ancient_debris_dust"
+        },
+        "description": {
+            "identifier": "skybluetech:ancient_debris_dust"
+        }
+    }
+}

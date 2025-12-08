@@ -16,6 +16,7 @@ TAG_COPPER_DUST = "dusts/copper"
 TAG_IRON_DUST = "dusts/iron"
 TAG_NICKEL_DUST = "dusts/nickel"
 TAG_CARBON_DUST = "dusts/carbon"
+TAG_ANCIENT_DEBRIS_DUST = "dusts/ancient_debris"
 
 TAG_TIN_INGOT = "ingots/tin"
 TAG_NICKEL_INGOT = "ingots/nickel"
@@ -45,5 +46,9 @@ recipes = [
     preset2.ItemRecipe(
         {0: Input("minecraft:iron_ingot", 1), 2: Input(TAG_CARBON_DUST, 1, True)},
         {4: Output("skybluetech:steel_ingot", 1)}
+    ),
+    preset2.ItemRecipe(
+        {0: Input("minecraft:gold_ingot", 2), 2: Input(TAG_ANCIENT_DEBRIS_DUST, 3, True)},
+        {4: Output("minecraft:netherite_ingot", 1)}
     )
 ]

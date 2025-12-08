@@ -16,6 +16,7 @@ recipes = [
     preset.Simple11Recipe("minecraft:lapis_lazuli", "skybluetech:lapis_dust"),
     preset.Simple11Recipe("minecraft:coal", "skybluetech:coal_dust"),
     preset.Simple11Recipe("minecraft:charcoal", "skybluetech:carbon_dust"),
+    preset.Simple11Recipe("minecraft:ancient_debris", "skybluetech:ancient_debris_dust"),
     # Ingot 2 Dust
     preset.Simple11Recipe("minecraft:copper_ingot", "skybluetech:copper_dust"), 
     preset.Simple11Recipe("minecraft:iron_ingot", "skybluetech:iron_dust"),
