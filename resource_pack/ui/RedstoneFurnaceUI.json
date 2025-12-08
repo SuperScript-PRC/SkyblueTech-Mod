@@ -319,6 +319,6 @@
     "upgrade_img": {
         "type": "image",
         "layer": 1,
-        "texture": "textures/panel/upgrade_slot_bg"
+        "texture": "textures/panel/slot_upgrade_bg"
     }
 }

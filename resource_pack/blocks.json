@@ -4,6 +4,16 @@
         1,
         0
     ],
+    "skybluetech:alloy_furnace": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:alloy_furnace_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
     "skybluetech:assembler": {
         "textures": {
             "down": "skybluetech:frame_bottom",

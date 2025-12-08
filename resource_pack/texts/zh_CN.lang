@@ -166,3 +166,4 @@ item.skybluetech:light_lava_bucket.name=轻熔岩桶
 item.skybluetech:heavy_lava_bucket.name=重熔岩桶
 item.skybluetech:deepslate_lava_bucket.name=深层熔岩桶
 tile.skybluetech:charger.name=充能台
+tile.skybluetech:alloy_furnace.name=合金炉

@@ -77,11 +77,12 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 51,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
                                                                 "slot@netease_container.custom_grid_item": {
+                                                                    "$cell_overlay_ref|default": "AlloyFurnaceUI.slot_ingot_img",
                                                                     "collection_index": 0
                                                                 }
                                                             }
@@ -99,11 +100,12 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 52,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
                                                                 "slot@netease_container.custom_grid_item": {
+                                                                    "$cell_overlay_ref|default": "AlloyFurnaceUI.slot_ingot_img",
                                                                     "collection_index": 1
                                                                 }
                                                             }
@@ -121,11 +123,13 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 53,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
-                                                                "custom_grid_item(0)@netease_container.custom_grid_item": {}
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 2
+                                                                }
                                                             }
                                                         ]
                                                     }
@@ -141,7 +145,7 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 54,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
@@ -163,7 +167,7 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 55,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
@@ -185,7 +189,7 @@
                                                             "100%cm",
                                                             "100%cm"
                                                         ],
-                                                        "layer": 56,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
@@ -198,7 +202,7 @@
                                                 },
                                                 {
                                                     "flame@ThermalGeneratorUI.Flame": {
-                                                        "layer": 12,
+                                                        "layer": 0,
                                                         "offset": [
                                                             18,
                                                             -39
@@ -207,7 +211,6 @@
                                                 },
                                                 {
                                                     "power_bar@BatteryUI.PowerBar": {
-                                                        "layer": 13,
                                                         "offset": [
                                                             "-42%+0px",
                                                             "-20%+0px"
@@ -216,6 +219,7 @@
                                                 },
                                                 {
                                                     "progress@RedstoneFurnaceUI.ProgressBar": {
+                                                        "layer": 0,
                                                         "offset": [
                                                             20,
                                                             -60
@@ -281,5 +285,10 @@
                 "inventory@common.inventory_panel": {}
             }
         ]
+    },
+    "slot_ingot_img": {
+        "type": "image",
+        "layer": 1,
+        "texture": "textures/panel/slot_ingot"
     }
 }

@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+
+from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
+from ...ui_sync.machines.alloy_furnace import AlloyFurnaceUISync
+from .define import MachinePanelUIProxy, MAIN_PATH
+from ..utils import UpdatePowerBar, UpdateGenericProgressL2R, UpdateFlame
+
+POWER_NODE = MAIN_PATH / "power_bar"
+PRGS_NODE = MAIN_PATH / "progress"
+FLAME_NODE = MAIN_PATH / "flame"
+
+
+@RegistProxyScreen("AlloyFurnaceUI.main")
+class AlloyFurnaceUI(MachinePanelUIProxy):
+    def OnCreate(self):
+        dim, x, y, z = self.pos
+        self.sync = AlloyFurnaceUISync.NewClient(dim, x, y, z) # type: AlloyFurnaceUISync
+        self.sync.WhenUpdated = self.WhenUpdated
+        self.power_bar = self > POWER_NODE
+        self.progress = self > PRGS_NODE
+        self.flame = self > FLAME_NODE
+        MachinePanelUIProxy.OnCreate(self)
+
+    def WhenUpdated(self):
+        if not self.inited:
+            return
+        UpdatePowerBar(self.power_bar, self.sync.storage_rf, self.sync.rf_max)
+        UpdateFlame(self.flame, float(self.sync.storage_rf) / self.sync.rf_max)
+        UpdateGenericProgressL2R(self.progress, self.sync.progress_relative)
+

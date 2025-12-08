@@ -23,27 +23,27 @@ TAG_NICKEL_INGOT = "ingots/nickel"
 recipes = [
     # Alloy
     preset.ItemRecipe(
-        {0: Input("dusts/copper", 3, True), 1: Input(TAG_TIN_DUST, 1, True)},
-        {2: Output("skybluetech:bronze_ingot", 4)}
+        {0: Input(TAG_COPPER_DUST, 3, True), 1: Input(TAG_TIN_DUST, 1, True)},
+        {4: Output("skybluetech:bronze_ingot", 4)}
     ),
     preset2.ItemRecipe(
         {0: Input("minecraft:copper_ingot", 3), 1: Input(TAG_TIN_INGOT, 1, True)},
-        {2: Output("skybluetech:bronze_ingot", 4)}
+        {4: Output("skybluetech:bronze_ingot", 4)}
     ),
     preset.ItemRecipe(
         {0: Input(TAG_IRON_DUST, 2, True), 1: Input(TAG_NICKEL_DUST, 1, True)},
-        {2: Output("skybluetech:invar_ingot", 3)}
+        {4: Output("skybluetech:invar_ingot", 3)}
     ),
     preset2.ItemRecipe(
-        {0: Input("minecraft:iron_ingot", 3, True), 1: Input(TAG_NICKEL_INGOT, 1, True)},
-        {2: Output("skybluetech:invar_ingot", 4)}
+        {0: Input("minecraft:iron_ingot", 3), 1: Input(TAG_NICKEL_INGOT, 1, True)},
+        {4: Output("skybluetech:invar_ingot", 4)}
     ),
     preset.ItemRecipe(
         {0: Input(TAG_IRON_DUST, 1, True), 1: Input(TAG_COAL_DUST, 1, True)},
-        {2: Output("skybluetech:steel_ingot", 1)}
+        {4: Output("skybluetech:steel_ingot", 1)}
     ),
     preset2.ItemRecipe(
         {0: Input("minecraft:iron_ingot", 1), 1: Input(TAG_COAL_DUST, 1, True)},
-        {2: Output("skybluetech:steel_ingot", 1)}
+        {4: Output("skybluetech:steel_ingot", 1)}
     )
 ]
