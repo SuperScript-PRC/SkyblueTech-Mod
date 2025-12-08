@@ -18,8 +18,10 @@ class UScreenNode(ScreenNode):
 
     def __init__(self, *args, **kwargs):
         ScreenNode.__init__(self, *args, **kwargs)
+        self.base = self
         self.activated = False
         self._elem_cacher = {} # type: dict[str, UBaseUI]
+        self._vars = {}
 
     @classmethod
     def CreateUI(cls, params={}):

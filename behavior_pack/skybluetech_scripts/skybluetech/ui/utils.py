@@ -56,11 +56,16 @@ def UpdateFluidDisplay(ui, fluid_id, fluid_volume, max_volume):
 def InitFluidDisplay(ui, data_cb):
     # type: (UBaseUI, BtnCb[tuple[str | None, float, float]]) -> Callable[[], None]
     btn = ui["data_btn"].AsButton()
-    _databoard = [None] # type: list[UBaseUI | None]
-    _opened = [False]
+    screen_vars = ui._root._vars
+    current_ctrl = [None] # type: list[UBaseUI | None]
+
+    def get_last_ui_board():
+        # type: () -> UBaseUI | None
+        return screen_vars.get("disp_fluid_databoard")
+
     def _updateHook():
-        elem = _databoard[0]
-        if elem is None:
+        elem = get_last_ui_board()
+        if elem is None or elem is not current_ctrl[0]:
             return
         fluid_id, fluid_vol, max_vol = data_cb()
         (elem / "image/label").AsLabel().SetText(
@@ -73,28 +78,24 @@ def InitFluidDisplay(ui, data_cb):
             + "§6容器体积： §f"
             + _formatFluidVolume(max_vol)
         )
+
     def onRollOver(params):
-        if _opened[0]:
-            return
-        prev_board = ui._vars.get("disp_fluid_databoard")
+        prev_board = get_last_ui_board()
         if prev_board is not None:
-            prev_board.Remove()
-        if _databoard[0] is not None:
             return
         e = ui.AddElement("BasicDataScreen.DataTextScreen", "fluid_hover_text")
         e.SetLayer(100)
-        _databoard[0] = e
-        _opened[0] = True
-        ui._vars["disp_fluid_databoard"] = e
+        screen_vars["disp_fluid_databoard"] = e
+        current_ctrl[0] = e
         _updateHook()
+
     def onRollOut(params):
-        if _databoard[0] is not None:
-            ok = _databoard[0].Remove()
-            if not ok:
-                print("[WARNING] element remove failed")
-            _databoard[0] = None
-            ui._vars["disp_fluid_databoard"] = None
-            _opened[0] = False
+        prev_board = get_last_ui_board()
+        if prev_board is not None:
+            prev_board.Remove()
+            del screen_vars["disp_fluid_databoard"]
+        current_ctrl[0] = None
+
     btn.SetOnRollOverCallback(onRollOver)
     btn.SetOnRollOutCallback(onRollOut)
     return _updateHook

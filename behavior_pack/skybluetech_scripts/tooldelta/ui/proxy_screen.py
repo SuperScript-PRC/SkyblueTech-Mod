@@ -20,9 +20,10 @@ class UScreenProxy(CustomUIScreenProxy):
         # type: (str, ScreenNode) -> None
         CustomUIScreenProxy.__init__(self, screenName, screenNode)
         self.screenName = screenName
-        self.screenNode = screenNode
+        self.base = self.screenNode = screenNode
         self._elem_cacher = {} # type: dict[str, UBaseUI]
         self.activated = False
+        self._vars = {}
 
     def RemoveUI(self):
         self._deactive()
@@ -85,7 +86,7 @@ class UScreenProxy(CustomUIScreenProxy):
         if path in self._elem_cacher:
             return self._elem_cacher[path]
         else:
-            ui = UBaseUI(self.screenNode, self.screenNode.GetBaseUIControl(path))
+            ui = UBaseUI(self, self.screenNode.GetBaseUIControl(path))
             self._elem_cacher[path] = ui
             return ui
  

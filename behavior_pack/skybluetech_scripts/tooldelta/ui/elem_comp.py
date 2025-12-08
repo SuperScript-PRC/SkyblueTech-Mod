@@ -30,12 +30,15 @@ from .functions import addElement, removeElement
 if TYPE_CHECKING:
     from typing import Callable, Any
     from ..define.item import Item
+    from .screen_comp import UScreenNode
+    from .proxy_screen import UScreenProxy
+    ScreenLike = UScreenNode | UScreenProxy
 # TYPE_CHECKING END
 
 
 class UBaseUI(object):
     def __init__(self, root, base):
-        # type: (ScreenNode, BaseUIControl) -> None
+        # type: (ScreenLike, BaseUIControl) -> None
         if base is None:
             raise ValueError("Can't initialize UBaseUI: comp is None")
         self._root = root
@@ -43,6 +46,7 @@ class UBaseUI(object):
         self._cache_t = None # type: Any | None
         self._child_cacher = {}
         self._vars = {}
+        self._removed = False
 
     def SetVisible(self, visible, forceUpdate=True):
         # type: (bool, bool) -> None
@@ -96,6 +100,10 @@ class UBaseUI(object):
         pass
 
     def Remove(self):
+        if self._removed:
+            print("[Warning] control already removed")
+            return
+        self._removed = True
         return removeElement(self._root, self.base)
 
     def __truediv__(self, path):
@@ -119,7 +127,7 @@ class UBaseUI(object):
 
 class UItemRenderer(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, ItemRendererUIControl) -> None
+        # type: (ScreenLike, ItemRendererUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, ItemRendererUIControl):
             raise TypeError(
@@ -134,7 +142,7 @@ class UItemRenderer(UBaseUI):
 
 class ULabel(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, LabelUIControl) -> None
+        # type: (ScreenLike, LabelUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, LabelUIControl):
             raise TypeError(
@@ -153,7 +161,7 @@ class ULabel(UBaseUI):
 
 class UImage(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, ImageUIControl) -> None
+        # type: (ScreenLike, ImageUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, ImageUIControl):
             raise TypeError(
@@ -177,7 +185,7 @@ class UImage(UBaseUI):
 
 class UButton(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, ButtonUIControl) -> None
+        # type: (ScreenLike, ButtonUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, ButtonUIControl):
             raise TypeError(
@@ -203,7 +211,7 @@ class UButton(UBaseUI):
 
 class UScrollView(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, ScrollViewUIControl) -> None
+        # type: (ScreenLike, ScrollViewUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, ScrollViewUIControl):
             raise TypeError(
@@ -221,7 +229,7 @@ class UScrollView(UBaseUI):
 
 class UGrid(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, GridUIControl) -> None
+        # type: (ScreenLike, GridUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, GridUIControl):
             raise TypeError(
@@ -235,7 +243,7 @@ class UGrid(UBaseUI):
     def GetGridDimension(self):
         " 未开放接口 "
         import gui # pyright: ignore[reportMissingImports]
-        return gui.get_grid_dimension(self._root.GetScreenName(), self.getFullPath())
+        return gui.get_grid_dimension(self._root.base.GetScreenName(), self.getFullPath())
 
     def GetGridItem(self, x, y):
         # type: (int, int) -> UBaseUI
@@ -263,7 +271,7 @@ class UGrid(UBaseUI):
 
 class UComboBox(UBaseUI):
     def __init__(self, root, base):
-        # type: (ScreenNode, NeteaseComboBoxUIControl) -> None
+        # type: (ScreenLike, NeteaseComboBoxUIControl) -> None
         UBaseUI.__init__(self, root, base)
         if not isinstance(base, NeteaseComboBoxUIControl):
             raise TypeError(
