@@ -14,6 +14,7 @@ class FluidCondenser(MixedProcessor):
     input_slots = (0,)
     output_slots = (1,)
     fluid_io_mode = (0, 0, 0, 0, 0, 0)
+    fluid_input_slots = {0}
     fluid_slot_max_volumes = (2000,)
 
     def __init__(self, dim, x, y, z, block_entity_data):
