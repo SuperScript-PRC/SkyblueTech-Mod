@@ -13,6 +13,7 @@ from .heavy_compressor import HeavyCompressor
 from .macerator import Macerator
 from .magma_furnace import MagmaFurnace
 from .magma_centrifuge import MagmaCentrifuge
+from .mixer import Mixer
 from .pump import Pump
 from .redstone_furnace import RedstoneFurnace
 from .splitter import Splitter

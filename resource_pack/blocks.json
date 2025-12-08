@@ -292,16 +292,7 @@
         "blockshape": "water",
         "textures": "skybluetech:gray_lava_flow"
     },
-    "skybluetech:macerator": {
-        "textures": {
-            "down": "skybluetech:frame_bottom",
-            "east": "skybluetech:frame",
-            "north": "skybluetech:macerator",
-            "south": "skybluetech:frame",
-            "up": "skybluetech:frame_up",
-            "west": "skybluetech:frame"
-        }
-    },
+    "skybluetech:macerator": {},
     "skybluetech:magma_centrifuge": {
         "textures": {
             "down": "skybluetech:creative_power_acceptor_top",
@@ -326,16 +317,7 @@
         "blockshape": "water",
         "textures": "skybluetech:gray_lava_flow"
     },
-    "skybluetech:mixer": {
-        "textures": {
-            "down": "skybluetech:frame_bottom",
-            "east": "skybluetech:frame",
-            "north": "skybluetech:mixer_front",
-            "south": "skybluetech:frame",
-            "up": "skybluetech:frame_up",
-            "west": "skybluetech:frame"
-        }
-    },
+    "skybluetech:mixer": {},
     "skybluetech:molten_copper": {
         "blockshape": "water",
         "textures": "skybluetech:gray_molten_metal_still"
