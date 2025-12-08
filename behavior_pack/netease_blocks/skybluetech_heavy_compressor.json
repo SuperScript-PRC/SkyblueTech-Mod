@@ -11,7 +11,7 @@
                 "tick": true
             },
             "netease:custom_tips": {
-                "value": "\n§7可自动制作 3x3 的压缩类配方， 例如将锭压缩为块等。"
+                "value": "\n§7可自动制作 3x3 的压缩类配方， 例如将铁锭压缩为铁块等。"
             },
             "netease:listen_block_remove": {
                 "value": true
