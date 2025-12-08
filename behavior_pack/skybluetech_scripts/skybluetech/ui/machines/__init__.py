@@ -1,3 +1,4 @@
+from .alloy_furnace import AlloyFurnaceUI
 from .assembler import AssemblerUI
 from .battery_cube import BatteryCubeUI
 from .bedrock_lava_drill import BedrockLavaDrillUI
