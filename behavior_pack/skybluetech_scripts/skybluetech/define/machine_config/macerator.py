@@ -11,8 +11,10 @@ preset = PresetMachineRecipe(DEFAULT_POWER, DEFAULT_TICK_DURATION)
 recipes = [
     # Minecraft 
     preset.SimpleXXRecipe("minecraft:bone", 1, "minecraft:bone_meal", 5),
+    preset.SimpleXXRecipe("minecraft:clay_block", 1, "minecraft:clay", 4),
     preset.Simple11Recipe("minecraft:stone", "minecraft:sand"),
     preset.Simple11Recipe("minecraft:cobblestone", "minecraft:sand"),
+    preset.Simple11Recipe("minecraft:sand", "skybluetech:dust_block"),
     preset.Simple11Recipe("minecraft:lapis_lazuli", "skybluetech:lapis_dust"),
     preset.Simple11Recipe("minecraft:coal", "skybluetech:coal_dust"),
     preset.Simple11Recipe("minecraft:charcoal", "skybluetech:carbon_dust"),
