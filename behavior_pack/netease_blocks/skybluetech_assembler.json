@@ -10,17 +10,22 @@
                 "digger": "pickaxe",
                 "level": 2
             },
-            // "minecraft:geometry": {
-            //     "identifier": "geometry.skybluetech.charger"
-            // },
-            "minecraft:light_dampening": 0,
-            // "minecraft:material_instances": {
-            //     "*": {
-            //         "isotropic": true,
-            //         "render_method": "blend",
-            //         "texture": "skybluetech:charger"
-            //     }
-            // },
+            "minecraft:geometry": {
+                "bone_visibility": {
+                    "east_charge": "q.block_state('skybluetech:connection_east')",
+                    "north_charge": "q.block_state('skybluetech:connection_north')",
+                    "south_charge": "q.block_state('skybluetech:connection_south')",
+                    "west_charge": "q.block_state('skybluetech:connection_west')"
+                },
+                "identifier": "geometry.skybluetech.assembler"
+            },
+            "minecraft:material_instances": {
+                "*": {
+                    "isotropic": true,
+                    "render_method": "blend",
+                    "texture": "skybluetech:assembler"
+                }
+            },
             "netease:block_entity": {
                 "tick": true
             },
@@ -28,6 +33,9 @@
                 "value": "\n§7可对蔚蓝科技的工具和护甲进行改装升级。"
             },
             "netease:listen_block_remove": {
+                "value": true
+            },
+            "netease:neighborchanged_sendto_script": {
                 "value": true
             },
             "netease:block_container": {
@@ -46,63 +54,24 @@
             "base_block": "netease_container",
             "category": "skybluetech",
             "identifier": "skybluetech:assembler",
-            "traits": {
-                "minecraft:placement_direction": {
-                    "enabled_states": [
-                        "minecraft:cardinal_direction"
-                    ]
-                }
+            "states": {
+                "skybluetech:connection_east": [
+                    false,
+                    true
+                ],
+                "skybluetech:connection_north": [
+                    false,
+                    true
+                ],
+                "skybluetech:connection_south": [
+                    false,
+                    true
+                ],
+                "skybluetech:connection_west": [
+                    false,
+                    true
+                ]
             }
-        },
-                "permutations": [
-            {
-                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
-                "components": {
-                    "minecraft:transformation": {
-                        "rotation": [
-                            0,
-                            180,
-                            0
-                        ]
-                    }
-                }
-            },
-            {
-                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
-                "components": {
-                    "minecraft:transformation": {
-                        "rotation": [
-                            0,
-                            0,
-                            0
-                        ]
-                    }
-                }
-            },
-            {
-                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
-                "components": {
-                    "minecraft:transformation": {
-                        "rotation": [
-                            0,
-                            -90,
-                            0
-                        ]
-                    }
-                }
-            },
-            {
-                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
-                "components": {
-                    "minecraft:transformation": {
-                        "rotation": [
-                            0,
-                            90,
-                            0
-                        ]
-                    }
-                }
-            }
-        ]
+        }
     }
 }

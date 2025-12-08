@@ -2,15 +2,17 @@
 #
 from mod.server.blockEntityData import BlockEntityData
 from skybluetech_scripts.tooldelta.define.item import Item
-from skybluetech_scripts.tooldelta.api.server.player import GetPlayerDimensionId
-from skybluetech_scripts.tooldelta.events.server import ServerBlockUseEvent
+from skybluetech_scripts.tooldelta.api.server import GetPlayerDimensionId, UpdateBlockStates, GetBlockTags, GetBlockName
+from skybluetech_scripts.tooldelta.events.server import ServerBlockUseEvent, BlockNeighborChangedServerEvent
 from skybluetech_scripts.tooldelta.events.notify import NotifyToClients, NotifyToClient
 from ..define import flags
 from ..define.events.assembler import *
 from ..define.machine_config.assembler import *
 from ..tools.upgraders.register import UpdateObjectData
+from ..utils.constants import DXYZ_FACING, FACING_EN
 from ..utils.lore import GetLorePos, SetLoreAtPos
 from ..ui_sync.machines.assembler import AssemblerUISync
+from ..transmitters.wire.logic import isWire
 from .basic import GUIControl, UpgradeControl, RegisterMachine
 from .pool import GetMachineStrict
 
@@ -32,12 +34,29 @@ class Assembler(GUIControl, UpgradeControl):
         self.delay = 20
         self.lis = []  # type: list[tuple[str, str, int]]
         self.updateList()
+        self.OnSync()
 
     def AddPower(self, rf, is_generator=False, max_limit=None, depth=0):
         res = UpgradeControl.AddPower(self, rf, is_generator, max_limit, depth)
         if self.store_rf > 0 and self.HasDeactiveFlag(flags.DEACTIVE_FLAG_POWER_LACK):
             self.UnsetDeactiveFlag(flags.DEACTIVE_FLAG_POWER_LACK)
         return res
+
+    def OnNeighborChanged(self, event):
+        # type: (BlockNeighborChangedServerEvent) -> None
+        dx = event.neighborPosX - self.x
+        dy = event.neighborPosY - self.y
+        dz = event.neighborPosZ - self.z
+        facing_en = FACING_EN[DXYZ_FACING[dx, dy, dz]]
+        if facing_en not in {"south", "north", "east", "west"}:
+            return
+        connectToWire = isWire(GetBlockTags(event.toBlockName))
+        UpdateBlockStates(
+            self.dim,
+            (self.x, self.y, self.z),
+            {"skybluetech:connection_" + facing_en: connectToWire}
+        )
+        
 
     def OnTryActivate(self):
         # type: () -> None
