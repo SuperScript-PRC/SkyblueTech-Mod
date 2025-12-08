@@ -3,15 +3,11 @@
         "type": "panel",
         "$bg_image": "textures/panel/arrow_img",
         "$mask_image": "textures/panel/arrow_mask",
-        "offset": [
-            2.0,
-            -50.0
-        ],
         "size": [
             36,
             20.0
         ],
-        "layer": 18,
+        "layer": 1,
         "controls": [
             {
                 "bg": {
@@ -254,7 +250,7 @@
                                                     "output_slot": {
                                                         "type": "stack_panel",
                                                         "offset": [
-                                                            32.0,
+                                                            30.0,
                                                             -50.0
                                                         ],
                                                         "size": [
@@ -282,7 +278,16 @@
                                                     }
                                                 },
                                                 {
-                                                    "progress@RedstoneFurnaceUI.ProgressBar": {}
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {
+                                                        "offset": [
+                                                            0,
+                                                            -50
+                                                        ],
+                                                        "size": [
+                                                            36,
+                                                            20
+                                                        ]
+                                                    }
                                                 },
                                                 {
                                                     "upgrades@RedstoneFurnaceUI.UpgradeSlots": {

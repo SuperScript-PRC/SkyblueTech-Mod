@@ -1,6 +1,10 @@
 {
-    "digger_ui": {
+    "fluid_condenser_ui": {
         "type": "panel",
+        "offset": [
+            1.0,
+            0.0
+        ],
         "size": [
             180.0,
             200.0
@@ -47,7 +51,7 @@
                                             "font_scale_factor": 1.4,
                                             "font_type": "default",
                                             "shadow": true,
-                                            "text": "电动挖掘钻",
+                                            "text": "流体冷凝机",
                                             "text_alignment": "center"
                                         }
                                     },
@@ -64,11 +68,23 @@
                                             "type": "panel",
                                             "controls": [
                                                 {
-                                                    "power_bar@BatteryUI.PowerBar": {
-                                                        "layer": 13,
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {
                                                         "offset": [
-                                                            "-42%+0px",
-                                                            "-20%+0px"
+                                                            -4,
+                                                            -39
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "fluid_display@PumpUI.FluidDisplay": {
+                                                        "$text_visible": false,
+                                                        "offset": [
+                                                            -43.5,
+                                                            -40.5
+                                                        ],
+                                                        "size": [
+                                                            37,
+                                                            70
                                                         ]
                                                     }
                                                 },
@@ -76,14 +92,14 @@
                                                     "output_slot": {
                                                         "type": "stack_panel",
                                                         "offset": [
-                                                            32.0,
-                                                            -50.0
+                                                            27.0,
+                                                            -39.0
                                                         ],
                                                         "size": [
-                                                            "100%cm",
-                                                            "100%cm"
+                                                            "100%cm+0px",
+                                                            "100%cm+0px"
                                                         ],
-                                                        "layer": 16,
+                                                        "layer": 1,
                                                         "collection_name": "netease_container",
                                                         "controls": [
                                                             {
@@ -95,10 +111,10 @@
                                                     }
                                                 },
                                                 {
-                                                    "progress@RedstoneFurnaceUI.ProgressBar": {
+                                                    "power_bar@BatteryUI.PowerBar": {
                                                         "offset": [
-                                                            0,
-                                                            -50
+                                                            "-42%+0px",
+                                                            "-20%+0px"
                                                         ]
                                                     }
                                                 },
@@ -112,42 +128,6 @@
                                                             106,
                                                             -57
                                                         ]
-                                                    }
-                                                },
-                                                {
-                                                    "block_disp": {
-                                                        "type": "custom",
-                                                        "renderer": "inventory_item_renderer",
-                                                        "offset": [
-                                                            -30.0,
-                                                            -50.0
-                                                        ],
-                                                        "size": [
-                                                            25.0,
-                                                            25.0
-                                                        ],
-                                                        "layer": 1,
-                                                        "property_bag": {
-                                                            "#item_id_aux": 131072
-                                                        }
-                                                    }
-                                                },
-                                                {
-                                                    "work_status": {
-                                                        "type": "label",
-                                                        "offset": [
-                                                            2.0,
-                                                            -24.0
-                                                        ],
-                                                        "color": [
-                                                            0.4235294117647059,
-                                                            0.4235294117647059,
-                                                            0.4235294117647059
-                                                        ],
-                                                        "font_scale_factor": 1.3,
-                                                        "font_type": "default",
-                                                        "text": "系统未就绪",
-                                                        "text_alignment": "center"
                                                     }
                                                 }
                                             ]
@@ -175,7 +155,7 @@
         ]
     },
     "main@common.base_screen": {
-        "$screen_content": "DiggerUI.digger_ui"
+        "$screen_content": "FluidCondenserUI.fluid_condenser_ui"
     },
-    "namespace": "DiggerUI"
+    "namespace": "FluidCondenserUI"
 }

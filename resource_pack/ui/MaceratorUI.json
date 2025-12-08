@@ -70,38 +70,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "progress": {
-                                                        "type": "panel",
-                                                        "offset": [
-                                                            2.0,
-                                                            -42.0
-                                                        ],
-                                                        "size": [
-                                                            50,
-                                                            26
-                                                        ],
-                                                        "layer": 4,
-                                                        "controls": [
-                                                            {
-                                                                "bg": {
-                                                                    "type": "image",
-                                                                    "layer": 1,
-                                                                    "texture": "textures/panel/macerator_prgs_bg"
-                                                                }
-                                                            },
-                                                            {
-                                                                "mask": {
-                                                                    "type": "image",
-                                                                    "layer": 2,
-                                                                    "clip_direction": "left",
-                                                                    "clip_ratio": 0.64,
-                                                                    "texture": "textures/panel/macerator_prgs_top"
-                                                                }
-                                                            }
-                                                        ]
-                                                    }
-                                                },
-                                                {
                                                     "input_slot": {
                                                         "type": "stack_panel",
                                                         "offset": [
@@ -149,6 +117,20 @@
                                                         "offset": [
                                                             "-42%+0px",
                                                             "-20%+0px"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "progress@RedstoneFurnaceUI.ProgressBar": {
+                                                        "$bg_image": "textures/panel/macerator_prgs_bg",
+                                                        "$mask_image": "textures/panel/macerator_prgs_top",
+                                                        "offset": [
+                                                            0,
+                                                            -42
+                                                        ],
+                                                        "size": [
+                                                            44,
+                                                            24
                                                         ]
                                                     }
                                                 }
