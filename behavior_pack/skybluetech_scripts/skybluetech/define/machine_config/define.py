@@ -82,8 +82,8 @@ class PresetMachineRecipe(object):
     def ItemRecipe(self, inputs, outputs):
         # type: (dict[int, Input], dict[int, Output]) -> MachineRecipe
         return MachineRecipe(
-            {"Item": inputs},
-            {"Item": outputs},
+            {"item": inputs},
+            {"item": outputs},
             self.power_cost,
             self.tick_duration
         )
