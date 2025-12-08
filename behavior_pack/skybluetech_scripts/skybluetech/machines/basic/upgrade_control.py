@@ -26,6 +26,7 @@ class UpgradeControl(ItemContainer, SPControl):
         SPControl.__init__(self, dim, x, y, z, block_entity_data)
         self._basic_max_rf_store = self.store_rf_max
         self._origin_power = self.running_power
+        self.UpdateUpgraders(self.GetAllUpgraders())
 
     def InUpgradeSlot(self, slot):
         # type: (int) -> bool

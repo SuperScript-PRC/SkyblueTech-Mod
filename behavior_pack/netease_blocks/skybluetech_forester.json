@@ -14,6 +14,9 @@
             "netease:block_entity": {
                 "tick": true
             },
+            "netease:custom_tips": {
+                "value": "\n§7可砍伐种植于其上方 5x5 范围内的树木并自动补种树苗。"
+            },
             "netease:face_directional": {
                 "type": "direction"
             },

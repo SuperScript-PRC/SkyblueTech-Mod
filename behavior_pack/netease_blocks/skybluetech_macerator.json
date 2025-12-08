@@ -19,7 +19,7 @@
                 "tick": true
             },
             "netease:custom_tips": {
-                "value": "\n§7可将一些方块、 粗矿等粉碎为粉状产品。"
+                "value": "\n§7可粉碎一些方块、 粗矿等物品。"
             },
             "netease:listen_block_remove": {
                 "value": true
