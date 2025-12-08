@@ -169,3 +169,5 @@ tile.skybluetech:charger.name=充能台
 tile.skybluetech:alloy_furnace.name=合金炉
 item.skybluetech:carbon_dust.name=碳粉
 item.skybluetech:ancient_debris_dust.name=远古残骸粉末
+tile.skybluetech:dust_block.name=尘土块
+tile.skybluetech:mixer.name=固液搅拌机

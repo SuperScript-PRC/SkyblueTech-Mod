@@ -1,0 +1,14 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:block": {
+        "components": {
+            "tag:blocks/dust": {
+
+            }
+        },
+        "description": {
+            "category": "skybluetech",
+            "identifier": "skybluetech:dust_block"
+        }
+    }
+}

@@ -98,6 +98,10 @@
         },
         "sound": "iron"
     },
+    "skybluetech:dust_block": {
+        "sound": "cloth",
+        "textures": "skybluetech:dust_block"
+    },
     "skybluetech:farming_station": {
         "textures": {
             "down": "skybluetech:frame_bottom",
@@ -321,6 +325,16 @@
     "skybluetech:mid_lava": {
         "blockshape": "water",
         "textures": "skybluetech:gray_lava_flow"
+    },
+    "skybluetech:mixer": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:mixer_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
     },
     "skybluetech:molten_copper": {
         "blockshape": "water",
