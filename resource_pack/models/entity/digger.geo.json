@@ -6,7 +6,7 @@
 				"identifier": "geometry.skybluetech.digger_ani",
 				"texture_width": 16,
 				"texture_height": 16,
-				"visible_bounds_width": 3,
+				"visible_bounds_width": 4,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
 			},
@@ -30,6 +30,48 @@
 						{
 							"origin": [-12, 4, 15],
 							"size": [8, 8, 1],
+							"uv": {
+								"north": {"uv": [4, 0], "uv_size": [4, 4]},
+								"east": {"uv": [4, 0], "uv_size": [1, 6]},
+								"south": {"uv": [0, 0], "uv_size": [4, 4]},
+								"west": {"uv": [4, 0], "uv_size": [1, 6]},
+								"up": {"uv": [6, 13], "uv_size": [-4, -1]},
+								"down": {"uv": [4, 1], "uv_size": [-4, -1]}
+							}
+						},
+						{
+							"origin": [-16, 4, 1],
+							"size": [8, 8, 1],
+							"pivot": [-10, 5, 1],
+							"rotation": [0, 180, 0],
+							"uv": {
+								"north": {"uv": [4, 0], "uv_size": [4, 4]},
+								"east": {"uv": [4, 0], "uv_size": [1, 6]},
+								"south": {"uv": [0, 0], "uv_size": [4, 4]},
+								"west": {"uv": [4, 0], "uv_size": [1, 6]},
+								"up": {"uv": [6, 13], "uv_size": [-4, -1]},
+								"down": {"uv": [4, 1], "uv_size": [-4, -1]}
+							}
+						},
+						{
+							"origin": [-7, 4, 6],
+							"size": [8, 8, 1],
+							"pivot": [-1, 5, 6],
+							"rotation": [0, 90, 0],
+							"uv": {
+								"north": {"uv": [4, 0], "uv_size": [4, 4]},
+								"east": {"uv": [4, 0], "uv_size": [1, 6]},
+								"south": {"uv": [0, 0], "uv_size": [4, 4]},
+								"west": {"uv": [4, 0], "uv_size": [1, 6]},
+								"up": {"uv": [6, 13], "uv_size": [-4, -1]},
+								"down": {"uv": [4, 1], "uv_size": [-4, -1]}
+							}
+						},
+						{
+							"origin": [-21, 4, 10],
+							"size": [8, 8, 1],
+							"pivot": [-15, 5, 10],
+							"rotation": [0, -90, 0],
 							"uv": {
 								"north": {"uv": [4, 0], "uv_size": [4, 4]},
 								"east": {"uv": [4, 0], "uv_size": [1, 6]},
