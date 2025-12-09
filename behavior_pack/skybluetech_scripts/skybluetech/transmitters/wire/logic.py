@@ -6,7 +6,6 @@ from skybluetech_scripts.tooldelta.events.server.block import (
     ServerPlaceBlockEntityEvent,
     BlockNeighborChangedServerEvent,
 )
-from skybluetech_scripts.tooldelta.server_event_listener import ListenEvent
 from skybluetech_scripts.tooldelta.no_runtime_typing import TYPE_CHECKING
 from skybluetech_scripts.tooldelta.api.server.block import (
     GetBlockName,
@@ -254,7 +253,7 @@ def RequireEnergyFromNetwork(machine):
     return ok
         
 
-@ListenEvent(ServerPlaceBlockEntityEvent)
+@ServerPlaceBlockEntityEvent.Listen()
 def onBlockPlaced(event):
     # type: (ServerPlaceBlockEntityEvent) -> None
     # 机器放置就不判定了, 去机器初始化判定
@@ -279,7 +278,7 @@ def onBlockPlaced(event):
             states[facing_key] = canConnect(event.blockName, bname)
         UpdateBlockStates(event.dimension, (event.posX, event.posY, event.posZ), states)
             
-@ListenEvent(BlockRemoveServerEvent)
+@BlockRemoveServerEvent.Listen()
 @AsDelayFunc(0) # 等待下一 tick, 此时才能保证此处方块为空
 def onWireRemoved(event):
     # type: (BlockRemoveServerEvent) -> None
@@ -309,7 +308,7 @@ def AfterRemoveMachine(event):
             continue
         # UpdateWholeNetwork(event.dimension, network)
 
-@ListenEvent(BlockNeighborChangedServerEvent)
+@BlockNeighborChangedServerEvent.Listen()
 def onNeighbourBlockChanged(event):
     # type: (BlockNeighborChangedServerEvent) -> None
     if isWire(GetBlockTags(event.blockName)):

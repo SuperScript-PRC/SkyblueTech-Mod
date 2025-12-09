@@ -1,5 +1,4 @@
 from skybluetech_scripts.tooldelta.events.server.world import ChunkAcquireDiscardedServerEvent, ChunkLoadedServerEvent
-from skybluetech_scripts.tooldelta.server_event_listener import ListenEvent
 from skybluetech_scripts.tooldelta.api.server.block import GetBlockEntityData, GetBlockName
 from skybluetech_scripts.tooldelta.no_runtime_typing import TYPE_CHECKING
 
@@ -70,7 +69,7 @@ def GetMachineCls(block_name):
     # type: (str) -> type[BaseMachine]
     return machine_classes[block_name]
 
-@ListenEvent(ChunkLoadedServerEvent)
+@ChunkLoadedServerEvent.Listen()
 def onChunkLoaded(event):
     # type: (ChunkLoadedServerEvent) -> None
     for block_entity_posdata in event.blockEntities:
@@ -87,7 +86,7 @@ def onChunkLoaded(event):
         cached_machines[(event.dimension, x, y, z)] = machine_cls(event.dimension, x, y, z, bdata)
 
 
-@ListenEvent(ChunkAcquireDiscardedServerEvent)
+@ChunkAcquireDiscardedServerEvent.Listen()
 def onChunkDiscarded(event):
     # type: (ChunkAcquireDiscardedServerEvent) -> None
     for block_entity_posdata in event.blockEntities:
