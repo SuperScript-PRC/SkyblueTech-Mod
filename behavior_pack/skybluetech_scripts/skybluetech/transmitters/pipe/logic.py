@@ -7,7 +7,6 @@ from skybluetech_scripts.tooldelta.events.server.block import (
     ServerBlockUseEvent,
     BlockNeighborChangedServerEvent,
 )
-from skybluetech_scripts.tooldelta.server_event_listener import ListenEvent
 from skybluetech_scripts.tooldelta.no_runtime_typing import TYPE_CHECKING
 from skybluetech_scripts.tooldelta.api.server.block import (
     GetBlockName,
@@ -48,7 +47,7 @@ def canConnect(blockName):
 
 def bfsFindConnections(dim, start, connected=None):
     # type: (int, PosData, set[PosData] | None) -> PipeNetwork | None
-    "确保 start 一定是管道 !!!"
+    # 确保 start 一定是管道 !!!
 
     start_bname = GetBlockName(dim, start)
     if start_bname is None:
@@ -106,7 +105,7 @@ def bfsFindConnections(dim, start, connected=None):
     )
 
 
-def GetNearbyPipeNetwork(dim, x, y, z, exists=None, enable_cache=False):
+def getNearbyPipeNetwork(dim, x, y, z, exists=None, enable_cache=False):
     # type: (int, int, int, int, set[PosData] | None, bool) -> tuple[list[PipeNetwork], list[PipeNetwork]]
     if enable_cache and (dim, x, y, z) in tankNetworkPool:
         return tankNetworkPool[(dim, (x, y, z))]
@@ -126,15 +125,14 @@ def GetNearbyPipeNetwork(dim, x, y, z, exists=None, enable_cache=False):
     return input_networks, output_networks
 
 
-def GetTankNetworks(dim, xyz):
-    # type: (int, tuple[int, int, int]) -> tuple[list[PipeNetwork], list[PipeNetwork]]
+def GetTankNetworks(dim, x, y, z, enable_cache=False, cacher=None):
+    # type: (int, int, int, int, bool, set[PosData] | None) -> tuple[list[PipeNetwork], list[PipeNetwork]]
     "获取某一位置附近的管道网络。会使用缓存。"
-    nws = tankNetworkPool.get((dim, xyz))
+    nws = tankNetworkPool.get((dim, (x, y, z)))
     if nws is not None:
         return nws
-    x, y, z = xyz
-    i, o = GetNearbyPipeNetwork(dim, x, y, z)
-    tankNetworkPool[(dim, xyz)] = nws = (i, o)
+    i, o = getNearbyPipeNetwork(dim, x, y, z, enable_cache=enable_cache, exists=cacher)
+    tankNetworkPool[(dim, (x, y, z))] = nws = (i, o)
     return nws
 
 
@@ -160,7 +158,7 @@ def PostFluidIntoNetworks(dim, xyz, fluid_id, fluid_volume, networks, depth):
     "向网络发送流体, 返回剩余流体体积"
     if networks is None:
         x, y, z = xyz
-        networks = GetNearbyPipeNetwork(dim, x, y, z, enable_cache=True)[1]
+        networks = GetTankNetworks(dim, x, y, z, enable_cache=True)[1]
     for cx, cy, cz, facing in (i for network in networks for i in network.group_inputs):
         dx, dy, dz = NEIGHBOR_BLOCKS_ENUM[facing]
         cxyz = (cx + dx, cy + dy, cz + dz)
@@ -183,12 +181,12 @@ def RequireFluid(dim, xyz, fluid_id, req_volume):
     # type: (int, tuple[int, int, int], str, float) -> float
     origin_req_volume = req_volume
     x, y, z = xyz
-    networks = GetNearbyPipeNetwork(dim, x, y, z, enable_cache=True)[0]
+    output_networks = GetTankNetworks(dim, x, y, z, enable_cache=True)[0]
     om = GetMachineStrict(dim, x, y, z)
     if not isinstance(om, (FluidContainer, MultiFluidContainer)):
         raise ValueError("Machine %s is not a FluidContainer" % type(om).__name__)
     for cx, cy, cz, facing in (
-        i for network in networks for i in network.group_outputs
+        i for network in output_networks for i in network.group_outputs
     ):
         dx, dy, dz = NEIGHBOR_BLOCKS_ENUM[facing]
         cxyz = (cx + dx, cy + dy, cz + dz)
@@ -213,7 +211,7 @@ def RequirePostFluid(dim, xyz):
     # type: (int, tuple[int, int, int]) -> None
     "网络内某个节点向网络请求流体。"
     x, y, z = xyz
-    networks = GetNearbyPipeNetwork(dim, x, y, z, enable_cache=True)[0]
+    networks = GetTankNetworks(dim, x, y, z, enable_cache=True)[0]
     for cx, cy, cz, facing in (
         i for network in networks for i in network.group_outputs
     ):
@@ -227,7 +225,7 @@ def RequirePostFluid(dim, xyz):
             m.RequirePost()
 
 
-@ListenEvent(ServerPlaceBlockEntityEvent)
+@ServerPlaceBlockEntityEvent.Listen()
 def onBlockPlaced(event):
     # type: (ServerPlaceBlockEntityEvent) -> None
     if BlockHasTag(event.blockName, "skybluetech_pipe"):
@@ -246,7 +244,7 @@ def onBlockPlaced(event):
         UpdateBlockStates(event.dimension, (event.posX, event.posY, event.posZ), states)
 
 
-@ListenEvent(BlockRemoveServerEvent)
+@BlockRemoveServerEvent.Listen()
 @AsDelayFunc(0)  # 等待下一 tick, 此时才能保证此处方块为空
 def onBlockRemoved(event):
     # type: (BlockRemoveServerEvent) -> None
@@ -258,7 +256,7 @@ def onBlockRemoved(event):
 PIECE = 5.0 / 16
 
 
-@ListenEvent(ServerBlockUseEvent)
+@ServerBlockUseEvent.Listen()
 def onPlayerUseWrench(event):
     # type: (ServerBlockUseEvent) -> None
     if (
@@ -327,7 +325,7 @@ def onPlayerUseWrench(event):
     UpdateBlockStates(event.dimensionId, (blockX, blockY, blockZ), block_orig_status)
 
 
-@ListenEvent(BlockNeighborChangedServerEvent)
+@BlockNeighborChangedServerEvent.Listen()
 def onNeighbourBlockChanged(event):
     # type: (BlockNeighborChangedServerEvent) -> None
     if not isPipe(event.blockName):
@@ -357,8 +355,8 @@ def onNeighbourBlockChanged(event):
     if canConnect(event.fromBlockName) or canConnect(event.toBlockName):
         clearNearbyPipesNetwork(event.dimensionId, event.posX, event.posY, event.posZ)
         cacher = set()  # type: set[PosData]
-        i, o = GetNearbyPipeNetwork(
-            event.dimensionId, event.posX, event.posY, event.posZ, cacher
+        i, o = GetTankNetworks(
+            event.dimensionId, event.posX, event.posY, event.posZ, cacher=cacher
         )
         for network in i + o:
             UpdateWholeNetwork(event.dimensionId, network)
