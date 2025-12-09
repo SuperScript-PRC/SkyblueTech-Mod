@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 from mod.client.extraClientApi import GetMinecraftEnum
-from skybluetech_scripts.tooldelta.client_event_listener import ListenEvent
 from skybluetech_scripts.tooldelta.events import CustomC2SEvent
 from skybluetech_scripts.tooldelta.events.client.block import ClientBlockUseEvent
 from skybluetech_scripts.tooldelta.api.client.player import GetPlayerDimensionId
@@ -128,7 +127,7 @@ class MachinePanelUIProxy(UScreenProxy):
 GPlayerId = ''
 GPos = None
 
-@ListenEvent(ClientBlockUseEvent)
+@ClientBlockUseEvent.Listen()
 def onCliBlockUse(event):
     # type: (ClientBlockUseEvent) -> None
     global GPlayerId, GPos
