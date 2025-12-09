@@ -4,7 +4,7 @@ from mod.client.extraClientApi import GetMinecraftEnum
 from skybluetech_scripts.tooldelta.client_event_listener import ListenEvent
 from skybluetech_scripts.tooldelta.events import CustomC2SEvent
 from skybluetech_scripts.tooldelta.events.client.block import ClientBlockUseEvent
-from skybluetech_scripts.tooldelta.api.client.player import ClientGetPlayerDimensionId
+from skybluetech_scripts.tooldelta.api.client.player import GetPlayerDimensionId
 from skybluetech_scripts.tooldelta.api.timer import ExecLater
 from skybluetech_scripts.tooldelta.ui import SNode
 from skybluetech_scripts.tooldelta.ui.ui_sync import S2CSync
@@ -104,8 +104,7 @@ class MachinePanelUIProxy(UScreenProxy):
         self.inited = True
         if self.sync:
             self.sync.Activate()
-        
-    
+
     def OnDestroy(self):
         """ 超类方法, 告诉服务端 UI 关闭。 """
         UScreenProxy.OnDestroy(self)
@@ -133,6 +132,6 @@ GPos = None
 def onCliBlockUse(event):
     # type: (ClientBlockUseEvent) -> None
     global GPlayerId, GPos
-    dim = ClientGetPlayerDimensionId()
+    dim = GetPlayerDimensionId()
     GPlayerId = event.playerId
     GPos = (dim, int(event.x), int(event.y), int(event.z))
