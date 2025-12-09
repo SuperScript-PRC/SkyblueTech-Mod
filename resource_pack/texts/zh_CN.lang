@@ -172,3 +172,7 @@ item.skybluetech:ancient_debris_dust.name=远古残骸粉末
 tile.skybluetech:dust_block.name=尘土块
 tile.skybluetech:mixer.name=固液搅拌机
 item.skybluetech:seven.name=7
+tile.skybluetech:famicom.name=红白机
+item.skybluetech:famicom_cartidge_1.name=音乐卡-黄卡
+item.skybluetech:famicom_cartidge_2.name=音乐卡-紫卡
+item.skybluetech:famicom_cartidge_3.name=音乐卡-蓝卡

@@ -3,6 +3,7 @@
 
 behavior_pack/pack_manifest.json
 resource_pack/textures
+resource_pack/sounds/music
 
 work.mcscfg
 studio.json

@@ -1,0 +1,41 @@
+{
+    "dy_load_list": [
+
+    ],
+    "format_version": "1.14.0",
+    "sound_definitions": {
+        "music.skybluetech.famicom_1": {
+            "category": "music",
+            "sounds": [
+                {
+                    "load_on_low_memory": true,
+                    "name": "sounds/music/skybluetech/famicom_1",
+                    "stream": true,
+                    "volume": 1
+                }
+            ]
+        },
+        "music.skybluetech.famicom_2": {
+            "category": "music",
+            "sounds": [
+                {
+                    "load_on_low_memory": true,
+                    "name": "sounds/music/skybluetech/famicom_2",
+                    "stream": true,
+                    "volume": 1
+                }
+            ]
+        },
+        "music.skybluetech.famicom_3": {
+            "category": "music",
+            "sounds": [
+                {
+                    "load_on_low_memory": true,
+                    "name": "sounds/music/skybluetech/famicom_3",
+                    "stream": true,
+                    "volume": 1
+                }
+            ]
+        }
+    }
+}
