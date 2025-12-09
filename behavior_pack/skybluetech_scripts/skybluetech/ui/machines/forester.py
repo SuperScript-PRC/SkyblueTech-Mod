@@ -14,7 +14,7 @@ class ForesterUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = ForesterUISync.NewClient(dim, x, y, z) # type: ForesterUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power_bar = self > POWER_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):

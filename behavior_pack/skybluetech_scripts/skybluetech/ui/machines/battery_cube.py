@@ -14,7 +14,7 @@ class BatteryCubeUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = BatteryCubeUISync.NewClient(dim, x, y, z) # type: BatteryCubeUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power = self > POWER_NODE
+        self.power = self.GetElement(POWER_NODE)
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):

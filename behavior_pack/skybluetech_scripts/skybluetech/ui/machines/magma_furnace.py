@@ -16,9 +16,9 @@ class MagmaFurnaceUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = MagmaFurnaceUISync.NewClient(dim, x, y, z) # type: MagmaFurnaceUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power_bar = self > POWER_NODE
-        self.progress = self > PRGS_NODE
-        self.fluid_display = self > FLUID_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.progress = self.GetElement(PRGS_NODE)
+        self.fluid_display = self.GetElement(FLUID_NODE)
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):

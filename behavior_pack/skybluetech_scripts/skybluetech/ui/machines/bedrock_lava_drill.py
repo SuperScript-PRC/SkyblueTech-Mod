@@ -14,8 +14,8 @@ class BedrockLavaDrillUI(MachinePanelUIProxy):
     def OnCreate(self):
         dim, x, y, z = self.pos
         self.sync = BedrockLavaDrillUISync.NewClient(dim, x, y, z) # type: BedrockLavaDrillUISync
-        self.power_bar = self > POWER_NODE
-        self.fluid_display = self > FLUID_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.fluid_display = self.GetElement(FLUID_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
         MachinePanelUIProxy.OnCreate(self)
 

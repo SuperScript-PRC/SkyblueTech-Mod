@@ -16,9 +16,9 @@ class AlloyFurnaceUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = AlloyFurnaceUISync.NewClient(dim, x, y, z) # type: AlloyFurnaceUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power_bar = self > POWER_NODE
-        self.progress = self > PRGS_NODE
-        self.flame = self > FLAME_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.progress = self.GetElement(PRGS_NODE)
+        self.flame = self.GetElement(FLAME_NODE)
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):

@@ -22,8 +22,8 @@ class AssemblerUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = AssemblerUISync.NewClient(dim, x, y, z) # type: AssemblerUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power = self > POWER_NODE
-        self.upgraders_grid = self[UPGRADERS_LIST_NODE].AsScrollView().GetContent().AsGrid()
+        self.power = self.GetElement(POWER_NODE)
+        self.upgraders_grid = self.GetElement(UPGRADERS_LIST_NODE).AsScrollView().GetContent().AsGrid()
         self[MAIN_PATH / "push_btn"].AsButton().SetCallback(self.onPush)
         MachinePanelUIProxy.OnCreate(self)
         event_cbs.add(self.onListUpdate)

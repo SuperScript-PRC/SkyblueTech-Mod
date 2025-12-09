@@ -21,10 +21,10 @@ class FreezerUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = FreezerUISync.NewClient(dim, x, y, z) # type: FreezerUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power_bar = self > POWER_NODE
-        self.progress = self > PRGS_NODE
-        self.fluid_display = self > FLUID_NODE
-        self.mode_change_btn = self[MODE_CHANGE_BTN_NODE].AsButton()
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.progress = self.GetElement(PRGS_NODE)
+        self.fluid_display = self.GetElement(FLUID_NODE)
+        self.mode_change_btn = self.GetElement(MODE_CHANGE_BTN_NODE).AsButton()
         self.mode_change_btn.SetCallback(self.changeMode)
         self.mode_change_btn_img = self.mode_change_btn["item"].AsItemRenderer()
         MachinePanelUIProxy.OnCreate(self)

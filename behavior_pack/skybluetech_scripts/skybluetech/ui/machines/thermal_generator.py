@@ -14,8 +14,8 @@ class ThermalGeneratorUI(MachinePanelUIProxy):
     def OnCreate(self):
         dim, x, y, z = self.pos
         self.sync = ThermalGeneratorUISync.NewClient(dim, x, y, z) # type: ThermalGeneratorUISync
-        self.power_bar = self > POWER_NODE
-        self.flame = self > FLAME_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.flame = self.GetElement(FLAME_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
         MachinePanelUIProxy.OnCreate(self)
 

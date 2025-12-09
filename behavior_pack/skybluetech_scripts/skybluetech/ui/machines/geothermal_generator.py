@@ -16,10 +16,10 @@ class GeoThermalGeneratorUI(MachinePanelUIProxy):
     def OnCreate(self):
         dim, x, y, z = self.pos
         self.sync = GeoThermalGeneratorUISync.NewClient(dim, x, y, z) # type: GeoThermalGeneratorUISync
-        self.power_bar = self > POWER_NODE
-        self.lava_display = self > FLUID_LAVA_NODE
-        self.water_display = self > FLUID_WATER_NODE
-        self.flame = self > FLAME_NODE
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.lava_display = self.GetElement(FLUID_LAVA_NODE)
+        self.water_display = self.GetElement(FLUID_WATER_NODE)
+        self.flame = self.GetElement(FLAME_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
         self.f_hook1 = InitFluidsDisplay(self.lava_display, self.sync.fluids, 0)
         self.f_hook2 = InitFluidsDisplay(self.water_display, self.sync.fluids, 1)

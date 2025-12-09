@@ -13,7 +13,7 @@ class GeneralTankUI(MachinePanelUIProxy):
     def OnCreate(self):
         dim, x, y, z = self.pos
         self.sync = GeneralTankUISync.NewClient(dim, x, y, z) # type: GeneralTankUISync
-        self.fluid_display = self > FLUID_NODE
+        self.fluid_display = self.GetElement(FLUID_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
         self.f_hook = InitFluidDisplay(
             self.fluid_display, lambda :(

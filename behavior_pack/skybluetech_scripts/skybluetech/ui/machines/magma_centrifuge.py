@@ -17,9 +17,9 @@ class MagmaCentrifugeUI(MachinePanelUIProxy):
         dim, x, y, z = self.pos
         self.sync = MagmaCentrifugeUISync.NewClient(dim, x, y, z) # type: MagmaCentrifugeUISync
         self.sync.WhenUpdated = self.WhenUpdated
-        self.power_bar = self > POWER_NODE
-        self.progress = self > PRGS_NODE
-        self.left_fluid = self > LEFT_FLUID
+        self.power_bar = self.GetElement(POWER_NODE)
+        self.progress = self.GetElement(PRGS_NODE)
+        self.left_fluid = self.GetElement(LEFT_FLUID)
         self.right_fluids = [self > (RIGHT_FLUID + str(i + 1)) for i in range(6)]
         self.update_cbs = [InitFluidsDisplay(self.left_fluid, self.sync.fluids, 0)]
         for i, ui in enumerate(self.right_fluids):
