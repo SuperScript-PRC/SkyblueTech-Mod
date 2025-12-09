@@ -34,7 +34,10 @@
         "sound": "glass"
     },
     "skybluetech:charger": {
-        "sound": "iron"
+        "sound": "iron",
+        "client_entity": {
+            "identifier": "skybluetech:charger"
+        }
     },
     "skybluetech:compressor": {
         "textures": {
