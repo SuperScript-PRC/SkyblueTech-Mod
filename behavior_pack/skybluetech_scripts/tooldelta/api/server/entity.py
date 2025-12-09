@@ -19,10 +19,14 @@ def DestroyEntity(entity_id):
     # type: (str) -> None
     GetServer().DestroyEntity(entity_id)
 
+def GetPos(entity_id):
+    # type: (str) -> tuple[float, float, float]
+    return ServerComp.CreatePos(entity_id).GetPos()
 
 __all__ = [
     "GetEntitiesBySelector",
     "GetDroppedItem",
+    "GetPos",
     "SpawnDroppedItem",
     "DestroyEntity",
 ]

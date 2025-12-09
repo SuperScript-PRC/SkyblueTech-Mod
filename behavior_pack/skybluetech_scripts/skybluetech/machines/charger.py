@@ -1,12 +1,34 @@
 # -*- coding: utf-8 -*-
 #
 from mod.server.blockEntityData import BlockEntityData
-from skybluetech_scripts.tooldelta.define.item import Item
+from skybluetech_scripts.tooldelta.define import Item
+from skybluetech_scripts.tooldelta.api.server import (
+    GetPlayersInDim,
+    GetPos,
+    GetPlayerDimensionId as SGetPlayerDim,
+)
+from skybluetech_scripts.tooldelta.api.client import (
+    GetPlayerDimensionId as CGetPlayerDim,
+    CreateDropItemModelEntity,
+    SetDropItemTransform,
+    DeleteClientDropItemEntity,
+)
+from skybluetech_scripts.tooldelta.events.notify import (
+    NotifyToClients,
+    NotifyToClient,
+    NotifyToServer,
+)
+from skybluetech_scripts.tooldelta.events.client import (
+    ModBlockEntityLoadedClientEvent,
+    ModBlockEntityRemoveClientEvent,
+)
 from ..define import flags
 from ..define.machine_config.charger import CHARGE_SPEED
+from ..define.events.charger import ChargerItemModelUpdate, ChargeItemModelRequest
 from ..ui_sync.machines.charger import ChargerUISync
 from ..utils.charge import GetCharge, UpdateCharge, K_STORE_RF, K_STORE_RF_MAX
 from .basic import GUIControl, UpgradeControl, RegisterMachine
+from .pool import GetMachineStrict
 
 
 @RegisterMachine
@@ -60,10 +82,8 @@ class Charger(GUIControl, UpgradeControl):
         # type: (int, Item) -> bool
         if slot != 0:
             return False
-        # print "TestForItem:", item.userData
         if item.userData is None or (
-            K_STORE_RF not in item.userData
-            or K_STORE_RF_MAX not in item.userData
+            K_STORE_RF not in item.userData or K_STORE_RF_MAX not in item.userData
         ):
             return False
         return True
@@ -76,7 +96,7 @@ class Charger(GUIControl, UpgradeControl):
                 # 可能可以输出充能完成的物品了
                 slot0 = self.GetSlotItem(0, get_user_data=True)
                 if slot0 is not None:
-                    self.OutputItem(slot0) # todo
+                    self.OutputItem(slot0)  # todo
                     self.SetSlotItem(0, None)
         elif slot_pos == 0:
             # 充能物发生变化
@@ -85,6 +105,10 @@ class Charger(GUIControl, UpgradeControl):
                 self.charge_rf = 0
                 self.charge_rf_max = 1
                 self.SetDeactiveFlag(flags.DEACTIVE_FLAG_NO_INPUT)
+                NotifyToClients(
+                    GetPlayersInDim(self.dim),
+                    ChargerItemModelUpdate(self.x, self.y, self.z, None),
+                )
                 return
             ud = charge_item.userData
             if ud is None:
@@ -93,6 +117,12 @@ class Charger(GUIControl, UpgradeControl):
             self.charge_rf, self.charge_rf_max = GetCharge(ud)
             self.updateCharge()
             self.ResetDeactiveFlags()
+            NotifyToClients(
+                GetPlayersInDim(self.dim),
+                ChargerItemModelUpdate(
+                    self.x, self.y, self.z, charge_item.id, charge_item.isEnchanted
+                ),
+            )
 
     def updateCharge(self):
         charge_item = self.GetSlotItem(0, get_user_data=True)
@@ -102,7 +132,7 @@ class Charger(GUIControl, UpgradeControl):
             return
         UpdateCharge("", charge_item, self.charge_rf)
         self.SetSlotItem(0, charge_item)
-                
+
     def chargeOnce(self):
         if self.charge_rf_max == 0 or self.charge_rf_max == 1:
             self.SetDeactiveFlag(flags.DEACTIVE_FLAG_NO_INPUT)
@@ -118,7 +148,7 @@ class Charger(GUIControl, UpgradeControl):
             if self.GetSlotItem(1) is None:
                 charge_item = self.GetSlotItem(0, get_user_data=True)
                 if charge_item is None:
-                    return # TODO
+                    return  # TODO
                 it = self.OutputItem(charge_item)
                 if it is None:
                     self.SetSlotItem(0, None)
@@ -126,5 +156,64 @@ class Charger(GUIControl, UpgradeControl):
                     self.SetDeactiveFlag(flags.DEACTIVE_FLAG_OUTPUT_FULL)
 
 
+cli_loading_machines = set()  # type: set[tuple[int, int, int]]
+cli_models = {}  # type: dict[tuple[int, int, int], str]
 
 
+@ChargerItemModelUpdate.Listen()
+def onModelUpdate(event):
+    # type: (ChargerItemModelUpdate) -> None
+    pos = (event.x, event.y, event.z)
+    if pos not in cli_loading_machines:
+        return
+    model_id = cli_models.get(pos)
+    if model_id is not None:
+        DeleteClientDropItemEntity(model_id)
+    if event.item_id is not None:
+        model_id = cli_models[pos] = CreateDropItemModelEntity(
+            CGetPlayerDim(), pos, Item(event.item_id)
+        )
+        SetDropItemTransform(model_id, (event.x+0.4, event.y+0.5, event.z+0.3), (90, 0, 0))
+
+
+@ModBlockEntityLoadedClientEvent.Listen()
+def onModBlockLoaded(event):
+    # type: (ModBlockEntityLoadedClientEvent) -> None
+    pos = (event.posX, event.posY, event.posZ)
+    cli_loading_machines.add(pos)
+    # item_id
+    NotifyToServer(ChargeItemModelRequest(event.posX, event.posY, event.posZ))
+
+
+@ModBlockEntityRemoveClientEvent.Listen()
+def onModBlockRemoved(event):
+    # type: (ModBlockEntityRemoveClientEvent) -> None
+    pos = (event.posX, event.posY, event.posZ)
+    cli_loading_machines.discard(pos)
+    model_id = cli_models.get(pos)
+    if model_id is not None:
+        DeleteClientDropItemEntity(cli_models.pop(pos))
+
+
+@ChargeItemModelRequest.Listen()
+def onItemModelRequest(event):
+    # type: (ChargeItemModelRequest) -> None
+    x = event.x
+    y = event.y
+    z = event.z
+    if not isinstance(x, int) or not isinstance(y, int) or not isinstance(z, int):
+        return
+    posx, posy, posz = GetPos(event.pid)
+    if abs(posx - x) + abs(posy - y) + abs(posz - z) > 64:
+        return
+    m = GetMachineStrict(SGetPlayerDim(event.pid), x, y, z)
+    if not isinstance(m, Charger):
+        return
+    it = m.GetSlotItem(0)
+    if it is None:
+        item_id = None
+        enchanted = False
+    else:
+        item_id = it.id
+        enchanted = it.isEnchanted
+    NotifyToClient(event.pid, ChargerItemModelUpdate(x, y, z, item_id, enchanted))
