@@ -118,7 +118,7 @@
                                                         "$mask_image": "textures/panel/compressor_mask",
                                                         "offset": [
                                                             1,
-                                                            -43
+                                                            -41
                                                         ]
                                                     }
                                                 },

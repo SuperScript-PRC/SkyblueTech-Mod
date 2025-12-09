@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 from mod.server import extraServerApi as serverApi
-from ...define.item import Item
 from ... import ServerComp
+from ...define.item import Item
 
 mcEnum = serverApi.GetMinecraftEnum()
 

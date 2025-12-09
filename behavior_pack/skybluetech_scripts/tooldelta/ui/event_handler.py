@@ -4,7 +4,7 @@ from ..client_event_listener import ListenEvent
 from ..ui.reg import GetScreen
 from .pool import GetActiveScreen, GetActiveScreens, GetActiveProxyScreens
 
-@ListenEvent(CreateUIRequest)
+@CreateUIRequest.Listen()
 def onCreateUIRequest(event):
     # type: (CreateUIRequest) -> None
     ui = GetScreen(event.ui_key)
@@ -12,7 +12,7 @@ def onCreateUIRequest(event):
         raise ValueError("UI not found: " + event.ui_key)
     ui.CreateUI(params={"sync": event.sync_id})
 
-@ListenEvent(ForceRemoveUIRequest)
+@ForceRemoveUIRequest.Listen()
 def onForceRemoveUIRequest(event):
     # type: (ForceRemoveUIRequest) -> None
     uiNode = GetActiveScreen(event.ui_key)
@@ -20,7 +20,7 @@ def onForceRemoveUIRequest(event):
         return
     uiNode.RemoveUI()
 
-@ListenEvent(OnKeyPressInGame)
+@OnKeyPressInGame.Listen()
 def onKeyPressInGame(event):
     # type: (OnKeyPressInGame) -> None
     for ui in GetActiveScreens() + GetActiveProxyScreens():

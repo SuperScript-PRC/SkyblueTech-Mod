@@ -2,7 +2,6 @@
 from mod.client.extraClientApi import RegisterUI, GetNativeScreenManagerCls
 from mod_log import logger
 from ..internal import GetModName
-from ..client_event_listener import ListenEvent
 from ..events.client.ui import UiInitFinishedEvent
 from ..no_runtime_typing import TYPE_CHECKING
 from .screen_comp import UScreenNode
@@ -59,7 +58,7 @@ def RegistProxyScreen(bound_ui_name=""):
 def GetScreen(key):
     return registeredScreens.get(key)
 
-@ListenEvent(UiInitFinishedEvent)
+@UiInitFinishedEvent.Listen()
 def onUiInit(_):
     for key, (cls_path, bound_ui) in registeredScreenDatas.items():
         res = RegisterUI(
