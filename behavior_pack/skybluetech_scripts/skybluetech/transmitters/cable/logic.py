@@ -187,7 +187,7 @@ def PostItemIntoNetworks(dim, xyz, item, networks):
                 continue
             available_slots = range(container_size)
         for slot in available_slots:
-            sitem = GetContainerItem(dim, cxyz, slot)
+            sitem = GetContainerItem(dim, cxyz, slot, getUserData=True)
             if sitem is None:
                 if m is not None and not m.IsValidInput(slot, item):
                     continue
@@ -245,11 +245,11 @@ def RequireItems(dim, xyz):
                 continue
             available_slots = range(container_size)
         for oslot in myslots:
-            item = GetContainerItem(dim, xyz, oslot)
+            item = GetContainerItem(dim, xyz, oslot, getUserData=True)
             if item is not None and item.count >= item.GetBasicInfo().maxStackSize:
                 continue
             for slot in available_slots:
-                sitem = GetContainerItem(dim, cxyz, slot)
+                sitem = GetContainerItem(dim, cxyz, slot, getUserData=True)
                 if sitem is None:
                     continue
                 elif item is None:
@@ -373,39 +373,44 @@ def onContainerItemChanged(event):
     # 当容器内的物品变化时, 尝试将物品放入网络
     if event.pos is None:
         return
-    elif event.newItem.itemName == "minecraft:air" or event.newItem.count == 0:
-        return
     dim = event.dimensionId
     x, y, z = xyz = event.pos
-    output_networks = GetContainerNetworks(dim, x, y, z, enable_cache=True)[1]
-    m = GetMachineStrict(dim, x, y, z)  # 可能是一个机器
-    if m is not None:
+    if event.newItem.itemName == "minecraft:air" or event.newItem.count == 0:
+        m = GetMachineStrict(dim, x, y, z)
         if not isinstance(m, ItemContainer):
-            raise ValueError("Machine %s is not a ItemContainer" % type(m).__name__)
-        if event.slot not in m.output_slots:
             return
-        else:
-            slots = m.output_slots
+        if event.slot in m.input_slots:
+            m.RequireItems()
     else:
-        slots = range(GetContainerSize(xyz, dim))
-    for slot_not_empty in slots:
-        item = GetContainerItem(dim, xyz, slot_not_empty)
-        if item is None:
-            continue
-        nitem = PostItemIntoNetworks(dim, xyz, item, output_networks)
-        if nitem is not None:
-            if nitem.count > 0:
-                if nitem.count == item.count:
-                    # 没有任何容器供塞入
-                    continue
-                else:
-                    SetContainerItem(dim, xyz, slot_not_empty, nitem)
-                    if not POST_ALL_ITEMS_IN_ONE_TIME:
-                        break
+        output_networks = GetContainerNetworks(dim, x, y, z, enable_cache=True)[1]
+        m = GetMachineStrict(dim, x, y, z)  # 可能是一个机器
+        if m is not None:
+            if not isinstance(m, ItemContainer):
+                raise ValueError("Machine %s is not a ItemContainer" % type(m).__name__)
+            if event.slot not in m.output_slots:
+                return
+            else:
+                slots = m.output_slots
         else:
-            SetContainerItem(dim, xyz, slot_not_empty, Item("minecraft:air", 0, 0))
-            if not POST_ALL_ITEMS_IN_ONE_TIME:
-                break
+            slots = range(GetContainerSize(xyz, dim))
+        for slot_not_empty in slots:
+            item = GetContainerItem(dim, xyz, slot_not_empty, getUserData=True)
+            if item is None:
+                continue
+            nitem = PostItemIntoNetworks(dim, xyz, item, output_networks)
+            if nitem is not None:
+                if nitem.count > 0:
+                    if nitem.count == item.count:
+                        # 没有任何容器供塞入
+                        continue
+                    else:
+                        SetContainerItem(dim, xyz, slot_not_empty, nitem)
+                        if not POST_ALL_ITEMS_IN_ONE_TIME:
+                            break
+            else:
+                SetContainerItem(dim, xyz, slot_not_empty, Item("minecraft:air", 0, 0))
+                if not POST_ALL_ITEMS_IN_ONE_TIME:
+                    break
 
 
 PIECE = 5.0 / 16
