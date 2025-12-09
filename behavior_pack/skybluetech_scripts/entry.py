@@ -1,4 +1,4 @@
-from .skybluetech import machines, tools, transmitters, ui
+from . import skybluetech
 
 def entry():
     pass
