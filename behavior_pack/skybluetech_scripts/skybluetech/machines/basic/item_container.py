@@ -99,8 +99,9 @@ class ItemContainer(object):
 
     def OutputItem(self, item):
         # type: (Item) -> Item | None
-        requireLibraryFunc()
-        item_res = PostItemIntoNetworks(self.dim, self.xyz, item, None)
-        if item_res is None:
-            return None
+        # 在管道逻辑处已经能自动输出物品了
+        # requireLibraryFunc()
+        # item_res = PostItemIntoNetworks(self.dim, self.xyz, item, None)
+        # if item_res is None:
+        #     return None
         return PutItemIntoContainer(self.dim, self.xyz, item, self.output_slots)
