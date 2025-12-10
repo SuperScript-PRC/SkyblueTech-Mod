@@ -27,5 +27,8 @@ class FluidCondenser(MixedProcessor):
         self.sync.storage_rf = self.store_rf
         self.sync.rf_max = self.store_rf_max
         self.sync.progress_relative = self.GetProgressPercent()
+        self.sync.fluid_id = self.fluids[0].fluid_id
+        self.sync.fluid_volume = self.fluids[0].volume
+        self.sync.max_volume = self.fluids[0].max_volume
         self.sync.MarkedAsChanged()
 

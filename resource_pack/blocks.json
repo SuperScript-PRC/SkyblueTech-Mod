@@ -238,6 +238,16 @@
             "up": "skybluetech:basic_water_flowing"
         }
     },
+    "skybluetech:fluid_condenser": {
+        "textures": {
+            "down": "skybluetech:frame_bottom",
+            "east": "skybluetech:frame",
+            "north": "skybluetech:fluid_condenser_front",
+            "south": "skybluetech:frame",
+            "up": "skybluetech:frame_up",
+            "west": "skybluetech:frame"
+        }
+    },
     "skybluetech:forester": {
         "textures": {
             "down": "skybluetech:frame_bottom",

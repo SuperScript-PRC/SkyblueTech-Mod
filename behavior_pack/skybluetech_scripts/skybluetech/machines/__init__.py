@@ -4,6 +4,7 @@ from .charger import Charger
 from .compressor import Compressor
 from .creative_generator import CreativeGenerator
 from .creative_power_acceptor import CreativePowerAcceptor
+from .fluid_condenser import FluidCondenser
 from .digger import Digger
 from .farming_station import FarmingStation
 from .forester import Forester
