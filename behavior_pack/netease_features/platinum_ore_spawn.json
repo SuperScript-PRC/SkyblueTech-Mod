@@ -4,7 +4,7 @@
     "description": {
       "identifier": "skybluetech:platinum_ore_spawn"
     },
-    "count": 2,
+    "count": 3,
     "replace_rules": [
       {
         "places_block": "skybluetech:platinum_ore",
