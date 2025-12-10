@@ -2,18 +2,18 @@
   "format_version": "1.13.0",
   "minecraft:ore_feature": {
     "description": {
-      "identifier": "skybluetech:nickel_ore_spawn"
+      "identifier": "skybluetech:platinum_ore_spawn"
     },
-    "count": 20,
+    "count": 2,
     "replace_rules": [
       {
-        "places_block": "skybluetech:nickel_ore",
+        "places_block": "skybluetech:platinum_ore",
         "may_replace": [
           "minecraft:stone"
         ]
       },
       {
-        "places_block": "skybluetech:nickel_lead_ore",
+        "places_block": "skybluetech:deepslate_platinum_ore",
         "may_replace": [
           "minecraft:deepslate"
         ]

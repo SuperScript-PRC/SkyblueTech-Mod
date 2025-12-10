@@ -2,18 +2,18 @@
   "format_version": "1.13.0",
   "minecraft:ore_feature": {
     "description": {
-      "identifier": "skybluetech:tin_ore_spawn"
+      "identifier": "skybluetech:nickel_ore_spawn"
     },
-    "count": 36,
+    "count": 6,
     "replace_rules": [
       {
-        "places_block": "skybluetech:tin_ore",
+        "places_block": "skybluetech:nickel_ore",
         "may_replace": [
           "minecraft:stone"
         ]
       },
       {
-        "places_block": "skybluetech:deepslate_tin_ore",
+        "places_block": "skybluetech:deepslate_nickel_ore",
         "may_replace": [
           "minecraft:deepslate"
         ]

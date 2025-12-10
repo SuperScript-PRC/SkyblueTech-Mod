@@ -2,18 +2,18 @@
   "format_version": "1.13.0",
   "minecraft:ore_feature": {
     "description": {
-      "identifier": "skybluetech:lead_ore_spawn"
+      "identifier": "skybluetech:silver_ore_spawn"
     },
-    "count": 20,
+    "count": 4,
     "replace_rules": [
       {
-        "places_block": "skybluetech:lead_ore",
+        "places_block": "skybluetech:silver_ore",
         "may_replace": [
           "minecraft:stone"
         ]
       },
       {
-        "places_block": "skybluetech:deepslate_lead_ore",
+        "places_block": "skybluetech:deepslate_silver_ore",
         "may_replace": [
           "minecraft:deepslate"
         ]

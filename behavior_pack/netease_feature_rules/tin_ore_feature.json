@@ -1,0 +1,56 @@
+{
+    "format_version": "1.14.0",
+    "minecraft:feature_rules": {
+        "description": {
+            "identifier": "skybluetech:tin_ore_feature",
+            "places_feature": "skybluetech:tin_ore_spawn"
+        },
+        "conditions": {
+            "placement_pass": "underground_pass",
+            "minecraft:biome_filter": [
+                {
+                    "any_of": [
+                        {
+                            "test": "has_biome_tag",
+                            "operator": "==",
+                            "value": "overworld"
+                        },
+                        {
+                            "test": "has_biome_tag",
+                            "operator": "==",
+                            "value": "overworld_generation"
+                        }
+                    ]
+                }
+            ]
+        },
+        "distribution": {
+            "iterations": 30,
+            "coordinate_eval_order": "yxz",
+            "x": {
+                "distribution": "uniform",
+                "extent": [
+                    0,
+                    16
+                ]
+            },
+            "y": {
+                "distribution": "triangle",
+                "extent": [
+                    -40,
+                    64
+                ],
+                "spread": [
+                    50
+                ]
+            },
+            "z": {
+                "distribution": "uniform",
+                "extent": [
+                    0,
+                    16
+                ]
+            }
+        }
+    }
+}

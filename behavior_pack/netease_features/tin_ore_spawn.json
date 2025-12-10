@@ -2,18 +2,18 @@
   "format_version": "1.13.0",
   "minecraft:ore_feature": {
     "description": {
-      "identifier": "skybluetech:silver_ore_spawn"
+      "identifier": "skybluetech:tin_ore_spawn"
     },
     "count": 10,
     "replace_rules": [
       {
-        "places_block": "skybluetech:silver_ore",
+        "places_block": "skybluetech:tin_ore",
         "may_replace": [
           "minecraft:stone"
         ]
       },
       {
-        "places_block": "skybluetech:silver_lead_ore",
+        "places_block": "skybluetech:deepslate_tin_ore",
         "may_replace": [
           "minecraft:deepslate"
         ]
