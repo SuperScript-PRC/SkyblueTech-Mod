@@ -90,17 +90,19 @@ class Charger(GUIControl, UpgradeControl):
 
     def OnSlotUpdate(self, slot_pos):
         # type: (int) -> None
-        UpgradeControl.OnSlotUpdate(self, slot_pos)
+        if self.InUpgradeSlot(slot_pos):
+            return UpgradeControl.OnSlotUpdate(self, slot_pos)
         if slot_pos == 1:
             if self.GetSlotItem(1) is None:
                 # 可能可以输出充能完成的物品了
                 slot0 = self.GetSlotItem(0, get_user_data=True)
-                if slot0 is not None:
-                    self.OutputItem(slot0)  # todo
+                if slot0 is not None and self.charge_rf >= self.charge_rf_max:
+                    self.OutputItem(slot0)
                     self.SetSlotItem(0, None)
         elif slot_pos == 0:
             # 充能物发生变化
             charge_item = self.GetSlotItem(0, get_user_data=True)
+            print("slot changed:", charge_item)
             if charge_item is None:
                 self.charge_rf = 0
                 self.charge_rf_max = 1

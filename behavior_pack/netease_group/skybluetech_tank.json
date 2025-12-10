@@ -2,7 +2,7 @@
     "groups": [
         {
             "group_name": "itemGroup.skybluetech.tanks",
-            "icon": "skybluetech:steel_tank",
+            "icon": "skybluetech:bronze_tank",
             "list": [
                 "skybluetech:bronze_tank",
                 "skybluetech:invar_tank",
