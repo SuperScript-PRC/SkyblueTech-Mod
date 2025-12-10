@@ -27,7 +27,7 @@ S2C_CLIENT = 1
 
 DEFAULT_UPDATE_FUNC = lambda :None
 
-DEBUG = True
+DEBUG = False
 
 class S2CSync(object):
     """
