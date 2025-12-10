@@ -102,7 +102,6 @@ class Charger(GUIControl, UpgradeControl):
         elif slot_pos == 0:
             # 充能物发生变化
             charge_item = self.GetSlotItem(0, get_user_data=True)
-            print("slot changed:", charge_item)
             if charge_item is None:
                 self.charge_rf = 0
                 self.charge_rf_max = 1
