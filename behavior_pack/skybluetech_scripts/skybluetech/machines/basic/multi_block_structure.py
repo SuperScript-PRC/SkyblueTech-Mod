@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.common.component.blockPaletteComp import BlockPaletteComponent
 from skybluetech_scripts.tooldelta.events.server.block import BlockRemoveServerEvent, ServerPlaceBlockEntityEvent
@@ -171,20 +171,17 @@ class MultiBlockStructure(BaseMachine):
             self.UnsetDeactiveFlag(DEACTIVE_FLAG_STRUCTURE_BROKEN)
             self._last_destroyed = False
 
-def GenerateSimpleStructureTemplate(key, pattern, center_block_sign="#"):
-    # type: (dict[str, str], dict[int, list[str]], str) -> StructureBlockPalette
+def GenerateSimpleStructureTemplate(key, pattern, center_block_sign="#", size=(1, 1, 1)):
+    # type: (dict[str, str], dict[int, list[str]], str, tuple[int, int, int]) -> tuple[StructureBlockPalette, tuple[int, int, int]]
     """
     key: 单字母键 -> 方块 ID
     """
-    orig_posblock_data = {} # type: dict[BLOCK_PAT_INDEX, tuple[POS_SET, tuple[int, int, int]]]
+    orig_posblock_data = {} # type: dict[BLOCK_PAT_INDEX, POS_SET]
     palette_data = {} # type: dict[int, str]
     pat2idx = {} # type: dict[str, int]
-    min_x = -127
-    min_y = -127
-    min_z = -127
-    max_x = 127
-    max_y = 127
-    max_z = 127
+    offset_x = None # type: int | None
+    offset_y = None # type: int | None
+    offset_z = None # type: int | None
 
     def get_index_by_pattern(pattern):
         # type: (str) -> BLOCK_PAT_INDEX
@@ -194,29 +191,28 @@ def GenerateSimpleStructureTemplate(key, pattern, center_block_sign="#"):
         return pat2idx[pattern]
 
     for layer, platform in pattern.items():
-        layer_max_x = -127
-        layer_max_z = len(platform)
-        platform_center_x = None
-        platform_center_z = None
-        this_layer_posblock_data = {} # type: dict[BLOCK_PAT_INDEX, set[tuple[int, int]]]
-        for z, rowdata in enumerate(platform):
-            x_size = len(rowdata)
-            if x_size > layer_max_x:
-                layer_max_x = x_size
-            for x, sign in enumerate(rowdata):
-                if sign == center_block_sign:
-                    platform_center_x = x
-                    platform_center_z = z
-                else:
-                    this_layer_posblock_data.setdefault(get_index_by_pattern(sign), set()).add((x, z))
-        if platform_center_x is None or platform_center_z is None:
-            raise ValueError('StructureBlockPalette: center_block_sign not found')
-        layer_min_x = -platform_center_x
-        layer_min_z = -platform_center_z
-        offset_x = platform_center_x
-        offset_z = platform_center_z
-        for block_id, xydata in this_layer_posblock_data.items():
-            orig_posblock_data.setdefault(block_id, (set(), (offset_x, layer, offset_z)))
+        for z, row_data in enumerate(platform):
+            for x, pat in enumerate(row_data):
+                if pat == " ":
+                    continue
+                if pat == center_block_sign:
+                    offset_x = -x
+                    offset_y = -layer
+                    offset_z = -z
+                    continue
+                idx = get_index_by_pattern(pat)
+                orig_posblock_data.setdefault(idx, set()).add((x, layer, z))
 
+    if offset_x is None or offset_y is None or offset_z is None:
+        raise ValueError("Invalid pattern")
+
+    return (
+        StructureBlockPalette(
+            orig_posblock_data,
+            palette_data,
+            size[0], size[1], size[2],
+        ),
+        (offset_x, offset_y, offset_z)
+    )
 
 

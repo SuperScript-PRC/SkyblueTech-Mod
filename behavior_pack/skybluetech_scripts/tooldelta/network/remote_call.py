@@ -1,4 +1,4 @@
-# # -*- coding: utf-8 -*-
+# # coding=utf-8
 # #
 # from ..no_runtime_typing import TYPE_CHECKING
 # from ..internal import InServerEnv

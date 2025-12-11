@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 import json
 from skybluetech_scripts.tooldelta.events.server.block import ServerPlayerTryDestroyBlockEvent

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from skybluetech_scripts.tooldelta.define import Item
 from skybluetech_scripts.tooldelta.api.client.item import GetItemHoverName

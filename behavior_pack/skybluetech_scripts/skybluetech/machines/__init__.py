@@ -7,6 +7,7 @@ from .creative_power_acceptor import CreativePowerAcceptor
 from .fluid_condenser import FluidCondenser
 from .digger import Digger
 from .farming_station import FarmingStation
+from .fermenter import Fermenter
 from .forester import Forester
 from .freezer import Freezer
 from .geothermal_generator import GeoThermalGenerator

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 from ..internal import ServerComp, ServerLevelId, ClientComp, ClientLevelId, InServerEnv, InClientEnv
 
 itemBasicInfoPool = {} # type: dict[str, BasicItemInfo]

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ..basic import RegisterMachine
 from .base_tank import BasicTank, RegisterTank

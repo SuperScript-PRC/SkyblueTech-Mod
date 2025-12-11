@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from .tooldelta.mod_main import ToolDeltaMod, RegisterMod
 from . import entry

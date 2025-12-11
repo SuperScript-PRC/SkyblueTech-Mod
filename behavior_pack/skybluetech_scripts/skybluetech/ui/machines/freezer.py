@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
 from skybluetech_scripts.tooldelta.events.notify import NotifyToServer

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 # SPEED [speed_add, power_redu]
 SPEED_UPGRADER_MAPPINGS = {

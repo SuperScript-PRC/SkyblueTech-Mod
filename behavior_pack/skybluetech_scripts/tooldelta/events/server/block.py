@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from ..basic import ServerEvent
 from ...define.item import Item

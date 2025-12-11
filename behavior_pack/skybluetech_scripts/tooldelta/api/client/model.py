@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from ...internal import ClientComp, ClientLevelId, inClientEnv
 

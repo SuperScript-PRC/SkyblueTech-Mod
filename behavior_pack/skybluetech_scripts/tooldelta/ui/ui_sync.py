@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from weakref import WeakValueDictionary as WVD
 from mod_log import logger

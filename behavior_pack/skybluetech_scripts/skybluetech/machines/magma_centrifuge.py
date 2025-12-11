@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.server.blockEntityData import BlockEntityData
 from ..define.machine_config.magma_centrifuge import recipes as Recipes

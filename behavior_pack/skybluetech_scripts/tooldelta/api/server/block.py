@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from mod.common.component.blockPaletteComp import BlockPaletteComponent
 from ...define.block import BlockBasicInfo

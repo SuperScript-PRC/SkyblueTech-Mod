@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from ....tooldelta.ui.ui_sync import S2CSync
 

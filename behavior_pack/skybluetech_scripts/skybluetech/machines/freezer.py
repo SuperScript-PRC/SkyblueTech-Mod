@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.server.blockEntityData import BlockEntityData
 from ..define.events.freezer import FreezerModeChangedEvent

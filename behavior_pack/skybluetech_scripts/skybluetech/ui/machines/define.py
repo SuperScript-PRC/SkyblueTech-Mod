@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.client.extraClientApi import GetMinecraftEnum
 from skybluetech_scripts.tooldelta.events import CustomC2SEvent

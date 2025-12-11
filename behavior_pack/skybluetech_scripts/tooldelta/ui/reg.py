@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 from mod.client.extraClientApi import RegisterUI, GetNativeScreenManagerCls
 from mod_log import logger
 from ..internal import GetModName

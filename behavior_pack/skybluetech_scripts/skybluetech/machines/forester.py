@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from collections import deque
 from mod.server.blockEntityData import BlockEntityData

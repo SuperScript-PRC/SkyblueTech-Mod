@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 class BlockBasicInfo(object):
     blockLightAbsorption = 0 # type: int

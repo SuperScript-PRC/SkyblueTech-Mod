@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.client import extraClientApi as clientApi
 from ...define.item import Item

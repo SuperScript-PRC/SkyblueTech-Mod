@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
 from ...ui_sync.machines.splitter import SplitterUISync

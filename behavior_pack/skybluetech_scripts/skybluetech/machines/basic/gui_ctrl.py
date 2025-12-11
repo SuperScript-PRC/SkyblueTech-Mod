@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ....tooldelta.events.server.block import ServerBlockUseEvent
 from ....tooldelta.events.server.ui import CreateUIRequest, ForceRemoveUIRequest

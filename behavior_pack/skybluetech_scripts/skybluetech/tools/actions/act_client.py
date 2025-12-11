@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 import time
 from skybluetech_scripts.tooldelta.events.client.item import (

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ....tooldelta.no_runtime_typing import TYPE_CHECKING
 from ...machines.pool import GetMachineStrict

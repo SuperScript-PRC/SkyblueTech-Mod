@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ...define.flags import DEACTIVE_FLAG_POWER_LACK
 from .base_machine import BaseMachine

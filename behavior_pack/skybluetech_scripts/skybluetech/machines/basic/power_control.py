@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ...define import flags as rf_flags
 from ...transmitters.wire.logic import RequireEnergyFromNetwork

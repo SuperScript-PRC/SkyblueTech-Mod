@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.server.blockEntityData import BlockEntityData
 from ..define.machine_config.fluid_condenser import recipes as Recipes

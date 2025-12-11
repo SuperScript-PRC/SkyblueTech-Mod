@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from skybluetech_scripts.tooldelta.events.server.block import (
     ServerPlaceBlockEntityEvent,

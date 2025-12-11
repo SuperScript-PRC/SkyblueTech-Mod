@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from .basic_machine_ui_sync import MachineUISync, FluidSlotSync
 

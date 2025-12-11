@@ -1,4 +1,4 @@
-from skybluetech_scripts.tooldelta.ui.elem_comp import UBaseUI
+from skybluetech_scripts.tooldelta.ui.elem_comp import UBaseUI, UImage
 from skybluetech_scripts.tooldelta.api.client.item import GetItemHoverName
 from ..utils.fmt import FormatRF as _formatRF, FormatFluidVolume as _formatFluidVolume
 from ..define.fluids import texture as fluid_texture
@@ -7,11 +7,13 @@ from ..ui_sync.machines.basic_machine_ui_sync import FluidSlotSync
 # TYPE_CHECKING
 if 0:
     from typing import Callable, TypeVar
+
     T = TypeVar("T")
     BtnCb = Callable[[], T]
 # TYPE_CHECKING END
 
 INFINITY = float("inf")
+
 
 def UpdatePowerBar(ui, rf_now, rf_max):
     # type: (UBaseUI, int, int) -> None
@@ -19,16 +21,21 @@ def UpdatePowerBar(ui, rf_now, rf_max):
         return
     top = ui["bar/mask"]
     label = ui["label"]
-    top.SetFullSize("y", {"followType": "parent", "relativeValue": min(2, float(rf_now) / rf_max)})
+    top.SetFullSize(
+        "y", {"followType": "parent", "relativeValue": min(2, float(rf_now) / rf_max)}
+    )
     label.AsLabel().SetText(_formatRF(rf_now))
+
 
 def UpdateFlame(ui, percent):
     # type: (UBaseUI, float) -> None
     ui["mask"].AsImage().SetSpriteClipRatio("fromTopToBottom", 1 - percent)
 
+
 def UpdateGenericProgressL2R(ui, percent):
     # type: (UBaseUI, float) -> None
     ui["mask"].AsImage().SetSpriteClipRatio("fromRightToLeft", 1 - percent)
+
 
 def UpdateFluidDisplay(ui, fluid_id, fluid_volume, max_volume):
     # type: (UBaseUI, str | None, float, float) -> None
@@ -50,14 +57,17 @@ def UpdateFluidDisplay(ui, fluid_id, fluid_volume, max_volume):
         prgs = 0
     else:
         prgs = float(fluid_volume) / max_volume
-    volume_disp.SetText("%s / %s" % (_formatFluidVolume(fluid_volume), _formatFluidVolume(max_volume)))
+    volume_disp.SetText(
+        "%s / %s" % (_formatFluidVolume(fluid_volume), _formatFluidVolume(max_volume))
+    )
     fluid_img.SetFullSize("y", {"followType": "parent", "relativeValue": min(2, prgs)})
+
 
 def InitFluidDisplay(ui, data_cb):
     # type: (UBaseUI, BtnCb[tuple[str | None, float, float]]) -> Callable[[], None]
     btn = ui["data_btn"].AsButton()
     screen_vars = ui._root._vars
-    current_ctrl = [None] # type: list[UBaseUI | None]
+    current_ctrl = [None]  # type: list[UBaseUI | None]
 
     def get_last_ui_board():
         # type: () -> UBaseUI | None
@@ -70,7 +80,11 @@ def InitFluidDisplay(ui, data_cb):
         fluid_id, fluid_vol, max_vol = data_cb()
         (elem / "image/label").AsLabel().SetText(
             "§d流体类型： §f"
-            + ((GetItemHoverName(fluid_id) or fluid_id) if fluid_id is not None and fluid_id != "加载中.." else "空")
+            + (
+                (GetItemHoverName(fluid_id) or fluid_id)
+                if fluid_id is not None and fluid_id != "加载中.."
+                else "空"
+            )
             + "\n"
             + "§a体积： §f"
             + _formatFluidVolume(fluid_vol)
@@ -118,4 +132,15 @@ def InitFluidsDisplay(ui, fluid_slots, index):
             fluid_volume = fluid.volume
             max_volume = fluid.max_volume
         return fluid_id, fluid_volume, max_volume
+
     return InitFluidDisplay(ui, get_data)
+
+def UpdateImageTransformColor(
+    img, raw_r, raw_g, raw_b, new_r, new_g, new_b, transform_pc
+):
+    # type: (UImage, float, float, float, float, float, float, float) -> None
+    img.SetSpriteColor((
+        raw_r + (new_r - raw_r) * transform_pc,
+        raw_g + (new_g - raw_g) * transform_pc,
+        raw_b + (new_b - raw_b) * transform_pc,
+    ))

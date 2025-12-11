@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ....tooldelta.api.server.block import (
     GetBlockStates as _getBlockStates,

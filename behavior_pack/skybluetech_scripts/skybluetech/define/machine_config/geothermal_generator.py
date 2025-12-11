@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 ONCE_LAVA_REDUCE_VOLUME = 200 # 单次产能熔岩减少的量
 ONCE_WATER_REDUCE_VOLUME = 400 # 单次产能耗水量

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 class Iota(object):
     def __init__(self, start=0):

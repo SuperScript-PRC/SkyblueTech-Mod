@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 
 from ..basic import ClientEvent
 from ...define.item import Item

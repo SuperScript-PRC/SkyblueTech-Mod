@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 from ...define.item import Item
 from ...internal import ClientComp, ClientLevelId
 from ..internal.cacher import MethodCacher

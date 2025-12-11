@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from skybluetech_scripts.tooldelta.events.server.block import ServerPlayerTryDestroyBlockEvent
 from skybluetech_scripts.tooldelta.api.server.block import GetBlockNameAndAux, GetBlockTags, GetBlockStates

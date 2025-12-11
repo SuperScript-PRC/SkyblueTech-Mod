@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 COLD_BLOCKS = {
     "minecraft:ice": 5,

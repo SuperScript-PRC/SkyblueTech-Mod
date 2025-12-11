@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from mod.server import extraServerApi as serverApi
 from skybluetech_scripts.tooldelta.define.item import Item

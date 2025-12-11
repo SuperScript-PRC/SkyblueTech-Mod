@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from skybluetech_scripts.tooldelta.api.server.block import UpdateBlockStates
 from .base_machine import BaseMachine

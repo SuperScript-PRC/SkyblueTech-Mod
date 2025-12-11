@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 import mod.server.extraServerApi as serverApi
 from . import general

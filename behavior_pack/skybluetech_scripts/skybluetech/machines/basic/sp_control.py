@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from .base_speed_control import BaseSpeedControl
 from .power_control import PowerControl

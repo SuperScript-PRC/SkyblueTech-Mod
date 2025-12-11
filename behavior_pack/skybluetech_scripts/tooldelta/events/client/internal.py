@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ..basic import CustomC2SEvent, CustomS2CEvent
 

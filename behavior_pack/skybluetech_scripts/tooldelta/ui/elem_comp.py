@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 # from weakref import WeakValueDictionary
 from mod.client.ui.screenNode import ScreenNode
@@ -293,6 +293,24 @@ class UComboBox(UBaseUI):
 
     def GetSelectedOption(self):
         return self.base.GetSelectOptionIndex()
+
+
+class USlideBar(UBaseUI):
+    def __init__(self, root, base):
+        # type: (ScreenLike, SliderUIControl) -> None
+        UBaseUI.__init__(self, root, base)
+        if not isinstance(base, SliderUIControl):
+            raise TypeError(
+                "expected SliderUIControl, got " + str(type(base))
+            )
+        self.base = base
+
+    def GetSliderValue(self):
+        return self.base.GetSliderValue()
+
+    def SetSliderValue(self, value):
+        # type: (float) -> None
+        self.base.SetSliderValue(value)
 
 
 grid_comp_size_changed_cbs = dict() # type: dict[str, Callable[[], None]]

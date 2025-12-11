@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding=utf-8
 #
 from ...define import itemBasicInfoPool, BasicItemInfo, Item
 from ...internal import ServerComp, ServerLevelId
