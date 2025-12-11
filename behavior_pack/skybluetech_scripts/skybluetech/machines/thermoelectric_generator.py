@@ -25,7 +25,6 @@ class ThermoelectricGenerator(BaseMachine, GUIControl):
         # type: (int, int, int, int, BlockEntityData) -> None
         BaseMachine.__init__(self, dim, x, y, z, block_entity_data)
         self.sync = ThermoelectricGeneratorUISync.NewServer().Activate()
-        self.Dump()
         self.active = True
 
     def OnPlaced(self, event):
@@ -40,7 +39,7 @@ class ThermoelectricGenerator(BaseMachine, GUIControl):
     def OnTicking(self):
         update, _ = self.AddPower(self.power_output, True)
         if update:
-            self.Dump()
+            self.OnSync()
         else:
             self.active = False
 
@@ -58,7 +57,6 @@ class ThermoelectricGenerator(BaseMachine, GUIControl):
         self.cool_value -= COLD_BLOCKS.get(former_block, 0) - COLD_BLOCKS.get(to_block, 0)
         self.heat_value -= HOT_BLOCKS.get(former_block, 0) - HOT_BLOCKS.get(to_block, 0)
         self.update_power()
-        self.Dump()
 
     def OnSync(self):
         self.sync.storage_rf = self.store_rf

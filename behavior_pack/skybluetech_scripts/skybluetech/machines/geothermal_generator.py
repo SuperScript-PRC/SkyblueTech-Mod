@@ -23,7 +23,6 @@ class GeoThermalGenerator(GUIControl, MultiFluidContainer, WorkRenderer):
         BaseMachine.__init__(self, dim, x, y, z, block_entity_data)
         MultiFluidContainer.__init__(self, dim, x, y, z, block_entity_data)
         self.sync = GeoThermalGeneratorUISync.NewServer(self).Activate()
-        self.Dump()
 
     def OnUnload(self):
         BaseMachine.OnUnload(self)
@@ -39,13 +38,9 @@ class GeoThermalGenerator(GUIControl, MultiFluidContainer, WorkRenderer):
                 self.next_burn()
                 if self.power == 0:
                     self.SetDeactiveFlag(flags.DEACTIVE_FLAG_NO_INPUT)
-                    self.Dump()
                     return
-            power_update, _ = self.AddPower(self.power, True)
-            if power_update:
-                self.Dump()
-            else:
-                self.OnSync()
+            self.AddPower(self.power, True)
+            self.OnSync()
 
     def IsValidFluidInput(self, slot, fluid_id):
         # type: (int, str) -> bool

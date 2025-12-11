@@ -30,8 +30,6 @@ class BaseProcessor(GUIControl, UpgradeControl, WorkRenderer):
         self.current_recipe = None
         UpgradeControl.__init__(self, dim, x, y, z, block_entity_data)
         BaseMachine.__init__(self, dim, x, y, z, block_entity_data)
-        self._dump_delay = 0
-        self.Dump()
 
     def OnLoad(self):
         BaseMachine.OnLoad(self)
@@ -53,10 +51,6 @@ class BaseProcessor(GUIControl, UpgradeControl, WorkRenderer):
             else:
                 do_break = True
             self.OnSync()
-            self._dump_delay -= 1
-            if self._dump_delay <= 0:
-                self.Dump()
-                self._dump_delay = 20 # NOTE: (约)1s dump 一次
             if do_break:
                 break
 
@@ -78,7 +72,6 @@ class BaseProcessor(GUIControl, UpgradeControl, WorkRenderer):
         recipe = self.getRecipe(self.GetInputSlotItems())
         if recipe is None:
             self.SetDeactiveFlag(flags.DEACTIVE_FLAG_NO_RECIPE)
-            self.Dump()
             self.current_recipe = None
         elif not recipe.equals(self.current_recipe):
             self.UnsetDeactiveFlag(flags.DEACTIVE_FLAG_NO_RECIPE)

@@ -165,4 +165,3 @@ class Pump(FluidContainer, GUIControl, ItemContainer, SPControl):
             self.SetPower(0)
             self.pump_speed = 0
             self.pump_type = M_AIR
-        self.Dump()

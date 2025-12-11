@@ -204,7 +204,6 @@ class MixedProcessor(BaseProcessor, MultiFluidContainer):
         recipe = self.getRecipe(self.GetInputSlotItems(), self.fluids)
         if recipe is None:
             self.SetDeactiveFlag(flags.DEACTIVE_FLAG_NO_RECIPE)
-            self.Dump()
             self.current_recipe = None
         elif not recipe.equals(self.current_recipe):
             self.UnsetDeactiveFlag(flags.DEACTIVE_FLAG_NO_RECIPE)

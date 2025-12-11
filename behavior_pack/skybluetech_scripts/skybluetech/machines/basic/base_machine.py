@@ -79,7 +79,7 @@ class BaseMachine(object):
     def OnUnload(self):
         # type: () -> None
         "超类方法, 方块实体被卸载时调用。"
-        self.Dump()
+        pass
 
     def OnDestroy(self):
         # type: () -> None

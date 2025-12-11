@@ -14,7 +14,7 @@ class WorkRenderer(BaseMachine):
 
     _last_work_status = False
     
-    def updateStatus(self):
+    def _updateWorkStatus(self):
         # type: () -> None
         active = self.deactive_flags == 0
         if active != self._last_work_status:
@@ -26,12 +26,12 @@ class WorkRenderer(BaseMachine):
 
     def SetDeactiveFlag(self, flag):
         # type: (int) -> None
-        self.updateStatus()
+        self._updateWorkStatus()
 
     def UnsetDeactiveFlag(self, flag):
         # type: (int) -> None
         BaseMachine.UnsetDeactiveFlag(self, flag)
-        self.updateStatus()
+        self._updateWorkStatus()
 
     def OnWorkStatusUpdated(self):
         "子类方法覆写当状态改变时执行的操作。"

@@ -49,7 +49,6 @@ class Charger(GUIControl, UpgradeControl):
         self.charge_rf_max = 1
         self.charge_speed = CHARGE_SPEED
         self.t = 0
-        self.Dump()
         self.OnSync()
 
     def OnClick(self, evt):

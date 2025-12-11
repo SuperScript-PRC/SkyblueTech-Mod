@@ -57,7 +57,6 @@ class Forester(BaseSpeedControl, GUIControl, ItemContainer, PowerControl):
         if self.ProcessOnce():
             if self.runOnce():
                 self.OnSync()
-                self.Dump()
 
     def runOnce(self):
         ok = self.collectTree()

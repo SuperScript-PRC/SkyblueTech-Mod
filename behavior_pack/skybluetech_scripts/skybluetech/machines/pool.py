@@ -95,4 +95,5 @@ def onChunkDiscarded(event):
         z = block_entity_posdata["posZ"]
         m = cached_machines.pop((event.dimension, x, y, z), None)
         if m is not None:
+            m.Dump()
             m.OnUnload()

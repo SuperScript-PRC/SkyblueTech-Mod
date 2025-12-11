@@ -46,7 +46,6 @@ class FarmingStation(GUIControl, ItemContainer, SPControl):
         if self.ProcessOnce():
             if self.runOnce():
                 self.OnSync()
-                self.Dump()
 
     def runOnce(self):
         ok = self.collectCrops()

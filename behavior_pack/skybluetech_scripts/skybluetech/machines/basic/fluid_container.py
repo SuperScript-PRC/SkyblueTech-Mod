@@ -101,7 +101,6 @@ class FluidContainer(object):
                         self.RequirePost()
             if isinstance(self, GUIControl):
                 self.OnSync()
-            self.Dump()
             return True
         else:
             return False
@@ -134,7 +133,6 @@ class FluidContainer(object):
             self.fluid_volume = self.tryPostFluid(
                 self.fluid_id, min(fluid_volume, self.max_fluid_volume), depth=depth
             )
-            # self.Dump()
             self.OnFluidSlotUpdate()
             return True, max(0, fluid_volume - self.max_fluid_volume)
         elif fluid_id != self.fluid_id:
@@ -143,7 +141,6 @@ class FluidContainer(object):
             self.fluid_volume = self.tryPostFluid(
                 self.fluid_id, min(fluid_volume, self.max_fluid_volume), depth=depth
             )
-            # self.Dump()
             self.OnFluidSlotUpdate()
             return True, max(
                 0, fluid_volume - (self.max_fluid_volume - self.fluid_volume)

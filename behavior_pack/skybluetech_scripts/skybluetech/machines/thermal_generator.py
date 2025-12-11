@@ -26,7 +26,6 @@ class ThermalGenerator(BaseMachine, ItemContainer, GUIControl):
         BaseMachine.__init__(self, dim, x, y, z, block_entity_data)
         ItemContainer.__init__(self, dim, x, y, z, block_entity_data)
         self.sync = ThermalGeneratorUISync.NewServer(self).Activate()
-        self.Dump()
 
     def OnUnload(self):
         BaseMachine.OnUnload(self)
@@ -38,11 +37,8 @@ class ThermalGenerator(BaseMachine, ItemContainer, GUIControl):
                 self.is_burning = self.next_burn()
                 return
             self.burn_seconds_left -= SecondsPerTick
-            power_update, _ = self.AddPower(self.GENERATE_POWER, True)
-            if power_update:
-                self.Dump()
-            else:
-                self.OnSync()
+            self.AddPower(self.GENERATE_POWER, True)
+            self.OnSync()
 
     def IsValidInput(self, slot, item):
         # type: (int, Item) -> bool

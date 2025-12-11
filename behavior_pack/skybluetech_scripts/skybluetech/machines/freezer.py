@@ -26,7 +26,6 @@ class Freezer(MixedProcessor):
         # type: (int, int, int, int, BlockEntityData) -> None
         MixedProcessor.__init__(self, dim, x, y, z, block_entity_data)
         self.sync = FreezerUISync.NewServer(self).Activate()
-        self.Dump()
         self.OnSync()
 
     def OnLoad(self):

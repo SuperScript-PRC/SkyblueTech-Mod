@@ -27,7 +27,6 @@ class BasicTank(BaseMachine, FluidContainer, GUIControl):
         FluidContainer.__init__(self, dim, x, y, z, block_entity_data)
         self.sync = GeneralTankUISync.NewServer(self).Activate()
         self.OnSync()
-        self.Dump()
 
     def OnSync(self):
         self.sync.fluid_id = self.fluid_id
