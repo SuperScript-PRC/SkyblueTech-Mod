@@ -10,10 +10,7 @@ from skybluetech_scripts.tooldelta.api.server.entity import (
     SpawnDroppedItem,
 )
 from ..define.machine_config.farming_station import (
-    isCommonCrop,
-    isCommonCropRiped,
-    isArrisCrop,
-    isArrisCropRiped,
+    isRipedCrop,
     isBlockCrop,
 )
 from ..ui_sync.machines.farming_station import FarmingStationUISync
@@ -79,14 +76,9 @@ class FarmingStation(GUIControl, ItemContainer, SPControl):
                 bstates = GetBlockStates(dim, (x, _y, z))
                 if bstates is None:
                     continue
-                if isCommonCrop(bname):
-                    if isCommonCropRiped(bstates):
-                        breakAndResetBlock(dim, (x, _y, z), bname)
-                        reduce_power = True
-                elif isArrisCrop(bstates):
-                    if isArrisCropRiped(bstates):
-                        breakAndResetBlock(dim, (x, _y, z), bname)
-                        reduce_power = True
+                if isRipedCrop(bname, bstates):
+                    breakAndResetBlock(dim, (x, _y, z), bname)
+                    reduce_power = True
                 elif isBlockCrop(bname):
                     breakBlock(dim, (x, _y, z))
                     reduce_power = True
