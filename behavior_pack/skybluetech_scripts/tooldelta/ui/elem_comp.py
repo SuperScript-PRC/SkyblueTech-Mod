@@ -76,6 +76,10 @@ class UBaseUI(object):
         # type: () -> UGrid
         return self._cache_t or self._save_t(UGrid(self._root, self.base.asGrid()))
 
+    def AsSlider(self):
+        # type: () -> USlider
+        return self._cache_t or self._save_t(USlider(self._root, self.base.asSlider()))
+
     def getFullPath(self):
         "未开放接口"
         return self.base.FullPath() # type: ignore
@@ -295,7 +299,7 @@ class UComboBox(UBaseUI):
         return self.base.GetSelectOptionIndex()
 
 
-class USlideBar(UBaseUI):
+class USlider(UBaseUI):
     def __init__(self, root, base):
         # type: (ScreenLike, SliderUIControl) -> None
         UBaseUI.__init__(self, root, base)
