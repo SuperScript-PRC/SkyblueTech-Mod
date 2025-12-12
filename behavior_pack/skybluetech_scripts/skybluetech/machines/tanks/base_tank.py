@@ -17,6 +17,7 @@ registered_tanks = {} # type: dict[str, type[BasicTank]]
 
 
 class BasicTank(BaseMachine, FluidContainer, GUIControl):
+    is_non_energy_machine = True
     fluid_io_mode = (-1, -1, -1, -1, -1, -1)
     fluid_io_fix_mode = 0
     max_fluid_volume = 0

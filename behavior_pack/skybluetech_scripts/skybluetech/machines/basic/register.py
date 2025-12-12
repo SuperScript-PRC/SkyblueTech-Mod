@@ -35,6 +35,8 @@ if 0:
 def RegisterMachine(machine_cls):
     # type: (type[MT]) -> type[MT]
     pool.machine_classes[machine_cls.block_name] = machine_cls
+    for extra_block_name in machine_cls.extra_block_names:
+        pool.machine_classes[extra_block_name] = machine_cls
     return machine_cls
 
 @ContainerItemChangedServerEvent.ListenWithUserData()
