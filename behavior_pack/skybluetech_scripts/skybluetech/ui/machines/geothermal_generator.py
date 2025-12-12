@@ -3,7 +3,7 @@
 from skybluetech_scripts.tooldelta.ui import RegistProxyScreen
 from ...ui_sync.machines.geothermal_generator import GeoThermalGeneratorUISync
 from .define import MachinePanelUIProxy, MAIN_PATH
-from ..utils import UpdatePowerBar, UpdateFluidDisplay, UpdateFlame, InitFluidsDisplay
+from ..utils import UpdatePowerBar, UpdateFlame, InitFluidsDisplay
 
 POWER_NODE = MAIN_PATH / "power_bar"
 FLUID_LAVA_NODE = MAIN_PATH / "lava_display"
@@ -21,8 +21,8 @@ class GeoThermalGeneratorUI(MachinePanelUIProxy):
         self.water_display = self.GetElement(FLUID_WATER_NODE)
         self.flame = self.GetElement(FLAME_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
-        self.f_hook1 = InitFluidsDisplay(self.lava_display, self.sync.fluids, 0)
-        self.f_hook2 = InitFluidsDisplay(self.water_display, self.sync.fluids, 1)
+        self.fluid_updater1 = InitFluidsDisplay(self.lava_display, self.sync.fluids, 0)
+        self.fluid_updater2 = InitFluidsDisplay(self.water_display, self.sync.fluids, 1)
         MachinePanelUIProxy.OnCreate(self)
 
     def WhenUpdated(self):
@@ -30,19 +30,6 @@ class GeoThermalGeneratorUI(MachinePanelUIProxy):
             return
         UpdatePowerBar(self.power_bar, self.sync.storage_rf, self.sync.rf_max)
         UpdateFlame(self.flame, self.sync.progress)
-        f0, f1 = self.sync.fluids
-        UpdateFluidDisplay(
-            self.lava_display,
-            f0.fluid_id,
-            f0.volume,
-            f0.max_volume,
-        )
-        UpdateFluidDisplay(
-            self.water_display,
-            f1.fluid_id,
-            f1.volume,
-            f1.max_volume,
-        )
-        self.f_hook1()
-        self.f_hook2()
+        self.fluid_updater1()
+        self.fluid_updater2()
 

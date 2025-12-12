@@ -75,9 +75,10 @@ def InitFluidDisplay(ui, data_cb):
 
     def _updateHook():
         elem = get_last_ui_board()
+        fluid_id, fluid_vol, max_vol = data_cb()
+        UpdateFluidDisplay(ui, fluid_id, fluid_vol, max_vol)
         if elem is None or elem is not current_ctrl[0]:
             return
-        fluid_id, fluid_vol, max_vol = data_cb()
         (elem / "image/label").AsLabel().SetText(
             "§d流体类型： §f"
             + (

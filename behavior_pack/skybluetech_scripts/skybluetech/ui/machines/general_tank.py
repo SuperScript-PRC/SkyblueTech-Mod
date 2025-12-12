@@ -15,7 +15,7 @@ class GeneralTankUI(MachinePanelUIProxy):
         self.sync = GeneralTankUISync.NewClient(dim, x, y, z) # type: GeneralTankUISync
         self.fluid_display = self.GetElement(FLUID_NODE)
         self.sync.WhenUpdated = self.WhenUpdated
-        self.f_hook = InitFluidDisplay(
+        self.fluid_updater = InitFluidDisplay(
             self.fluid_display, lambda :(
                 self.sync.fluid_id,
                 self.sync.fluid_volume,
@@ -27,11 +27,5 @@ class GeneralTankUI(MachinePanelUIProxy):
     def WhenUpdated(self):
         if not self.inited:
             return
-        UpdateFluidDisplay(
-            self.fluid_display,
-            self.sync.fluid_id,
-            self.sync.fluid_volume,
-            self.sync.max_volume,
-        )
-        self.f_hook()
+        self.fluid_updater()
 
