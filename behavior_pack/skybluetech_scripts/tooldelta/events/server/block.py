@@ -410,3 +410,47 @@ class DestroyBlockEvent(ServerEvent):
             "dropEntityIds": self.dropEntityIds,
         }
 
+
+class EntityPlaceBlockAfterServerEvent(ServerEvent):
+    name = "EntityPlaceBlockAfterServerEvent"
+
+    x = 0 # type: int
+    """ 方块x坐标 """
+    y = 0 # type: int
+    """ 方块y坐标 """
+    z = 0 # type: int
+    """ 方块z坐标 """
+    fullName = "" # type: str
+    """ 方块的identifier，包含命名空间及名称 """
+    auxData = 0 # type: int
+    """ 方块附加值 """
+    entityId = "" # type: str
+    """ 试图放置方块的生物ID """
+    dimensionId = 0 # type: int
+    """ 维度id """
+    face = 0 # type: int
+    """ 点击方块的面，参考Facing枚举 """
+
+    def unmarshal(self, data):
+        # type: (dict) -> None
+        self.x = data["x"]
+        self.y = data["y"]
+        self.z = data["z"]
+        self.fullName = data["fullName"]
+        self.auxData = data["auxData"]
+        self.entityId = data["entityId"]
+        self.dimensionId = data["dimensionId"]
+        self.face = data["face"]
+
+    def marshal(self):
+        # type: () -> dict
+        return {
+            "x": self.x,
+            "y": self.y,
+            "z": self.z,
+            "fullName": self.fullName,
+            "auxData": self.auxData,
+            "entityId": self.entityId,
+            "dimensionId": self.dimensionId,
+            "face": self.face,
+        }
