@@ -49,6 +49,10 @@ class CustomC2SEvent(ServerEvent):
     def marshal(self):  # type: () -> dict
         raise NotImplementedError
 
+    def send(self):
+        from .notify import NotifyToServer
+        NotifyToServer(self)
+
 
 class CustomS2CEvent(ClientEvent):
     """
@@ -59,6 +63,16 @@ class CustomS2CEvent(ClientEvent):
 
     def marshal(self):  # type: () -> dict
         raise NotImplementedError
+
+    def send(self, client_id):
+        # type: (str) -> None
+        from .notify import NotifyToClient
+        NotifyToClient(client_id, self)
+
+    def sendMulti(self, client_ids):
+        # type: (list) -> None
+        from .notify import NotifyToClients
+        NotifyToClients(client_ids, self)
 
 
 def NewClientEventData():
