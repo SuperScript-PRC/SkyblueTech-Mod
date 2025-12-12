@@ -116,7 +116,8 @@ def GetActualFacingByDirection(direction, origin_facing):
         return origin_facing
     return (origin_facing + direction - 2) % 4
 
-GetBlockPaletteFromPosList = ServerComp.CreateBlock(ServerLevelId).GetBlockPaletteFromPosList
+GetBlockPaletteFromPosList = MethodCacher(lambda:ServerComp.CreateBlock(ServerLevelId).GetBlockPaletteFromPosList)
+GetBlockPaletteBetweenPos = MethodCacher(lambda:ServerComp.CreateBlock(ServerLevelId).GetBlockPaletteBetweenPos)
 
 def NewSingleBlockPalette(block_id):
     # type: (str) -> BlockPaletteComponent
