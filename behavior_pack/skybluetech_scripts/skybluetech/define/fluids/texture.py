@@ -1,7 +1,7 @@
-ROOT_TEXTURE = "textures/blocks/fluid"
-TEXTURE_BASIC_FLUID = "textures/blocks/fluid/basic_fluid"
-TEXTURE_WATER = "textures/blocks/fluid/water"
-TEXTURE_LAVA = "textures/blocks/fluid/lava"
+ROOT_TEXTURE = "textures/fluid"
+TEXTURE_BASIC_FLUID = "textures/fluid/basic_fluid"
+TEXTURE_WATER = "textures/fluid/water"
+TEXTURE_LAVA = "textures/fluid/lava"
 
 COLORS = {
     "skybluetech:heavy_lava": ((168, 36, 36), 0),
@@ -50,6 +50,6 @@ def getBaseTexture(fluid_id):
         return BASIC_TEXTURES.get(fluid_id, TEXTURE_BASIC_FLUID), None
     elif fluid_id in COLORS:
         color, texture_idx = COLORS[fluid_id]
-        return "textures/blocks/fluid/" + IDX_MAP[texture_idx], color
+        return "textures/fluid/" + IDX_MAP[texture_idx], color
     else:
         return TEXTURE_BASIC_FLUID, None
