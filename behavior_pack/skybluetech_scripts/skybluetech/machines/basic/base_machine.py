@@ -33,6 +33,10 @@ class BaseMachine(object):
     
     block_name = ""  # type: str
     "方块 ID"
+    extra_block_names = () # type: tuple[str, ...]
+    "额外可绑定的方块 ID"
+    is_non_energy_machine = False
+    "机器是否为非能源型机器"
     store_rf_max = 10000  # type: int
     "储存能量的最大值, 需要覆写"
     energy_io_mode = (0, 0, 0, 0, 0, 0) # type: tuple[int, int, int, int, int, int]
@@ -47,7 +51,8 @@ class BaseMachine(object):
         self.x = x
         self.y = y
         self.z = z
-        self.initRFNetwork()
+        if not self.is_non_energy_machine:
+            self.initRFNetwork()
         self.OnLoad()
 
     # ==== overload ====
@@ -58,7 +63,8 @@ class BaseMachine(object):
         父类方法将 self.bdata 中的 BlockEntityData load 到自身;
         并初始化 / 更新红石通量网络信息。
         """
-        self.store_rf = self.bdata[K_STORE_RF] or 0
+        if not self.is_non_energy_machine:
+            self.store_rf = self.bdata[K_STORE_RF] or 0
         self.deactive_flags = self.bdata[K_DEACTIVE_FLAGS] or 0
 
     def OnPlaced(self, event):
@@ -105,7 +111,8 @@ class BaseMachine(object):
         超类方法用于将能量数据 dump 到方块实体。
         覆写时将自身数据 dump 到 block_entity_data 属性。
         """
-        self.bdata[K_STORE_RF] = self.store_rf
+        if not self.is_non_energy_machine:
+            self.bdata[K_STORE_RF] = self.store_rf
         self.bdata[K_DEACTIVE_FLAGS] = self.deactive_flags
 
     def AddPower(self, rf, is_generator=False, max_limit=None, depth=0):
