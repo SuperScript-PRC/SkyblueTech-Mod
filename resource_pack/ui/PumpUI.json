@@ -75,7 +75,7 @@
                     ],
                     "font_scale_factor": 1.5,
                     "font_size": "$text_size",
-                    "font_type": "default",
+                    "font_type": "unicode",
                     "text": "0B / 0B",
                     "text_alignment": "center"
                 }
