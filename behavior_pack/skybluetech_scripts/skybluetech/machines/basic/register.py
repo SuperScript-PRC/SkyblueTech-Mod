@@ -34,7 +34,8 @@ if 0:
 
 def RegisterMachine(machine_cls):
     # type: (type[MT]) -> type[MT]
-    pool.machine_classes[machine_cls.block_name] = machine_cls
+    if machine_cls.block_name:
+        pool.machine_classes[machine_cls.block_name] = machine_cls
     for extra_block_name in machine_cls.extra_block_names:
         pool.machine_classes[extra_block_name] = machine_cls
     return machine_cls
@@ -93,7 +94,7 @@ def onUseItem(event):
 @ServerPlaceBlockEntityEvent.Listen()
 def onPlaced(event):
     # type: (ServerPlaceBlockEntityEvent) -> None
-    m = pool.GetMachineWithoutCls(event.dimension, event.posX, event.posY, event.posZ)
+    m = pool.GetMachineWithoutCls(event.dimension, event.posX, event.posY, event.posZ, event.blockName)
     if m:
         m.OnPlaced(event)
 

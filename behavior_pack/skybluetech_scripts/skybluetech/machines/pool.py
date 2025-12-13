@@ -25,9 +25,9 @@ def GetMachine(dimension, x, y, z, machine_cls):
         cached_machines[(dimension, x, y, z)] = cache
         return cache
 
-def GetMachineWithoutCls(dimension, x, y, z):
-    # type: (int, int, int, int) -> BaseMachine | None
-    bname = GetBlockName(dimension, (x, y, z))
+def GetMachineWithoutCls(dimension, x, y, z, block_id=None):
+    # type: (int, int, int, int, str | None) -> BaseMachine | None
+    bname = block_id or GetBlockName(dimension, (x, y, z))
     if bname is None:
         return None
     block_cls = machine_classes.get(bname)

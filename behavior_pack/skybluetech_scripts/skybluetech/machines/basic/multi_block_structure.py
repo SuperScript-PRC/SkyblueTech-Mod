@@ -2,27 +2,41 @@
 #
 from mod.common.component.blockPaletteComp import BlockPaletteComponent
 from skybluetech_scripts.tooldelta.api.timer import AsDelayFunc
-from skybluetech_scripts.tooldelta.events.server import BlockRemoveServerEvent, EntityPlaceBlockAfterServerEvent
+from skybluetech_scripts.tooldelta.events.server import (
+    BlockRemoveServerEvent,
+    EntityPlaceBlockAfterServerEvent,
+)
 from skybluetech_scripts.tooldelta.general import ServerInitCallback
-from skybluetech_scripts.tooldelta.api.server.block import AddBlocksToBlockRemoveListener, GetBlockPaletteBetweenPos
+from skybluetech_scripts.tooldelta.api.server.block import (
+    AddBlocksToBlockRemoveListener,
+    GetBlockPaletteBetweenPos,
+)
 from ...define.flags import DEACTIVE_FLAG_STRUCTURE_BROKEN
 from .base_machine import BaseMachine, GUIControl
 
 if 0:
+    from typing import TypeVar
+    from .base_machine import BaseMachine
+
+    MT = TypeVar("MT", bound=BaseMachine)
     BLOCK_PAT_INDEX = int
     POS_SET = set[tuple[int, int, int]]
 
-blockRemovedListenPool = set()
+blockRemovedListenPool = set()  # type: set[str]
 
 server_inited = False
+
 
 @ServerInitCallback()
 def onServerInit():
     global server_inited
+    print(blockRemovedListenPool)
     AddBlocksToBlockRemoveListener(blockRemovedListenPool)
     server_inited = True
 
+
 @EntityPlaceBlockAfterServerEvent.Listen()
+@AsDelayFunc(0)
 def onEntityPlaceBlock(event):
     # type: (EntityPlaceBlockAfterServerEvent) -> None
     x = event.x
@@ -61,11 +75,13 @@ def onBlockRemoved(event):
             area.bound.OnStructureChanged()
 
 
-detect_areas = {} # type: dict[int, set[DetectArea]]
+detect_areas = {}  # type: dict[int, set[DetectArea]]
+
 
 def addDetectArea(dim, area):
     # type: (int, DetectArea) -> None
     detect_areas.setdefault(dim, set()).add(area)
+
 
 def removeDetectArea(dim, area):
     # type: (int, DetectArea) -> None
@@ -73,13 +89,12 @@ def removeDetectArea(dim, area):
     if not detect_areas[dim]:
         del detect_areas[dim]
 
+
 def rotate_90(x, z, x1, z1, y):
     # type: (int, int, int, int, int) -> tuple[int, int, int]
     dx = x - x1
     dz = z - z1
-    x_new = x1 + dz
-    z_new = z1 - dx
-    return (x_new, y, z_new)
+    return (x1 + dz, y, z1 - dx)
 
 
 class DetectArea(object):
@@ -99,18 +114,29 @@ class DetectArea(object):
         self.bound = bound
         palette = bound.structure_palette
         if palette is None:
-            raise ValueError('StructureBlockPalette: palette is None')
+            raise ValueError("StructureBlockPalette: palette is None")
         self.palette = palette
+        self.functional_block_poses = {}  # type: dict[str, list[tuple[int, int, int]]]
 
     def isInside(self, x, y, z):
         return (
-            x >= self.min_x and x <= self.max_x
-            and y >= self.min_y and y <= self.max_y
-            and z >= self.min_z and z <= self.max_z
+            x >= self.min_x
+            and x <= self.max_x
+            and y >= self.min_y
+            and y <= self.max_y
+            and z >= self.min_z
+            and z <= self.max_z
         )
 
     def __hash__(self):
-        return hash((self.min_x, self.min_y, self.min_z, self.max_x, self.max_y, self.max_z))
+        return hash((
+            self.min_x,
+            self.min_y,
+            self.min_z,
+            self.max_x,
+            self.max_y,
+            self.max_z,
+        ))
 
     def Detect(self):
         # type: () -> bool
@@ -118,32 +144,82 @@ class DetectArea(object):
         current_palette = GetBlockPaletteBetweenPos(
             self.dim,
             (self.min_x, self.min_y, self.min_z),
-            (self.max_x, self.max_y, self.max_z)
+            (self.max_x, self.max_y, self.max_z),
+            eliminateAir=False,
         )
         if current_palette is None:
-            raise ValueError('StructureBlockPalette: current_palette is None')
+            return False
         co_x = self.center_x - self.min_x
+        co_y = self.center_y - self.min_y
         co_z = self.center_z - self.min_z
+        # print(
+        #     "Comparing",
+        #     (
+        #         spalette.min_x + self.center_x,
+        #         spalette.min_y + self.center_y,
+        #         spalette.min_z + self.center_z,
+        #     ),
+        #     (
+        #         spalette.max_x + self.center_x,
+        #         spalette.max_y + self.center_y,
+        #         spalette.max_z + self.center_z,
+        #     ),
+        #     "Getting",
+        #     (self.min_x, self.min_y, self.min_z),
+        #     (self.max_x, self.max_y, self.max_z),
+        #     co_x,
+        #     co_z,
+        # )
         if spalette.Compare(current_palette, co_x, co_z):
-            return True
+            if spalette.BlocksEnough(current_palette):
+                self.updateFunctionalBlocks(current_palette, co_x, co_y, co_z)
+                return True
         for _ in range(3):
             spalette = spalette.Rotate()
+            # print(
+            #     "Comparing",
+            #     (
+            #         spalette.min_x + self.center_x,
+            #         spalette.min_y + self.center_y,
+            #         spalette.min_z + self.center_z,
+            #     ),
+            #     (
+            #         spalette.max_x + self.center_x,
+            #         spalette.max_y + self.center_y,
+            #         spalette.max_z + self.center_z,
+            #     ),
+            # )
             if spalette.Compare(current_palette, co_x, co_z):
-                return True
+                if spalette.BlocksEnough(current_palette):
+                    self.updateFunctionalBlocks(current_palette, co_x, co_y, co_z)
+                    return True
         return False
+
+    def updateFunctionalBlocks(self, palette, co_x, co_y, co_z):
+        # type: (BlockPaletteComponent, int, int, int) -> None
+        self.functional_block_poses = {
+            block_id: [
+                (x - co_x + self.center_x, y - co_y + self.min_y, z - co_z + self.center_z)
+                for x, y, z in
+                palette.GetLocalPosListOfBlocks(block_id)
+            ]
+            for block_id in self.bound.functional_block_ids
+        }
 
 
 class StructureBlockPalette(object):
     def __init__(
         self,
-        posblock_data, # type: dict[int, set[tuple[int, int, int]]]
-        palette_data, # type: dict[int, str]
-        min_x, # type: int
-        min_y, # type: int
-        min_z, # type: int
-        max_x, # type: int
-        max_y, # type: int
-        max_z, # type: int
+        posblock_data,  # type: dict[int, set[tuple[int, int, int]]]
+        palette_data,  # type: dict[int, str | set[str]]
+        min_x,  # type: int
+        min_y,  # type: int
+        min_z,  # type: int
+        max_x,  # type: int
+        max_y,  # type: int
+        max_z,  # type: int
+        require_blocks_count,  # type: dict[str, int]
+        _rotation=0,
     ):
         # type: (...) -> None
         # 原点坐标为 (0, 0, 0)
@@ -155,10 +231,15 @@ class StructureBlockPalette(object):
         self.max_x = max_x
         self.max_y = max_y
         self.max_z = max_z
-        self.all_poses = set(j for i in posblock_data.values() for j in i)
+        self.require_blocks_count = require_blocks_count
+        self._rotation = _rotation
+        # self.all_poses = set(j for i in posblock_data.values() for j in i)
         if not server_inited:
             for block_id in palette_data.values():
-                blockRemovedListenPool.add(block_id)
+                if isinstance(block_id, str):
+                    blockRemovedListenPool.add(block_id)
+                else:
+                    blockRemovedListenPool.update(block_id)
 
     def Compare(self, block_palette, co_x, co_z):
         # type: (BlockPaletteComponent, int, int) -> bool
@@ -170,15 +251,41 @@ class StructureBlockPalette(object):
             center_x (int): 调色板中心偏移x
             center_z (int): 调色板中心偏移z
         """
-        for index, block_id in self.palette_data.items():
+        for index, block_ids in self.palette_data.items():
+            if isinstance(block_ids, str):
+                block_ids = {block_ids}
             pal_poses_set = set(
                 (x - co_x, y, z - co_z)
+                for block_id in block_ids
                 for x, y, z in block_palette.GetLocalPosListOfBlocks(block_id)
             )
             my_poses_set = self.posblock_data[index]
             # len 比较可能比直接比较好?
-            if len(pal_poses_set & my_poses_set) != len(my_poses_set):
-                # print("not equal:", len(pal_poses_set & my_poses_set), len(my_poses_set), block_id)
+            if len(pal_poses_set & my_poses_set) < len(my_poses_set):
+                # print "======"
+                # print "not equal:"
+                # print len(pal_poses_set & my_poses_set), len(my_poses_set)
+                # print block_ids
+                # print ([
+                #         (x - co_x, y, z - co_z)
+                #         for block_id in block_ids
+                #         for x, y, z in block_palette.GetLocalPosListOfBlocks(block_id)
+                # ])
+                # print my_poses_set.difference(pal_poses_set)
+                return False
+        return True
+
+    def BlocksEnough(self, block_palette):
+        # type: (BlockPaletteComponent) -> bool
+        """
+        判断方块调色板是否满足此结构所需方块数量。
+
+        Args:
+            block_palette (BlockPaletteComponent): 调色板
+        """
+        for block_id, count in self.require_blocks_count.items():
+            if block_palette.GetBlockCountInBlockPalette(block_id) < count:
+                print("BlocksNotEnough", block_id, count)
                 return False
         return True
 
@@ -191,9 +298,7 @@ class StructureBlockPalette(object):
         new_min_z = min(z1, z2)
         new_max_z = max(z1, z2)
         newPosBlockDat = {
-            idx: set(
-                rotate_90(x, z, 0, 0, y) for x, y, z in poses
-            )
+            idx: set(rotate_90(x, z, 0, 0, y) for x, y, z in poses)
             for idx, poses in self.posblock_data.items()
         }
         return StructureBlockPalette(
@@ -205,22 +310,26 @@ class StructureBlockPalette(object):
             new_max_x,
             self.max_y,
             new_max_z,
+            self.require_blocks_count,
+            _rotation=self._rotation + 90,
         )
 
 
 class MultiBlockStructure(BaseMachine):
     """
     多方块机器结构的基类。
-    
+
     需要调用 `__init__()`
-    
+
     覆写: `OnLoad`, `OnUnload`
     """
-    structure_palette = None # type: StructureBlockPalette | None
+
+    structure_palette = None  # type: StructureBlockPalette | None
+    functional_block_ids = set()  # type: set[str]
 
     def __init__(self, dim, x, y, z, block_entity_data):
         if self.structure_palette is None:
-            raise ValueError('StructureBlockPalette: structure_palette is None')
+            raise ValueError("StructureBlockPalette: structure_palette is None")
         self._last_destroyed = False
         self._palette = self.structure_palette
         self.dim = dim
@@ -256,17 +365,46 @@ class MultiBlockStructure(BaseMachine):
             if isinstance(self, GUIControl):
                 self.OnSync()
 
-def GenerateSimpleStructureTemplate(key, pattern, center_block_sign="#"):
-    # type: (dict[str, str], dict[int, list[str]], str) -> StructureBlockPalette
+    def GetFunctionalBlockPoses(self):
+        return self.area.functional_block_poses
+
+    # StructureUtils
+
+    def GetMachine(self, cls, block_id=None, index=0):
+        # type: (type[MT], str | None, int) -> MT
+        block_id = block_id or cls.block_name
+        pos = self.GetFunctionalBlockPoses().get(block_id)
+        if not pos:
+            raise ValueError("Cannot find block: %s" % block_id)
+        from ..pool import GetMachineStrict
+        x, y, z = pos[index]
+        machine = GetMachineStrict(self.dim, x, y, z)
+        if not isinstance(machine, cls):
+            raise ValueError(
+                "({}, {}, {}): {} is not a {}".format(
+                    x, y, z,
+                    type(machine).__name__, cls.__name__
+                )
+            )
+        return machine
+
+
+def GenerateSimpleStructureTemplate(
+    key,  # type: dict[str, str] | dict[str, str | set[str]]
+    pattern,  # type: dict[int, list[str]]
+    center_block_sign="#",  # type: str
+    require_blocks_count=None,  # type: dict[str, int] | None
+):
+    # type: (...) -> StructureBlockPalette
     """
     key: 单字母键 -> 方块 ID
     """
-    orig_posblock_data = {} # type: dict[BLOCK_PAT_INDEX, POS_SET]
-    palette_data = {} # type: dict[int, str]
-    pat2idx = {} # type: dict[str, int]
-    offset_x = None # type: int | None
-    offset_y = None # type: int | None
-    offset_z = None # type: int | None
+    orig_posblock_data = {}  # type: dict[BLOCK_PAT_INDEX, POS_SET]
+    palette_data = {}  # type: dict[int, str | set[str]]
+    pat2idx = {}  # type: dict[str, int]
+    offset_x = None  # type: int | None
+    offset_y = None  # type: int | None
+    offset_z = None  # type: int | None
     min_x = 999
     min_y = 999
     min_z = 999
@@ -310,18 +448,17 @@ def GenerateSimpleStructureTemplate(key, pattern, center_block_sign="#"):
         raise ValueError("Invalid pattern")
 
     posblock_data = {
-        k: {
-            (x - offset_x, y - offset_y, z - offset_z)
-            for x, y, z in v
-        }
+        k: {(x - offset_x, y - offset_y, z - offset_z) for x, y, z in v}
         for k, v in orig_posblock_data.items()
     }
-
     return StructureBlockPalette(
         posblock_data,
         palette_data,
-        min_x - offset_x, min_y - offset_y, min_z - offset_z,
-        max_x - offset_x, max_y - offset_y, max_z - offset_z,
+        min_x - offset_x,
+        min_y - offset_y,
+        min_z - offset_z,
+        max_x - offset_x,
+        max_y - offset_y,
+        max_z - offset_z,
+        require_blocks_count or {},
     )
-
-
