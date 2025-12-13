@@ -129,7 +129,7 @@ def clearNearbyMachinesFacingNetwork(dim, x, y, z):
     for facing, (dx, dy, dz) in enumerate(NEIGHBOR_BLOCKS_ENUM):
         ax, ay, az = x + dx, y + dy, z + dz
         m = GetMachineWithoutCls(dim, ax, ay, az)
-        if m is None:
+        if m is None or m.is_non_energy_machine:
             continue
         m.rf_networks[OPPOSITE_FACING[facing]] = None
         SetNetworkToPos((dim, ax, ay, az, OPPOSITE_FACING[facing]), None)
@@ -140,6 +140,8 @@ def clearMachineNetwork(dim, x, y, z, m=None):
         m = GetMachineStrict(dim, x, y, z)
     if m is None:
         raise ValueError("Machine not found at (%d, %d, %d)" % (x, y, z))
+    if m.is_non_energy_machine:
+        return
     networks = m.rf_networks
     for facing, network in enumerate(networks):
         if network is not None:

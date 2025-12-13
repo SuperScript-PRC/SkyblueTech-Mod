@@ -6,6 +6,7 @@ from .charger import ChargerUI
 from .compressor import CompressorUI
 from .digger import DiggerUI
 from .farming_station import FarmingStationUI
+from .fermenter import FermenterUI
 from .fluid_condenser import FluidCondenserUI
 from .forester import ForesterUI
 from .freezer import FreezerUI

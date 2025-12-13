@@ -118,6 +118,24 @@
             "west": "skybluetech:farming_station_side"
         }
     },
+    "skybluetech:fermenter_controller": {
+        "sound": "stone"
+    },
+    "skybluetech:fermenter_io_energy": {
+        "textures": "skybluetech:fermenter_energy_interface"
+    },
+    "skybluetech:fermenter_io_fluid1": {
+        "textures": "skybluetech:fermenter_fluid_interface"
+    },
+    "skybluetech:fermenter_io_fluid2": {
+        "textures": "skybluetech:fermenter_fluid_interface2"
+    },
+    "skybluetech:fermenter_io_gas": {
+        "textures": "skybluetech:fermenter_gas_interface"
+    },
+    "skybluetech:fermenter_io_item1": {
+        "textures": "skybluetech:fermenter_item_interface"
+    },
     "skybluetech:flowing_deepslate_lava": {
         "blockshape": "water",
         "textures": {

@@ -2,7 +2,7 @@
 
 from skybluetech_scripts.tooldelta.api.server import GetPos, GetPlayerDimensionId
 from ..machines.basic import BaseMachine
-from ..machines.pool import GetMachineStrict
+from ..machines.pool import GetMachineStrict, cached_machines
 
 
 def SafeGetMachine(x, y, z, player_id):

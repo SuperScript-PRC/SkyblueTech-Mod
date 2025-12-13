@@ -1,0 +1,402 @@
+{
+    "fermenter_ui": {
+        "type": "panel",
+        "size": [
+            180.0,
+            200.0
+        ],
+        "controls": [
+            {
+                "flying_item_renderer@common.flying_item_renderer": {
+                    "layer": 100,
+                    "visible": false
+                }
+            },
+            {
+                "container_gamepad_helpers@common.container_gamepad_helpers": {
+                    "layer": 3
+                }
+            },
+            {
+                "selected_item_details_factory@common.selected_item_details_factory": {
+                    "layer": 4
+                }
+            },
+            {
+                "item_lock_notification_factory@common.item_lock_notification_factory": {}
+            },
+            {
+                "root_panel@common.root_panel": {
+                    "controls": [
+                        {
+                            "bg_down": {
+                                "type": "image",
+                                "offset": [
+                                    0.0,
+                                    60.0
+                                ],
+                                "size": [
+                                    "default",
+                                    93
+                                ],
+                                "layer": 1,
+                                "clip_direction": "left",
+                                "clip_ratio": 0.0,
+                                "nineslice_size": [
+                                    4.0,
+                                    4.0,
+                                    4.0,
+                                    4.0
+                                ],
+                                "texture": "textures/panel/dialog_background_opaque",
+                                "controls": [
+                                    {
+                                        "backpack@AlloyFurnaceUI.player_backpack": {
+                                            "offset": [
+                                                0,
+                                                -7
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "bg@common.dialog_background_opaque": {
+                                "controls": [
+                                    {
+                                        "inventory_selected_icon_button@common.inventory_selected_icon_button": {}
+                                    },
+                                    {
+                                        "machine_label": {
+                                            "type": "label",
+                                            "anchor_from": "top_middle",
+                                            "anchor_to": "top_middle",
+                                            "offset": [
+                                                0.0,
+                                                4.0
+                                            ],
+                                            "font_scale_factor": 1.4,
+                                            "font_type": "default",
+                                            "shadow": true,
+                                            "text": "发酵池控制器",
+                                            "text_alignment": "center"
+                                        }
+                                    },
+                                    {
+                                        "gamepad_cursor_button@common.gamepad_cursor_button": {
+                                            "visible": true
+                                        }
+                                    },
+                                    {
+                                        "close@common.close_button": {}
+                                    },
+                                    {
+                                        "main": {
+                                            "type": "panel",
+                                            "controls": [
+                                                {
+                                                    "out_gas_display@PumpUI.FluidDisplay": {
+                                                        "$text_visible": false,
+                                                        "offset": [
+                                                            93,
+                                                            -12
+                                                        ],
+                                                        "size": [
+                                                            54,
+                                                            31
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "out_fluid_display@PumpUI.FluidDisplay": {
+                                                        "$text_visible": false,
+                                                        "offset": [
+                                                            93,
+                                                            36
+                                                        ],
+                                                        "size": [
+                                                            54,
+                                                            31
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "input_slot": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            -89.0,
+                                                            13.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm+0px",
+                                                            "100%cm+0px"
+                                                        ],
+                                                        "layer": 1,
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 0
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "input_slot2": {
+                                                        "type": "stack_panel",
+                                                        "offset": [
+                                                            -89.0,
+                                                            42.0
+                                                        ],
+                                                        "size": [
+                                                            "100%cm+0px",
+                                                            "100%cm+0px"
+                                                        ],
+                                                        "layer": 1,
+                                                        "collection_name": "netease_container",
+                                                        "controls": [
+                                                            {
+                                                                "slot@netease_container.custom_grid_item": {
+                                                                    "collection_index": 1
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "power_bar@BatteryUI.PowerBar": {
+                                                        "offset": [
+                                                            "-50%+14px",
+                                                            "0%+0px"
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "upgrades@RedstoneFurnaceUI.UpgradeSlots": {
+                                                        "$slot0": 1,
+                                                        "$slot1": 2,
+                                                        "$slot2": 3,
+                                                        "$slot3": 4,
+                                                        "offset": [
+                                                            145,
+                                                            -17
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "pool": {
+                                                        "type": "panel",
+                                                        "offset": [
+                                                            -4.0,
+                                                            28.0
+                                                        ],
+                                                        "size": [
+                                                            123.0,
+                                                            49.0
+                                                        ],
+                                                        "controls": [
+                                                            {
+                                                                "fluid_img": {
+                                                                    "type": "image",
+                                                                    "anchor_from": "bottom_middle",
+                                                                    "anchor_to": "bottom_middle",
+                                                                    "layer": 1,
+                                                                    "clip_direction": "left",
+                                                                    "clip_ratio": 0.0,
+                                                                    "fill": true,
+                                                                    "keep_ratio": false,
+                                                                    "texture": "textures/netease/common/image/default",
+                                                                    "tiled": true
+                                                                }
+                                                            },
+                                                            {
+                                                                "frame": {
+                                                                    "type": "image",
+                                                                    "layer": 1,
+                                                                    "clip_direction": "left",
+                                                                    "clip_ratio": 0.0,
+                                                                    "nineslice_size": [
+                                                                        2.0,
+                                                                        2.0,
+                                                                        2.0,
+                                                                        2.0
+                                                                    ],
+                                                                    "texture": "textures/panel/frame_empty"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "slider@common.slider": {
+                                                        "$background_default_control": "common.slider_background",
+                                                        "$background_hover_control": "common.slider_background_hover",
+                                                        "$progress_default_clip_direction": "left",
+                                                        "$progress_default_control": "common.slider_progress",
+                                                        "$progress_hover_clip_direction": "left",
+                                                        "$progress_hover_control": "common.slider_progress_hover",
+                                                        "$slider_box_hover_layout": "common.slider_button_hover_layout",
+                                                        "$slider_box_indent_layout": "common.slider_button_indent_layout",
+                                                        "$slider_box_layout": "common.slider_button_layout",
+                                                        "$slider_box_locked_layout": "common.slider_button_locked_layout",
+                                                        "$slider_box_size": [
+                                                            10,
+                                                            14
+                                                        ],
+                                                        "$slider_direction": "horizontal",
+                                                        "$slider_name": "#fermenter.temperature_set_ok",
+                                                        "$slider_name|default": "#fermenter.temperature_set_ok",
+                                                        "$slider_step_factory_control_ids": {
+                                                            "slider_step": "@common.slider_step",
+                                                            "slider_step_hover": "@common.slider_step_hover",
+                                                            "slider_step_progress": "@common.slider_step_progress",
+                                                            "slider_step_progress_hover": "@common.slider_step_progress_hover"
+                                                        },
+                                                        "$slider_tts_text_value": "#netease_tts_text_value",
+                                                        "offset": [
+                                                            -3.5,
+                                                            -18
+                                                        ],
+                                                        "size": [
+                                                            113,
+                                                            8
+                                                        ]
+                                                    }
+                                                },
+                                                {
+                                                    "temp_label": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            -35.0,
+                                                            -30.0
+                                                        ],
+                                                        "size": [
+                                                            60.0,
+                                                            12.0
+                                                        ],
+                                                        "color": [
+                                                            0.2588235294117647,
+                                                            0.2588235294117647,
+                                                            0.2588235294117647
+                                                        ],
+                                                        "font_scale_factor": 1.2,
+                                                        "font_type": "default",
+                                                        "text": "酵温 20°C"
+                                                    }
+                                                },
+                                                {
+                                                    "expected_temp_label": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            25.0,
+                                                            -30.0
+                                                        ],
+                                                        "size": [
+                                                            60.0,
+                                                            12.0
+                                                        ],
+                                                        "color": [
+                                                            0.2588235294117647,
+                                                            0.2588235294117647,
+                                                            0.2588235294117647
+                                                        ],
+                                                        "font_scale_factor": 1.2,
+                                                        "font_type": "default",
+                                                        "text": "控温 20°C",
+                                                        "text_alignment": "right"
+                                                    }
+                                                },
+                                                {
+                                                    "gas_tip": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            93.0,
+                                                            -34.0
+                                                        ],
+                                                        "size": [
+                                                            52.0,
+                                                            12.0
+                                                        ],
+                                                        "color": [
+                                                            0.2588235294117647,
+                                                            0.2588235294117647,
+                                                            0.2588235294117647
+                                                        ],
+                                                        "font_scale_factor": 1.1,
+                                                        "font_type": "default",
+                                                        "text": "产出 - 气体"
+                                                    }
+                                                },
+                                                {
+                                                    "fluid_tip": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            93.0,
+                                                            14.0
+                                                        ],
+                                                        "size": [
+                                                            52.0,
+                                                            12.0
+                                                        ],
+                                                        "color": [
+                                                            0.2588235294117647,
+                                                            0.2588235294117647,
+                                                            0.2588235294117647
+                                                        ],
+                                                        "font_scale_factor": 1.1,
+                                                        "font_type": "default",
+                                                        "text": "产出 - 流体"
+                                                    }
+                                                },
+                                                {
+                                                    "pool_tip": {
+                                                        "type": "label",
+                                                        "offset": [
+                                                            -4.5,
+                                                            -2.0
+                                                        ],
+                                                        "size": [
+                                                            121.0,
+                                                            12.0
+                                                        ],
+                                                        "color": [
+                                                            0.2588235294117647,
+                                                            0.2588235294117647,
+                                                            0.2588235294117647
+                                                        ],
+                                                        "font_scale_factor": 1.1,
+                                                        "font_type": "default",
+                                                        "text": "发酵池 （未知状态）"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "offset": [
+                                    0,
+                                    -45
+                                ],
+                                "size": [
+                                    "100%+80px",
+                                    120
+                                ]
+                            }
+                        }
+                    ],
+                    "layer": 2,
+                    "size": [
+                        "default",
+                        "default"
+                    ]
+                }
+            }
+        ]
+    },
+    "main@common.base_screen": {
+        "$screen_content": "FermenterUI.fermenter_ui"
+    },
+    "namespace": "FermenterUI"
+}

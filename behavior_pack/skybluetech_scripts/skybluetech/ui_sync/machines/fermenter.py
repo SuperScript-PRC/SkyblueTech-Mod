@@ -1,0 +1,69 @@
+# coding=utf-8
+
+from .basic_machine_ui_sync import MachineUISync
+
+K_STORE_RF = "r"
+K_STORE_RF_MAX = "m"
+K_MUD_TEMPERATURE = "t"
+K_MUD_THICKNESS = "th"
+K_CONTENT_VOLUME = "v"
+K_EXPECTED_TEMPERATURE = "et"
+K_OUT_GAS_ID = "og"
+K_OUT_GAS_VOLUME = "ogv"
+K_OUT_GAS_MAX_VOLUME = "ogm"
+K_OUT_FLUID_ID = "of"
+K_OUT_FLUID_VOLUME = "ofv"
+K_OUT_FLUID_MAX_VOLUME = "ofm"
+K_RECIPE = "re"
+K_STRUCTURE_FINISHED = "s"
+
+
+class FermenterUISync(MachineUISync):
+    store_rf = 0
+    store_rf_max = 0
+    mud_temperature = 0.0
+    mud_thickness = 0.0
+    content_volume_pc = 0.0
+    expected_temperature = 0.0
+    recipe_id = 0
+    structure_finished = False
+    out_gas_id = None # type: str | None
+    out_gas_volume = 0.0
+    out_gas_max_volume = 0.0
+    out_fluid_id = None # type: str | None
+    out_fluid_volume = 0.0
+    out_fluid_max_volume = 0.0
+
+    def Unmarshal(self, data):
+        self.store_rf = data[K_STORE_RF]
+        self.store_rf_max = data[K_STORE_RF_MAX]
+        self.mud_temperature = data[K_MUD_TEMPERATURE]
+        self.mud_thickness = data[K_MUD_THICKNESS]
+        self.content_volume_pc = data[K_CONTENT_VOLUME]
+        self.recipe_id = data[K_RECIPE]
+        self.structure_finished = data[K_STRUCTURE_FINISHED]
+        self.expected_temperature = data[K_EXPECTED_TEMPERATURE]
+        self.out_gas_id = data[K_OUT_GAS_ID]
+        self.out_gas_volume = data[K_OUT_GAS_VOLUME]
+        self.out_gas_max_volume = data[K_OUT_GAS_MAX_VOLUME]
+        self.out_fluid_id = data[K_OUT_FLUID_ID]
+        self.out_fluid_volume = data[K_OUT_FLUID_VOLUME]
+        self.out_fluid_max_volume = data[K_OUT_FLUID_MAX_VOLUME]
+
+    def Marshal(self):
+        return {
+            K_STORE_RF: self.store_rf,
+            K_STORE_RF_MAX: self.store_rf_max,
+            K_MUD_TEMPERATURE: self.mud_temperature,
+            K_MUD_THICKNESS: self.mud_thickness,
+            K_CONTENT_VOLUME: self.content_volume_pc,
+            K_RECIPE: self.recipe_id,
+            K_STRUCTURE_FINISHED: self.structure_finished,
+            K_EXPECTED_TEMPERATURE: self.expected_temperature,
+            K_OUT_GAS_ID: self.out_gas_id,
+            K_OUT_GAS_VOLUME: self.out_gas_volume,
+            K_OUT_GAS_MAX_VOLUME: self.out_gas_max_volume,
+            K_OUT_FLUID_ID: self.out_fluid_id,
+            K_OUT_FLUID_VOLUME: self.out_fluid_volume,
+            K_OUT_FLUID_MAX_VOLUME: self.out_fluid_max_volume,
+        }

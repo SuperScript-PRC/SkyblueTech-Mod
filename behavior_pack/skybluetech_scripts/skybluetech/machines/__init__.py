@@ -22,4 +22,5 @@ from .splitter import Splitter
 from .thermoelectric_generator import ThermoelectricGenerator
 from .thermal_generator import ThermalGenerator
 
+from .interfaces import *
 from .tanks import *
