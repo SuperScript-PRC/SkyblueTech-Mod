@@ -6,12 +6,7 @@ from skybluetech_scripts.tooldelta.api.server import (
     SetBlock,
     SpawnItemToPlayerCarried,
 )
-from ...define.machine_config.farming_station import (
-    isCommonCrop,
-    isCommonCropRiped,
-    isArrisCrop,
-    isArrisCropRiped,
-)
+from ...define.machine_config.farming_station import isRipedCrop
 from ...utils.charge import GetCharge, UpdateCharge
 from .register import RegisterItemUseOnCallback
 from .utils import GetUpgraderLevel
@@ -34,12 +29,8 @@ def getCropsRiped(dim, _x, _y, _z, radius):
             block_states = GetBlockStates(dim, (x, _y, z))
             if block_states is None:
                 continue
-            if isCommonCrop(block_id):
-                if isCommonCropRiped(block_states):
-                    res.append((dim, x, _y, z, block_id))
-            elif isArrisCrop(block_states):
-                if isArrisCropRiped(block_states):
-                    res.append((dim, x, _y, z, block_id))
+            if isRipedCrop(block_id, block_states):
+                res.append((dim, x, _y, z, block_id))
     return res
 
 
